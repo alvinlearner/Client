@@ -3,8 +3,8 @@ import React, { useState } from "react";
 function AddTransaction() {
   const [reg, setReg] = useState("");
   const [policyno, Setpolicyno] = useState("");
-  const [date, setDate] = useState("");
-  const [duration, setDuration] = useState("");
+  const [start, setStart] = useState("");
+  const [expire, setExpire] = useState("");
   const [description, setDescription] = useState("");
 
 
@@ -12,10 +12,10 @@ function AddTransaction() {
     e.preventDefault();
 
     const newTransaction = {
-      date: date,
+      start: start,
+      expire: expire,
       reg: reg,
       description: description,
-      duration: duration,
       policyno: policyno,
     };
 
@@ -31,11 +31,11 @@ function AddTransaction() {
       })
       .then((data) => {
         console.log(data);
-        setDate("");
+        setStart("");
+        setExpire("")
         setReg("");
         setDescription("");
         Setpolicyno("");
-        setDuration("");
         window.location.reload();
       })
       .catch((error) => {
@@ -53,6 +53,7 @@ function AddTransaction() {
             type="text"
             value={reg}
             placeholder="Enter Registration number"
+            style={{textTransform:"uppercase"}}
             onChange={(e) => setReg(e.target.value)}
             required
           />
@@ -71,25 +72,25 @@ function AddTransaction() {
 
 
         <label>
-          Date:
+         Starting date:
           <input
             type="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
+            value={start}
+            onChange={(e) => setStart(e.target.value)}
             required
           />
         </label>
             
         <label>
-          Duration:
+          Expirey date:
           <input
-            type="text"
-            value={duration}
-            placeholder="Enter duration"
-            onChange={(e) => setDuration(e.target.value)}
+            type="date"
+            value={expire}
+            onChange={(e) => setExpire(e.target.value)}
             required
           />
         </label>
+
 
         <label>
           Description:

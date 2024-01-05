@@ -1,13 +1,28 @@
 {
   "transactions": [
     {
-      "id": 1,
-      "reg": "KAK 640M",
-      "policyno": "12345",
-      "date": "2019-12-01",
-      "duration": "60",
-      "active": false,
-      "description": "Paycheck from Bob"
+      "start": "2024-01-10",
+      "expire": "2025-01-06",
+      "reg": "KCB320W",
+      "description": "bob 23",
+      "policyno": "asdfqwer",
+      "id": 2
+    },
+    {
+      "start": "2024-01-06",
+      "expire": "2024-02-06",
+      "reg": "KDJ235T",
+      "description": "PSV nakuru",
+      "policyno": "1234456",
+      "id": 3
+    },
+    {
+      "start": "2024-01-06",
+      "expire": "2024-01-07",
+      "reg": "KBV456R",
+      "description": "motor bike",
+      "policyno": "qwertrty345",
+      "id": 4
     }
   ]
 }

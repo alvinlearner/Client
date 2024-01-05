@@ -25,12 +25,16 @@ export default function DisplayTransaction() {
       });
   }, []);
 
-  const calculateDaysLeft = (date, duration) => {
+  const calculateDaysLeft = (start, expire) => {
     const currentDate = new Date();
-    const transactionDate = new Date(date);
-    const endTransactionDate = new Date(transactionDate);
-    endTransactionDate.setDate(endTransactionDate.getDate() + duration);
-    const remainingDays = Math.ceil((endTransactionDate - currentDate) / (1000 * 60 * 60 * 24));
+    const startDate = new Date(start);
+    const expireDate = new Date(expire);
+    
+    // Set the time to the end of the day for accurate calculation
+    startDate.setHours(23, 59, 59, 999);
+    expireDate.setHours(23, 59, 59, 999);
+
+    const remainingDays = Math.floor((expireDate - currentDate) / (1000 * 60 * 60 * 24));
     return remainingDays >= 0 ? remainingDays : 0;
   };
 
@@ -80,12 +84,12 @@ export default function DisplayTransaction() {
       <table>
         <thead>
           <tr>
-            <th>registration number</th>
-            <th>policy number</th>
-            <th>starting date</th>
-            <th>duration</th>
-            <th>description</th>
-            <th>status</th>
+            <th>Registration number</th>
+            <th>Policy number</th>
+            <th>Starting date</th>
+            <th>Expiry</th>
+            <th>Description</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
@@ -93,11 +97,11 @@ export default function DisplayTransaction() {
             <tr key={transaction.id}>
               <td>{transaction.reg}</td>
               <td>{transaction.policyno}</td>
-              <td>{transaction.date}</td>
-              <td>{transaction.duration}</td>
+              <td>{transaction.start}</td>
+              <td>{transaction.expire}</td>
               <td>{transaction.description}</td>
-              <td style={{ color: getStatusColor(calculateDaysLeft(transaction.date, transaction.duration)) }}>
-                {calculateDaysLeft(transaction.date, transaction.duration)} days left
+              <td style={{ color: getStatusColor(calculateDaysLeft(transaction.start, transaction.expire)) }}>
+                {calculateDaysLeft(transaction.start, transaction.expire)} days left
               </td>
 
               <td>
