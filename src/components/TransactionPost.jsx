@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 
 function AddTransaction() {
+  const [reg, setReg] = useState("");
+  const [policyno, Setpolicyno] = useState("");
   const [date, setDate] = useState("");
+  const [duration, setDuration] = useState("");
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
-  const [amount, setAmount] = useState("");
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const newTransaction = {
       date: date,
+      reg: reg,
       description: description,
-      category: category,
-      amount: amount,
+      duration: duration,
+      policyno: policyno,
     };
 
     fetch(`http://localhost:8001/transactions`, {
@@ -29,9 +32,10 @@ function AddTransaction() {
       .then((data) => {
         console.log(data);
         setDate("");
+        setReg("");
         setDescription("");
-        setCategory("");
-        setAmount("");
+        Setpolicyno("");
+        setDuration("");
         window.location.reload();
       })
       .catch((error) => {
@@ -42,15 +46,51 @@ function AddTransaction() {
   return (
     <div style={{marginBottom:"10px"}}>
       <form onSubmit={handleSubmit}>
+
+      <label>
+          Registration Number:
+          <input
+            type="text"
+            value={reg}
+            placeholder="Enter Registration number"
+            onChange={(e) => setReg(e.target.value)}
+            required
+          />
+        </label>
+
+      <label>
+          Policy Number:
+          <input
+            type="text"
+            value={policyno}
+            placeholder="Enter policy number"
+            onChange={(e) => Setpolicyno(e.target.value)}
+            required
+          />
+        </label>
+
+
         <label>
           Date:
           <input
             type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
+            required
           />
         </label>
-        
+            
+        <label>
+          Duration:
+          <input
+            type="text"
+            value={duration}
+            placeholder="Enter duration"
+            onChange={(e) => setDuration(e.target.value)}
+            required
+          />
+        </label>
+
         <label>
           Description:
           <input
@@ -58,29 +98,11 @@ function AddTransaction() {
             value={description}
             placeholder="Enter description"
             onChange={(e) => setDescription(e.target.value)}
+            required
           />
         </label>
     
-        <label>
-          Category:
-          <input
-            type="text"
-            value={category}
-            placeholder="Enter category"
-            onChange={(e) => setCategory(e.target.value)}
-          />
-        </label>
-    
-        <label>
-          Amount:
-          <input
-            type="number"
-            value={amount}
-            placeholder="Enter amount"
-            onChange={(e) => setAmount(e.target.value)}
-          />
-        </label>
-        <button type="submit">Add Transaction</button>
+                <button type="submit">Add Slot</button>
       </form>
     </div>
   );

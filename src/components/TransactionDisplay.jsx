@@ -25,6 +25,25 @@ export default function DisplayTransaction() {
       });
   }, []);
 
+  const calculateDaysLeft = (date, duration) => {
+    const currentDate = new Date();
+    const transactionDate = new Date(date);
+    const endTransactionDate = new Date(transactionDate);
+    endTransactionDate.setDate(endTransactionDate.getDate() + duration);
+    const remainingDays = Math.ceil((endTransactionDate - currentDate) / (1000 * 60 * 60 * 24));
+    return remainingDays >= 0 ? remainingDays : 0;
+  };
+
+  const getStatusColor = (remainingDays) => {
+    if (remainingDays === 0) {
+      return 'red';
+    } else if (remainingDays <= 5) {
+      return 'orange';
+    } else {
+      return 'green';
+    }
+  };
+
   const handleFilter = (filteredTransactions) => {
     setFilteredTransactions(filteredTransactions);
   };
@@ -61,20 +80,26 @@ export default function DisplayTransaction() {
       <table>
         <thead>
           <tr>
-            <th>date</th>
+            <th>registration number</th>
+            <th>policy number</th>
+            <th>starting date</th>
+            <th>duration</th>
             <th>description</th>
-            <th>category</th>
-            <th>amount</th>
-            <th></th>
+            <th>status</th>
           </tr>
         </thead>
         <tbody>
           {filteredTransactions.map((transaction) => (
             <tr key={transaction.id}>
+              <td>{transaction.reg}</td>
+              <td>{transaction.policyno}</td>
               <td>{transaction.date}</td>
+              <td>{transaction.duration}</td>
               <td>{transaction.description}</td>
-              <td>{transaction.category}</td>
-              <td>{transaction.amount}</td>
+              <td style={{ color: getStatusColor(calculateDaysLeft(transaction.date, transaction.duration)) }}>
+                {calculateDaysLeft(transaction.date, transaction.duration)} days left
+              </td>
+
               <td>
                 <TransactionDelete
                   id={transaction.id}
