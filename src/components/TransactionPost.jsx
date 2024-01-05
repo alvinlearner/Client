@@ -11,10 +11,12 @@ function AddTransaction() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const regInUppercase = reg.toUpperCase();
+
     const newTransaction = {
       start: start,
       expire: expire,
-      reg: reg,
+      reg: regInUppercase,
       description: description,
       policyno: policyno,
     };
@@ -53,7 +55,6 @@ function AddTransaction() {
             type="text"
             value={reg}
             placeholder="Enter Registration number"
-            style={{textTransform:"uppercase"}}
             onChange={(e) => setReg(e.target.value)}
             required
           />
