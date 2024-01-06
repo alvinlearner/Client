@@ -76,7 +76,7 @@ export default function DisplayTransaction() {
         {`
           th,
           td {
-            background-color: #5b5656;
+            background-color: #0E2863;
           }
         `}
       </style>
