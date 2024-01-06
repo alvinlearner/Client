@@ -2,12 +2,14 @@
 import React, { useEffect, useState } from "react";
 import TransactionFilter from "./Transactionfilter";
 import TransactionDelete from "./TransactionDelete";
-// import "../styles.css"; // Import the Tailwind CSS file
+import "../styles.css"; // Import the Tailwind CSS file
 
 export default function DisplayTransaction() {
   const [transactions, setTransactions] = useState([]);
   const [filteredTransactions, setFilteredTransactions] = useState([]);
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage] = useState(7);
 
   useEffect(() => {
     const url = `http://localhost:8001/transactions`;
@@ -112,17 +114,31 @@ export default function DisplayTransaction() {
     return direction === "asc" ? 1 : -1;
   };
 
+  const indexOfLastRow = currentPage * rowsPerPage;
+  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+  const currentRows = sortedTransactions().slice(indexOfFirstRow, indexOfLastRow);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <div className="container mx-auto p-4">
       <style>
         {`
-          th,
+          th{           
+              background-color: #0E2863;
+              color: white;
+          }
+
           td {
-            background-color: #0E2863;
+            background-color: #346072;
+            color: white;
           }
         `}
       </style>
       <TransactionFilter transactions={transactions} onFilter={handleFilter} />
+      <div style={{overFlowX:"auto;"}}>
       <table className="table-auto w-full">
         <thead>
           <tr>
@@ -144,11 +160,11 @@ export default function DisplayTransaction() {
             <th className="px-4 py-2" onClick={() => handleSort("daysLeft")}>
               Status
             </th>
-            <th className="px-4 py-2">Actions</th>
+            {/* <th className="px-4 py-2">Actions</th> */}
           </tr>
         </thead>
         <tbody>
-          {sortedTransactions().map((transaction) => (
+          {currentRows.map((transaction) => (
             <tr key={transaction.id} className="bg-gray-100">
               <td className="px-4 py-2">{transaction.description}</td>
               <td className="px-4 py-2">{transaction.reg}</td>
@@ -162,16 +178,34 @@ export default function DisplayTransaction() {
               >
                 {calculateDaysLeft(transaction.start, transaction.expire)} days left
               </td>
-              <td className="px-4 py-2">
+              {/* <td className="px-4 py-2">
                 <TransactionDelete
                   id={transaction.id}
                   onDelete={() => handleDelete(transaction.id)}
                 />
-              </td>
+              </td> */}
             </tr>
           ))}
         </tbody>
       </table>
+      </div>
+      <div className="flex justify-center mt-4">
+        <button
+          className={`mr-2 ${currentPage === 1 && 'opacity-50 cursor-not-allowed'}`}
+          onClick={() => paginate(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+        <button
+          className={`ml-2 ${indexOfLastRow >= sortedTransactions().length && 'opacity-50 cursor-not-allowed'}`}
+          onClick={() => paginate(currentPage + 1)}
+          disabled={indexOfLastRow >= sortedTransactions().length}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
+  
 }

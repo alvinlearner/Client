@@ -1,17 +1,24 @@
 #root {
   margin: -1%, 15%, 85%, 0%, 75;
   text-align: center;
-  color: white;
+  /* color: white; */
 }
 
 table {
-  margin-left: auto;
-  margin-right: auto;
-  
-
+  border-collapse: collapse;
+  width: 100%;
 }
 
-tr{
-  font-size: 1.5rem;
-  margin-right: 5%;
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+table, th, td {
+  border: 1px solid black;
 }

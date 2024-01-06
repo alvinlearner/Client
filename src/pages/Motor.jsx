@@ -9,6 +9,7 @@ return(
     <>
     <h1>MOTOR PAGE</h1>
     <AddTransaction/>
+    <br/>
     <DisplayTransaction/>
 
 
