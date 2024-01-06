@@ -84,22 +84,23 @@ export default function DisplayTransaction() {
       <table>
         <thead>
           <tr>
+            <th>Description</th>
             <th>Registration number</th>
             <th>Policy number</th>
             <th>Starting date</th>
-            <th>Expiry</th>
-            <th>Description</th>
+            <th>Expiry</th>           
             <th>Status</th>
           </tr>
         </thead>
         <tbody>
           {filteredTransactions.map((transaction) => (
             <tr key={transaction.id}>
+              <td>{transaction.description}</td>
               <td>{transaction.reg}</td>
               <td>{transaction.policyno}</td>
               <td>{transaction.start}</td>
               <td>{transaction.expire}</td>
-              <td>{transaction.description}</td>
+              
               <td style={{ color: getStatusColor(calculateDaysLeft(transaction.start, transaction.expire)) }}>
                 {calculateDaysLeft(transaction.start, transaction.expire)} days left
               </td>

@@ -1,4 +1,13 @@
 {
+  "clients": [
+    {
+      "name": "Alvin",
+      "phone": "07201234567",
+      "email": "alvin@gmail.com",
+      "krapin": "12345678",
+      "idno": "98765321"
+    }
+  ],
   "transactions": [
     {
       "start": "2024-01-10",
@@ -63,6 +72,14 @@
       "description": "big up",
       "policyno": "1242jcjj",
       "id": 9
+    },
+    {
+      "start": "2024-01-01",
+      "expire": "2024-01-28",
+      "reg": "KBH321F",
+      "description": "mart",
+      "policyno": "sasasasa",
+      "id": 10
     }
   ]
 }
