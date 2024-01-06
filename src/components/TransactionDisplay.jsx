@@ -1,6 +1,8 @@
+// DisplayTransaction.jsx
 import React, { useEffect, useState } from "react";
 import TransactionFilter from "./Transactionfilter";
 import TransactionDelete from "./TransactionDelete";
+import "../styles.css";
 
 export default function DisplayTransaction() {
   const [transactions, setTransactions] = useState([]);
@@ -29,7 +31,7 @@ export default function DisplayTransaction() {
     const currentDate = new Date();
     const startDate = new Date(start);
     const expireDate = new Date(expire);
-    
+
     // Set the time to the end of the day for accurate calculation
     startDate.setHours(23, 59, 59, 999);
     expireDate.setHours(23, 59, 59, 999);
@@ -71,41 +73,45 @@ export default function DisplayTransaction() {
   };
 
   return (
-    <div>
+    <div className="container mx-auto p-4">
       <style>
         {`
           th,
           td {
             background-color: #0E2863;
+            color: white;
           }
         `}
       </style>
       <TransactionFilter transactions={transactions} onFilter={handleFilter} />
-      <table>
+      <table className="table-auto w-full">
         <thead>
           <tr>
-            <th>Description</th>
-            <th>Registration number</th>
-            <th>Policy number</th>
-            <th>Starting date</th>
-            <th>Expiry</th>           
-            <th>Status</th>
+            <th className="px-4 py-2">Description</th>
+            <th className="px-4 py-2">Registration number</th>
+            <th className="px-4 py-2">Policy number</th>
+            <th className="px-4 py-2">Starting date</th>
+            <th className="px-4 py-2">Expiry</th>
+            <th className="px-4 py-2">Status</th>
+            <th className="px-4 py-2">Actions</th>
           </tr>
         </thead>
         <tbody>
           {filteredTransactions.map((transaction) => (
-            <tr key={transaction.id}>
-              <td>{transaction.description}</td>
-              <td>{transaction.reg}</td>
-              <td>{transaction.policyno}</td>
-              <td>{transaction.start}</td>
-              <td>{transaction.expire}</td>
-              
-              <td style={{ color: getStatusColor(calculateDaysLeft(transaction.start, transaction.expire)) }}>
+            <tr key={transaction.id} className="bg-gray-100">
+              <td className="px-4 py-2">{transaction.description}</td>
+              <td className="px-4 py-2">{transaction.reg}</td>
+              <td className="px-4 py-2">{transaction.policyno}</td>
+              <td className="px-4 py-2">{transaction.start}</td>
+              <td className="px-4 py-2">{transaction.expire}</td>
+              <td
+                className={`px-4 py-2 text-${getStatusColor(
+                  calculateDaysLeft(transaction.start, transaction.expire)
+                )}`}
+              >
                 {calculateDaysLeft(transaction.start, transaction.expire)} days left
               </td>
-
-              <td>
+              <td className="px-4 py-2">
                 <TransactionDelete
                   id={transaction.id}
                   onDelete={() => handleDelete(transaction.id)}
