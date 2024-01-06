@@ -1,13 +1,14 @@
 #root {
   margin: -1%, 15%, 85%, 0%, 75;
   text-align: center;
-  /* color: white; */
+  color: white;
 }
 
 table {
   margin-left: auto;
   margin-right: auto;
-  color: aliceblue;  
+  
+
 }
 
 tr{

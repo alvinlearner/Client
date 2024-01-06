@@ -2,11 +2,12 @@
 import React, { useEffect, useState } from "react";
 import TransactionFilter from "./Transactionfilter";
 import TransactionDelete from "./TransactionDelete";
-import "../styles.css";
+// import "../styles.css"; // Import the Tailwind CSS file
 
 export default function DisplayTransaction() {
   const [transactions, setTransactions] = useState([]);
   const [filteredTransactions, setFilteredTransactions] = useState([]);
+  const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
 
   useEffect(() => {
     const url = `http://localhost:8001/transactions`;
@@ -15,9 +16,7 @@ export default function DisplayTransaction() {
       method: "GET",
       headers: { "content-type": "application/json" },
     })
-      .then((res) => {
-        return res.json();
-      })
+      .then((res) => res.json())
       .then((data) => {
         setTransactions(data);
         setFilteredTransactions(data);
@@ -32,7 +31,6 @@ export default function DisplayTransaction() {
     const startDate = new Date(start);
     const expireDate = new Date(expire);
 
-    // Set the time to the end of the day for accurate calculation
     startDate.setHours(23, 59, 59, 999);
     expireDate.setHours(23, 59, 59, 999);
 
@@ -43,7 +41,7 @@ export default function DisplayTransaction() {
   const getStatusColor = (remainingDays) => {
     if (remainingDays === 0) {
       return 'red';
-    } else if (remainingDays <= 5) {
+    } else if (remainingDays <= 7) {
       return 'orange';
     } else {
       return 'green';
@@ -72,6 +70,48 @@ export default function DisplayTransaction() {
       });
   };
 
+  const handleSort = (key) => {
+    let direction = "asc";
+    if (sortConfig.key === key && sortConfig.direction === "asc") {
+      direction = "desc";
+    }
+    setSortConfig({ key, direction });
+  };
+
+  const sortedTransactions = () => {
+    const sorted = [...filteredTransactions];
+    if (sortConfig.key) {
+      sorted.sort((a, b) => {
+        const aValue = keyExtractor(a, sortConfig.key);
+        const bValue = keyExtractor(b, sortConfig.key);
+        return directionMultiplier(sortConfig.direction) * compareValues(aValue, bValue);
+      });
+    }
+    return sorted;
+  };
+
+  const keyExtractor = (item, key) => {
+    if (key === "daysLeft") {
+      return calculateDaysLeft(item.start, item.expire);
+    } else {
+      return item[key];
+    }
+  };
+
+  const compareValues = (a, b) => {
+    if (a < b) {
+      return -1;
+    }
+    if (a > b) {
+      return 1;
+    }
+    return 0;
+  };
+
+  const directionMultiplier = (direction) => {
+    return direction === "asc" ? 1 : -1;
+  };
+
   return (
     <div className="container mx-auto p-4">
       <style>
@@ -79,7 +119,6 @@ export default function DisplayTransaction() {
           th,
           td {
             background-color: #0E2863;
-            color: white;
           }
         `}
       </style>
@@ -87,17 +126,29 @@ export default function DisplayTransaction() {
       <table className="table-auto w-full">
         <thead>
           <tr>
-            <th className="px-4 py-2">Description</th>
-            <th className="px-4 py-2">Registration number</th>
-            <th className="px-4 py-2">Policy number</th>
-            <th className="px-4 py-2">Starting date</th>
-            <th className="px-4 py-2">Expiry</th>
-            <th className="px-4 py-2">Status</th>
+            <th className="px-4 py-2" onClick={() => handleSort("description")}>
+              Description
+            </th>
+            <th className="px-4 py-2" onClick={() => handleSort("reg")}>
+              Registration number
+            </th>
+            <th className="px-4 py-2" onClick={() => handleSort("policyno")}>
+              Policy number
+            </th>
+            <th className="px-4 py-2" onClick={() => handleSort("start")}>
+              Starting date
+            </th>
+            <th className="px-4 py-2" onClick={() => handleSort("expire")}>
+              Expiry
+            </th>
+            <th className="px-4 py-2" onClick={() => handleSort("daysLeft")}>
+              Status
+            </th>
             <th className="px-4 py-2">Actions</th>
           </tr>
         </thead>
         <tbody>
-          {filteredTransactions.map((transaction) => (
+          {sortedTransactions().map((transaction) => (
             <tr key={transaction.id} className="bg-gray-100">
               <td className="px-4 py-2">{transaction.description}</td>
               <td className="px-4 py-2">{transaction.reg}</td>
