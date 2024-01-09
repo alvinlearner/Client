@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function TransactionFilter({ transactions, onFilter }) {
+export default function Clientfilter({ transactions, onFilter }) {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearch = () => {
@@ -16,7 +16,7 @@ export default function TransactionFilter({ transactions, onFilter }) {
 
   return (
     <div style={{ marginBottom: "10px" }}>
-      <label style={{ marginRight: "10px",fontWeight:"bold" }}>Search description:</label>
+      <label style={{ marginRight: "10px", fontWeight:"bold" }}>Search description:</label>
       <input
         type="text"
         placeholder="Search by description"

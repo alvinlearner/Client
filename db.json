@@ -1,11 +1,28 @@
 {
   "clients": [
     {
-      "name": "Alvin",
+      "id": 5,
+      "name": "sam tucker",
       "phone": "07201234567",
       "email": "alvin@gmail.com",
       "krapin": "12345678",
       "idno": "98765321"
+    },
+    {
+      "id": 2,
+      "name": "wilson ndege",
+      "phone": "1201234567",
+      "email": "CRAM@mail.com",
+      "krapin": "77777777",
+      "idno": "000100021"
+    },
+    {
+      "id": 2,
+      "name": "willy wonker",
+      "phone": "1201234567",
+      "email": "CRAM@mail.com",
+      "krapin": "77777777",
+      "idno": "000100021"
     }
   ],
   "transactions": [
@@ -15,7 +32,8 @@
       "reg": "KDJ235T",
       "description": "PSV nakuru",
       "policyno": "1234456",
-      "id": 3
+      "id": 3,
+      "client_id": 5
     },
     {
       "start": "2024-01-06",
@@ -23,7 +41,8 @@
       "reg": "KBV456R",
       "description": "motor bike",
       "policyno": "qwertrty345",
-      "id": 4
+      "id": 4,
+      "client_id": 5
     },
     {
       "start": "2023-12-19",
@@ -31,7 +50,8 @@
       "reg": "kbm679k",
       "description": "priv",
       "policyno": "qwwrasfg",
-      "id": 5
+      "id": 5,
+      "client_id": 2
     },
     {
       "start": "2024-01-06",
@@ -39,7 +59,8 @@
       "reg": "KVC653E",
       "description": "GYY",
       "policyno": "22W4E4DT",
-      "id": 6
+      "id": 6,
+      "client_id": 2
     },
     {
       "start": "2024-01-16",
@@ -47,7 +68,8 @@
       "reg": "gkb234d",
       "description": "okello",
       "policyno": "qwerasdf",
-      "id": 7
+      "id": 7,
+      "client_id": 5
     },
     {
       "start": "2024-01-10",
@@ -55,7 +77,8 @@
       "reg": "GKB567Y",
       "description": "police",
       "policyno": "jdjdjdjfjg",
-      "id": 8
+      "id": 8,
+      "client_id": 5
     },
     {
       "start": "2024-01-15",
@@ -63,7 +86,8 @@
       "reg": "KCD234T",
       "description": "big up",
       "policyno": "1242jcjj",
-      "id": 9
+      "id": 9,
+      "client_id": 2
     },
     {
       "start": "2024-01-01",
@@ -71,7 +95,8 @@
       "reg": "KBH321F",
       "description": "mart",
       "policyno": "sasasasa",
-      "id": 10
+      "id": 10,
+      "client_id": 5
     },
     {
       "start": "2024-01-15",
@@ -79,7 +104,8 @@
       "reg": "KDK234F",
       "description": "bmg",
       "policyno": "123545",
-      "id": 11
+      "id": 11,
+      "client_id": 2
     }
   ]
 }

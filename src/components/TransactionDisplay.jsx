@@ -126,15 +126,26 @@ export default function DisplayTransaction() {
     <div className="container mx-auto p-4">
       <style>
         {`
-          th{           
-              background-color: #0E2863;
-              color: white;
-          }
 
-          td {
-            background-color: #346072;
-            color: white;
-          }
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+  background-color: #CACEC7;
+}
+
+th {
+  background-color: #04AA6D;
+  color: white;
+}
+
         `}
       </style>
       <TransactionFilter transactions={transactions} onFilter={handleFilter} />

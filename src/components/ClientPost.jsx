@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import "./ClientPost.css";
 
-function AddTransaction() {
+function ClientPost() {
   const [reg, setReg] = useState("");
   const [policyno, Setpolicyno] = useState("");
   const [start, setStart] = useState("");
   const [expire, setExpire] = useState("");
   const [description, setDescription] = useState("");
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,13 +28,11 @@ function AddTransaction() {
       },
       body: JSON.stringify(newTransaction),
     })
-      .then((res) => {
-       res.json()
-      })
+      .then((res) => res.json())
       .then((data) => {
         console.log(data);
         setStart("");
-        setExpire("")
+        setExpire("");
         setReg("");
         setDescription("");
         Setpolicyno("");
@@ -47,68 +44,68 @@ function AddTransaction() {
   };
 
   return (
-    <div style={{marginBottom:"10px", fontWeight: "bold"}}>
+    <div className="container" style={{ marginBottom: "10px", fontWeight: "bold" }}>
       <form onSubmit={handleSubmit}>
-
-      <label>
-          Registration Number:
+        <label>
+          Name:
           <input
             type="text"
             value={reg}
-            placeholder="Enter Registration number"
+            placeholder="Enter Name"
             onChange={(e) => setReg(e.target.value)}
             required
           />
         </label>
 
-      <label>
-          Policy Number:
+        <label>
+          Phone:
           <input
             type="text"
             value={policyno}
-            placeholder="Enter policy number"
+            placeholder="Enter phone number"
             onChange={(e) => Setpolicyno(e.target.value)}
             required
           />
         </label>
 
-
         <label>
-         Starting date:
+          Email:
           <input
-            type="date"
+            type="text"
             value={start}
+            placeholder="Enter email"
             onChange={(e) => setStart(e.target.value)}
             required
           />
         </label>
-            
+
         <label>
-          Expirey date:
+          K.R.A pin:
           <input
-            type="date"
+            type="text"
             value={expire}
             onChange={(e) => setExpire(e.target.value)}
             required
+            placeholder="Enter K.R.A pin"
           />
         </label>
-
 
         <label>
-          Description:
+          Documents:
           <input
-            type="text"
+            type="file"
             value={description}
             placeholder="Enter description"
+            accept="application/pdf,application/vnd.ms-excel"
             onChange={(e) => setDescription(e.target.value)}
-            required
+            
           />
         </label>
-    
-                <button type="submit">Add Slot</button>
+
+        <button type="submit">Add Client</button>
       </form>
     </div>
   );
 }
 
-export default AddTransaction;
+export default ClientPost;
