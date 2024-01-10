@@ -11,13 +11,13 @@ function ClientPost() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-
+const Upperkrapin = krapin.toUpperCase()
 
     const newTransaction = {
       name: name,
       phone: phone,
       email: email,
-      krapin: krapin,
+      krapin: Upperkrapin,
       idno: idno,
     };
 
@@ -71,7 +71,7 @@ function ClientPost() {
         <label>
           Email:
           <input
-            type="text"
+            type="email"
             value={email}
             placeholder="Enter email"
             onChange={(e) => setEmail(e.target.value)}

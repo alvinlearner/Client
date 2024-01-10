@@ -16,10 +16,10 @@ export default function TransactionFilter({ transactions, onFilter }) {
 
   return (
     <div style={{ marginBottom: "10px" }}>
-      <label style={{ marginRight: "10px",fontWeight:"bold" }}>Search description:</label>
+      <label style={{ marginRight: "10px",fontWeight:"bold" }}>Search for policy:</label>
       <input
         type="text"
-        placeholder="Search by description"
+        placeholder="Search for policy"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />

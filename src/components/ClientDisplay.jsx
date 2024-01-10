@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Clientfilter from "./Clientfilter";
+// import { useHistory } from "react-router-dom";
 
 
 
 import "../styles.css"; 
 
 export default function DisplayClient() {  
+
+  // const history = useHistory();
+
+
   const [clients, setClients] = useState([]);
   const [filteredClients, setFilteredClients] = useState([]);
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
@@ -109,10 +114,7 @@ table {
   th {
     background-color: #5950D2;
     color: white;
-  }
-
-  
-        
+  }       
         `}
       </style>
       <Clientfilter clients={clients} onFilter={handleFilter} />
@@ -138,10 +140,6 @@ table {
             <th className="px-4 py-2">
               Action
             </th>
-            {/* <th className="px-4 py-2" onClick={() => handleSort("daysLeft")}>
-              Status
-            </th> */}
-            {/* <th className="px-4 py-2">Actions</th> */}
           </tr>
         </thead>
         <tbody>
@@ -154,9 +152,13 @@ table {
               <td className="px-4 py-2">{clients.idno}</td>
 
               <td className="px-4 py-2">
+
+              {/* <button onClick={() => handleEdit(client.id)}>Edit</button> */}
+
                 <button onClick={() => history.push(`/client/${clients.id}/edit`)}>
                      View more
                </button>
+
               </td>
 
   
