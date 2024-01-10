@@ -9,7 +9,7 @@ export default function DisplayTransaction() {
   const [filteredTransactions, setFilteredTransactions] = useState([]);
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
   const [currentPage, setCurrentPage] = useState(1);
-  const [rowsPerPage] = useState(7);
+  const [rowsPerPage] = useState(10);
   const [clients, setClients] = useState([]);
 
 

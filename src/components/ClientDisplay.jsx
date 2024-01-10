@@ -15,7 +15,7 @@ export default function DisplayClient() {
   const [filteredClients, setFilteredClients] = useState([]);
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
   const [currentPage, setCurrentPage] = useState(1);
-  const [rowsPerPage] = useState(7);
+  const [rowsPerPage] = useState(10);
 
   useEffect(() => {
     const url = `http://localhost:8001/clients`;
