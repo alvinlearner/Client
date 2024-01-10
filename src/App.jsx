@@ -18,7 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Motor />} />
         <Route path="/client" element={<Client />} />
-        <Route path="/client/:id/edit" element={<EditClient />} /> 
+        <Route path="/client/:id/" element={<EditClient />} /> 
       </Routes>
     </>
   );
