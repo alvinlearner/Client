@@ -162,7 +162,7 @@ th {
         `}
       </style>
       <TransactionFilter transactions={transactions} onFilter={handleFilter} />
-      <div style={{overFlowX:"auto;"}}>
+      <div style={{overFlowX:"auto"}}>
       <table className="table-auto w-full">
         <thead>
           <tr>

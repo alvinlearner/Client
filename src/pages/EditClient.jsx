@@ -27,6 +27,7 @@ export default function EditClient() {
           throw new Error("Failed to fetch client details");
         }
 
+
         const data = await response.json();
         setClient(data);
         setEditedClient({
@@ -76,7 +77,7 @@ export default function EditClient() {
 
   return (
     <div>
-      <h2>Edit Client</h2>
+      <h2>Edit Client {client.name}</h2>
       <form>
         <label>
           Name:

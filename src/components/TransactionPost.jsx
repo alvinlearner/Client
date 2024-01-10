@@ -19,7 +19,7 @@ function AddTransaction() {
         return response.json();
       })
       .then((data) => {
-        console.log("Server response:", data);
+        // console.log("Server response:", data);
         setClients(data); // Assuming data is an array of clients
       })
       .catch((error) => {
