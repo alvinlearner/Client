@@ -10,23 +10,36 @@ export default function DisplayTransaction() {
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage] = useState(7);
+  const [clients, setClients] = useState([]);
+
+
+
+
 
   useEffect(() => {
-    const url = `http://localhost:8001/transactions`;
-
-    fetch(url, {
-      method: "GET",
-      headers: { "content-type": "application/json" },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setTransactions(data);
-        setFilteredTransactions(data);
+    const transactionsUrl = "http://localhost:8001/transactions";
+    const clientsUrl = "http://localhost:8001/clients";
+  
+    Promise.all([
+      fetch(transactionsUrl).then((res) => res.json()),
+      fetch(clientsUrl).then((res) => res.json()),
+    ])
+      .then(([transactionsData, clientsData]) => {
+        setTransactions(transactionsData);
+        setFilteredTransactions(transactionsData);
+        setClients(clientsData);
       })
       .catch((error) => {
         console.error(error);
       });
   }, []);
+
+
+
+
+
+
+
 
   const calculateDaysLeft = (start, expire) => {
     const currentDate = new Date();
@@ -153,6 +166,11 @@ th {
       <table className="table-auto w-full">
         <thead>
           <tr>
+
+          <th className="px-4 py-2" >
+              Client ID
+            </th>
+
             <th className="px-4 py-2" onClick={() => handleSort("description")}>
               Description
             </th>
@@ -175,28 +193,34 @@ th {
           </tr>
         </thead>
         <tbody>
-          {currentRows.map((transaction) => (
-            <tr key={transaction.id} className="bg-gray-100">
-              <td className="px-4 py-2">{transaction.description}</td>
-              <td className="px-4 py-2">{transaction.reg}</td>
-              <td className="px-4 py-2">{transaction.policyno}</td>
-              <td className="px-4 py-2">{transaction.start}</td>
-              <td className="px-4 py-2">{transaction.expire}</td>
-              <td
-                className={`px-4 py-2 text-${getStatusColor(
-                  calculateDaysLeft(transaction.start, transaction.expire)
-                )}`}
-              >
-                {calculateDaysLeft(transaction.start, transaction.expire)} days left
-              </td>
-              {/* <td className="px-4 py-2">
-                <TransactionDelete
-                  id={transaction.id}
-                  onDelete={() => handleDelete(transaction.id)}
-                />
-              </td> */}
-            </tr>
-          ))}
+                      {currentRows.map((transaction) => {
+                        // Find the client by ID
+                        const client = clients.find((client) => client.id === transaction.client_id);
+
+                        return (
+                          <tr key={transaction.id} className="bg-gray-100">
+                            <td className="px-4 py-2">{client ? client.name : "Unknown Client"}</td>
+                            <td className="px-4 py-2">{transaction.description}</td>
+                            <td className="px-4 py-2">{transaction.reg}</td>
+                            <td className="px-4 py-2">{transaction.policyno}</td>
+                            <td className="px-4 py-2">{transaction.start}</td>
+                            <td className="px-4 py-2">{transaction.expire}</td>
+                            <td
+                              className={`px-4 py-2 text-${getStatusColor(
+                                calculateDaysLeft(transaction.start, transaction.expire)
+                              )}`}
+                            >
+                              {calculateDaysLeft(transaction.start, transaction.expire)} days left
+                            </td>
+                            <td className="px-4 py-2">
+                              <TransactionDelete
+                                id={transaction.id}
+                                onDelete={() => handleDelete(transaction.id)}
+                              />
+                            </td>
+                          </tr>
+                        );
+                      })}
         </tbody>
       </table>
       </div>

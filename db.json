@@ -1,7 +1,7 @@
 {
   "clients": [
     {
-      "id": 5,
+      "id": 2,
       "name": "sam tucker",
       "phone": "07201234567",
       "email": "alvin@gmail.com",
@@ -9,7 +9,7 @@
       "idno": "98765321"
     },
     {
-      "id": 2,
+      "id": 5,
       "name": "wilson ndege",
       "phone": "1201234567",
       "email": "CRAM@mail.com",
@@ -17,12 +17,28 @@
       "idno": "000100021"
     },
     {
-      "id": 2,
+      "id": 8,
       "name": "willy wonker",
       "phone": "1201234567",
       "email": "CRAM@mail.com",
       "krapin": "77777777",
       "idno": "000100021"
+    },
+    {
+      "name": "debbie violet",
+      "phone": "0123457896",
+      "email": "deb@mail.com",
+      "krapin": "11qwe123z",
+      "idno": "32165498",
+      "id": 9
+    },
+    {
+      "name": "Tevin Ojwang",
+      "phone": "00010101010",
+      "email": "tevin@mail.com",
+      "krapin": "224wer24",
+      "idno": "3429800988",
+      "id": 10
     }
   ],
   "transactions": [
@@ -106,6 +122,15 @@
       "policyno": "123545",
       "id": 11,
       "client_id": 2
+    },
+    {
+      "start": "2024-01-18",
+      "expire": "2024-05-29",
+      "reg": "KDM200M",
+      "description": "Black starlet",
+      "policyno": "2144QW6",
+      "client_id": 9,
+      "id": 13
     }
   ]
 }

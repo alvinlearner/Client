@@ -120,19 +120,19 @@ table {
       <table className="table-auto w-full">
         <thead>
           <tr>
-            <th className="px-4 py-2" onClick={() => handleSort("description")}>
+            <th className="px-4 py-2" onClick={() => handleSort("name")}>
               NAME
             </th>
-            <th className="px-4 py-2" onClick={() => handleSort("reg")}>
+            <th className="px-4 py-2" onClick={() => handleSort("phone")}>
               PHONE NUMBER
             </th>
-            <th className="px-4 py-2" onClick={() => handleSort("policyno")}>
+            <th className="px-4 py-2">
               EMAIL
             </th>
-            <th className="px-4 py-2" onClick={() => handleSort("start")}>
+            <th className="px-4 py-2" onClick={() => handleSort("krapin")}>
               KRA PIN
             </th>
-            <th className="px-4 py-2" onClick={() => handleSort("expire")}>
+            <th className="px-4 py-2" onClick={() => handleSort("idno")}>
               ID NUMBER
             </th>
             <th className="px-4 py-2">

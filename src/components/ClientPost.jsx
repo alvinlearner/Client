@@ -2,26 +2,26 @@ import React, { useState } from "react";
 import "./ClientPost.css";
 
 function ClientPost() {
-  const [reg, setReg] = useState("");
-  const [policyno, Setpolicyno] = useState("");
-  const [start, setStart] = useState("");
-  const [expire, setExpire] = useState("");
-  const [description, setDescription] = useState("");
+  const [name, setName] = useState("");
+  const [phone, SetPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [krapin, setKrapin] = useState("");
+  const [idno, setIdno] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const regInUppercase = reg.toUpperCase();
+
 
     const newTransaction = {
-      start: start,
-      expire: expire,
-      reg: regInUppercase,
-      description: description,
-      policyno: policyno,
+      name: name,
+      phone: phone,
+      email: email,
+      krapin: krapin,
+      idno: idno,
     };
 
-    fetch(`http://localhost:8001/transactions`, {
+    fetch(`http://localhost:8001/clients`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -31,11 +31,11 @@ function ClientPost() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        setStart("");
-        setExpire("");
-        setReg("");
-        setDescription("");
-        Setpolicyno("");
+        setName("");
+        SetPhone("");
+        setEmail("");
+        setKrapin("");
+        setIdno("");
         window.location.reload();
       })
       .catch((error) => {
@@ -50,9 +50,9 @@ function ClientPost() {
           Name:
           <input
             type="text"
-            value={reg}
+            value={name}
             placeholder="Enter Name"
-            onChange={(e) => setReg(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
             required
           />
         </label>
@@ -61,9 +61,9 @@ function ClientPost() {
           Phone:
           <input
             type="text"
-            value={policyno}
+            value={phone}
             placeholder="Enter phone number"
-            onChange={(e) => Setpolicyno(e.target.value)}
+            onChange={(e) => SetPhone(e.target.value)}
             required
           />
         </label>
@@ -72,9 +72,9 @@ function ClientPost() {
           Email:
           <input
             type="text"
-            value={start}
+            value={email}
             placeholder="Enter email"
-            onChange={(e) => setStart(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </label>
@@ -83,10 +83,21 @@ function ClientPost() {
           K.R.A pin:
           <input
             type="text"
-            value={expire}
-            onChange={(e) => setExpire(e.target.value)}
+            value={krapin}
+            onChange={(e) => setKrapin(e.target.value)}
             required
             placeholder="Enter K.R.A pin"
+          />
+        </label>
+
+        <label>
+          I.D number:
+          <input
+            type="text"
+            value={idno}
+            onChange={(e) => setIdno(e.target.value)}
+            required
+            placeholder="Enter I.D number"
           />
         </label>
 
@@ -94,10 +105,10 @@ function ClientPost() {
           Documents:
           <input
             type="file"
-            value={description}
+            
             placeholder="Enter description"
             accept="application/pdf,application/vnd.ms-excel"
-            onChange={(e) => setDescription(e.target.value)}
+            
             
           />
         </label>
