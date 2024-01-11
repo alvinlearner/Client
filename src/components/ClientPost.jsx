@@ -113,7 +113,7 @@ const Upperkrapin = krapin.toUpperCase()
           />
         </label>
 
-        <button type="submit">Add Client</button>
+        <button type="submit" className="post-button">Add Client</button>
       </form>
     </div>
   );

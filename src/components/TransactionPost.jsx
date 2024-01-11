@@ -136,7 +136,7 @@ function AddTransaction() {
           />
         </label>
   
-        <button type="submit">Add Slot</button>
+        <button type="submit" className="post-button">Add Policy</button>
       </form>
     </div>
     </>
