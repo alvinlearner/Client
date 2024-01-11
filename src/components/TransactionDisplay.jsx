@@ -2,9 +2,13 @@
 import React, { useEffect, useState } from "react";
 import TransactionFilter from "./Transactionfilter";
 import TransactionDelete from "./TransactionDelete";
-import "../styles.css"; // Import the Tailwind CSS file
+import { Navigate, useNavigate } from "react-router-dom";
+import "../styles.css"; 
 
 export default function DisplayTransaction() {
+
+  const navigate= useNavigate();
+
   const [transactions, setTransactions] = useState([]);
   const [filteredTransactions, setFilteredTransactions] = useState([]);
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
@@ -143,7 +147,7 @@ export default function DisplayTransaction() {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div>
       <style>
         {`
 
@@ -205,7 +209,7 @@ th {
                         const client = clients.find((client) => client.id === transaction.client_id);
 
                         return (
-                          <tr key={transaction.id} className="bg-gray-100">
+                          <tr key={transaction.id} className="bg-gray-100" onClick={()=>navigate(`/transaction/${transaction.id}`)}>
                             <td className="px-4 py-2">{client ? client.name : "Unknown Client"}</td>
                             <td className="px-4 py-2">{transaction.description}</td>
                             <td className="px-4 py-2">{transaction.reg}</td>
@@ -218,12 +222,6 @@ th {
                               )}`}
                             >
                               {calculateDaysLeft(transaction.start, transaction.expire)} days left
-                            </td>
-                            <td className="px-4 py-2">
-                              <TransactionDelete
-                                id={transaction.id}
-                                onDelete={() => handleDelete(transaction.id)}
-                              />
                             </td>
                           </tr>
                         );

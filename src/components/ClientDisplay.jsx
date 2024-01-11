@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Clientfilter from "./Clientfilter";
 import { Navigate, useNavigate } from "react-router-dom";
 
-import "../styles.css"; 
 
 export default function DisplayClient() {  
 
@@ -98,6 +97,7 @@ table {
     padding: 8px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+    
   }
   
   tr:nth-child(even) {

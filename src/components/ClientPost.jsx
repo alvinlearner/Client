@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./ClientPost.css";
 
+
 function ClientPost() {
   const [name, setName] = useState("");
   const [phone, SetPhone] = useState("");
@@ -44,7 +45,7 @@ const Upperkrapin = krapin.toUpperCase()
   };
 
   return (
-    <div className="container" style={{ marginBottom: "10px", fontWeight: "bold" }}>
+    <div className="container mx-auto p-4" style={{ marginBottom: "10px", fontWeight: "bold" }}>
       <form onSubmit={handleSubmit} className="post-data">
         <label>
           Name:

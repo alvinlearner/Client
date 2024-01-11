@@ -3,41 +3,43 @@ import { useParams, Navigate, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import "./editclient.css";
 
-export default function EditClient() {
+export default function EditTransaction() {
 
   const navigate = useNavigate()
 
   const { id } = useParams();
-  const [client, setClient] = useState({});
-  const [editedClient, setEditedClient] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    krapin: "",
-    idno: "",
+  const [transaction, setTransaction] = useState({});
+  const [editedTransaction, setEditedTransaction] = useState({
+    client_id: "",
+    policyno: "",
+    reg: "",
+    start: "",
+    expire: "",
+    description: "",
   });
 
   useEffect(() => {
     const fetchClientDetails = async () => {
       try {
-        const url = `http://localhost:8001/clients/${id}`;
+        const url = `http://localhost:8001/transactions/${id}`;
         const response = await fetch(url, {
           method: "GET",
           headers: { "content-type": "application/json" },
         });
 
         if (!response.ok) {
-          throw new Error("Failed to fetch client details");
+          throw new Error("Failed to fetch transaction details");
         }
 
         const data = await response.json();
-        setClient(data);
-        setEditedClient({
-          name: data.name,
-          phone: data.phone,
-          email: data.email,
-          krapin: data.krapin,
-          idno: data.idno,
+        setTransaction(data);
+        setEditedTransaction({
+          client_id: data.client_id,
+          policyno: data.policyno,
+          reg: data.reg,
+          start: data.start,
+          expire: data.expire,
+          description:data.description,
         });
       } catch (error) {
         console.error(error);
@@ -50,10 +52,10 @@ export default function EditClient() {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
-    // If the input field is "krapin", convert the value to uppercase
-    const updatedValue = name === "krapin" ? value.toUpperCase() : value;
+    // If the input field is "policy", convert the value to uppercase
+    const updatedValue = name === "policyno" ? value.toUpperCase() : value;
 
-    setEditedClient((prevClient) => ({
+    setEditedTransaction((prevClient) => ({
       ...prevClient,
       [name]: updatedValue,
     }));
@@ -74,15 +76,15 @@ export default function EditClient() {
       if (result.isConfirmed) {
         // User clicked "Yes, save it!" button
   
-        const url = `http://localhost:8001/clients/${id}`;
+        const url = `http://localhost:8001/transactions/${id}`;
         const response = await fetch(url, {
           method: "PUT",
           headers: { "content-type": "application/json" },
-          body: JSON.stringify(editedClient),
+          body: JSON.stringify(editedTransaction),
         });
   
         if (!response.ok) {
-          throw new Error("Failed to update client details");
+          throw new Error("Failed to update transaction details");
         }
   
         // Show SweetAlert success confirmation
@@ -93,18 +95,18 @@ export default function EditClient() {
           timer: 1500,
         });
   
-        // Fetch updated client details immediately after saving
-        const updatedResponse = await fetch(`http://localhost:8001/clients/${id}`, {
+        // Fetch updated transaction details immediately after saving
+        const updatedResponse = await fetch(`http://localhost:8001/transactions/${id}`, {
           method: "GET",
           headers: { "content-type": "application/json" },
         });
   
         if (!updatedResponse.ok) {
-          throw new Error("Failed to fetch updated client details");
+          throw new Error("Failed to fetch updated transaction details");
         }
   
         const updatedData = await updatedResponse.json();
-        setClient(updatedData);
+        setTransaction(updatedData);
       } else {
         // User clicked "Cancel" or closed the modal
         Swal.fire('Cancelled', 'Your changes have not been saved.', 'info');
@@ -115,11 +117,11 @@ export default function EditClient() {
   };
   
 
-  const handleDeleteClient = () => {
+  const handleDeleteTransaction = () => {
     // Show SweetAlert confirmation for delete
     Swal.fire({
       title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this client!",
+      text: "Once deleted, you will not be able to recover this Policy!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#d33",
@@ -128,26 +130,26 @@ export default function EditClient() {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const url = `http://localhost:8001/clients/${id}`;
+          const url = `http://localhost:8001/transactions/${id}`;
           const response = await fetch(url, {
             method: "DELETE",
             headers: { "content-type": "application/json" },
           });
 
           if (!response.ok) {
-            throw new Error("Failed to delete client");
+            throw new Error("Failed to delete transaction");
           }
 
           // Show SweetAlert confirmation for delete success
           Swal.fire({
             icon: "success",
-            title: "Client deleted successfully!",
+            title: "Policy deleted successfully!",
             showConfirmButton: false,
             timer: 1500,
           });
 
-          // Navigate back to the clients page
-          navigate("/client");
+          // Navigate back to the transactions page
+          navigate("/");
 
         } catch (error) {
           console.error(error);
@@ -159,7 +161,7 @@ export default function EditClient() {
 
   return (
     <>
-    <h2>Edit client info</h2>
+    <h1>Edit transaction info</h1>
     
     <div className="flex-container">
     
@@ -167,22 +169,25 @@ export default function EditClient() {
 
 
       <div className="flex-item" id="div1">
-      <h2>Client  Information</h2>
+      <h2>Policy  Information</h2>
       <ul style={{listStyle:"none"}}>
         <li>
-          <strong>Name:</strong> {client.name}
+          <strong>Name:</strong> {transaction.client_id}
         </li>
         <li>
-          <strong>Email:</strong> {client.email}
+          <strong>Policy:</strong> {transaction.policyno}
         </li>
         <li>
-          <strong>Phone:</strong> {client.phone}
+          <strong>Registration:</strong> {transaction.reg}
         </li>
         <li>
-          <strong>I.D number:</strong> {client.idno}
+          <strong>Description:</strong> {transaction.description}
         </li>
         <li>
-          <strong>K.R.A pin:</strong> {client.krapin}
+          <strong>Start Date:</strong> {transaction.start}
+        </li>
+        <li>
+          <strong>Expire Date:</strong> {transaction.expire}
         </li>
       </ul>
     </div>
@@ -191,8 +196,8 @@ export default function EditClient() {
 
       {/* UPDATE FORM */}
       <div className="flex-item" id="div1">    
-      <form className="update-client">
-        <h2>Update client</h2>
+      <form className="update-transaction">
+        <h2>Update Policy</h2>
         <label>
           Name:
           <input
@@ -204,41 +209,51 @@ export default function EditClient() {
         </label>
         <br />
         <label>
-          Phone:
+          Policy:
           <input
             type="text"
-            name="phone"
-            placeholder="Update phone number"
+            name="policy"
+            placeholder="Update policy number"
             onChange={handleInputChange}
           />
         </label>
         <br />
         <label>
-          Email:
+          Registration:
           <input
             type="text"
-            name="email"
-            placeholder="Update email"
+            name="registration"
+            placeholder="Update registration"
             onChange={handleInputChange}
           />
         </label>
         <br />
         <label>
-          KRA PIN:
-          <input
+          Description:
+          </label>
+          <textarea
             type="text"
-            name="krapin"
-            placeholder="Update KRA pin"
+            name="description"
+            placeholder="Update description"
+            onChange={handleInputChange}
+            style={{height:"60PX"}}
+          />
+
+        <br/>
+        <label>
+          Start Date
+          <input
+            type="date"
+            name="start"
             onChange={handleInputChange}
           />
         </label>
         <br />
         <label>
-          ID Number:
+          Expire:
           <input
-            type="text"
-            name="idno"
-            placeholder="Update ID number"
+            type="date"
+            name="expire"
             onChange={handleInputChange}
           />
         </label>
@@ -247,7 +262,7 @@ export default function EditClient() {
           Save Changes
         </button>
 
-        <button type="button" onClick={handleDeleteClient} className="delete-button">
+        <button type="button" onClick={handleDeleteTransaction} className="delete-button">
               Delete Client
             </button>
 
@@ -257,7 +272,7 @@ export default function EditClient() {
 
 
     </div>
-    <button onClick={() => navigate(`/client`)} className="view-more-button">Back</button>
+    <button onClick={() => navigate(`/`)} className="view-more-button">Back</button>
     </>
 
   );
