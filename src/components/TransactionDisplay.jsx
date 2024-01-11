@@ -200,7 +200,7 @@ th {
             <th className="px-4 py-2" onClick={() => handleSort("daysLeft")}>
               Status
             </th>
-            {/* <th className="px-4 py-2">Actions</th> */}
+            <th className="px-4 py-2">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -209,7 +209,7 @@ th {
                         const client = clients.find((client) => client.id === transaction.client_id);
 
                         return (
-                          <tr key={transaction.id} className="bg-gray-100" onClick={()=>navigate(`/transaction/${transaction.id}`)}>
+                          <tr key={transaction.id} className="bg-gray-100" >
                             <td className="px-4 py-2">{client ? client.name : "Unknown Client"}</td>
                             <td className="px-4 py-2">{transaction.description}</td>
                             <td className="px-4 py-2">{transaction.reg}</td>
@@ -223,6 +223,16 @@ th {
                             >
                               {calculateDaysLeft(transaction.start, transaction.expire)} days left
                             </td>
+
+
+                            <td className="px-4 py-2">
+
+                              <button onClick={() => navigate(`/transaction/${transaction.id}`)} className="view-more-button">
+                                  View more
+                              </button>
+
+                            </td>   
+
                           </tr>
                         );
                       })}

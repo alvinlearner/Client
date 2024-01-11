@@ -104,12 +104,13 @@
       "id": 5
     },
     {
+      "client_id": 2,
+      "policyno": "AAA/07/070/0/032863/2024",
+      "reg": "KCD234E",
       "start": "2024-01-11",
       "expire": "2024-02-28",
-      "reg": "KCD234E",
       "description": "golf gti rs",
-      "policyno": "AAA/07/070/0/032863/2024",
-      "client_id": 2,
+      "policy": "aAA/07/070/0/032863/2024",
       "id": 6
     },
     {
@@ -120,16 +121,6 @@
       "policyno": "\tMGL/07/070/0/032863/2024",
       "client_id": 12,
       "id": 8
-    },
-    {
-      "client_id": 12,
-      "policyno": "SDSDWSAW",
-      "reg": "ASADSD",
-      "start": "2023-01-01",
-      "expire": "2024-06-20",
-      "description": "kde345t",
-      "policy": "kde345t",
-      "id": 9
     }
   ]
 }
