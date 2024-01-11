@@ -1,12 +1,12 @@
 {
   "clients": [
     {
-      "id": 2,
       "name": "sam david",
       "phone": "07201234567",
-      "email": "san@gmail.com",
+      "email": "sam@gmail.com",
       "krapin": "adf345678",
-      "idno": "98765321"
+      "idno": "98765321",
+      "id": 2
     },
     {
       "name": "Herbert Ndetu",

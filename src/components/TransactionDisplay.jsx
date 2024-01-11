@@ -78,24 +78,6 @@ export default function DisplayTransaction() {
     setFilteredTransactions(filteredTransactions);
   };
 
-  const handleDelete = (id) => {
-    const url = `http://localhost:8001/transactions/${id}`;
-    fetch(url, {
-      method: "DELETE",
-      headers: { "content-type": "application/json" },
-    })
-      .then(() => {
-        const newTransactions = transactions.filter(
-          (transaction) => transaction.id !== id
-        );
-        setTransactions(newTransactions);
-        setFilteredTransactions(newTransactions);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
   const handleSort = (key) => {
     let direction = "asc";
     if (sortConfig.key === key && sortConfig.direction === "asc") {

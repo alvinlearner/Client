@@ -159,6 +159,29 @@ export default function EditTransaction() {
   }
 
 
+
+  const calculateDaysLeft = (start, expire) => {
+    const currentDate = new Date();
+    const startDate = new Date(start);
+    const expireDate = new Date(expire);
+
+    startDate.setHours(23, 59, 59, 999);
+    expireDate.setHours(23, 59, 59, 999);
+
+    const remainingDays = Math.floor((expireDate - currentDate) / (1000 * 60 * 60 * 24));
+    return remainingDays >= 0 ? remainingDays : 0;
+  };
+
+  const getStatusColor = (remainingDays) => {
+    if (remainingDays === 0) {
+      return 'red';
+    } else if (remainingDays <= 7) {
+      return 'orange';
+    } else {
+      return 'green';
+    }
+  };
+
   return (
     <>
     <h1>Edit transaction info</h1>
@@ -189,6 +212,12 @@ export default function EditTransaction() {
         <li>
           <strong>Expire Date:</strong> {transaction.expire}
         </li>
+
+        <li
+             className={`px-4 py-2 text-${getStatusColor(calculateDaysLeft(transaction.start, transaction.expire) )}`}><strong>Days left: </strong>
+                              {calculateDaysLeft(transaction.start, transaction.expire)} days left
+        </li>
+
       </ul>
     </div>
 
@@ -227,9 +256,9 @@ export default function EditTransaction() {
             onChange={handleInputChange}
           />
         </label>
-        <br />
+        
         <label>
-          Description:
+          <p>Description:</p>
           </label>
           <textarea
             type="text"
