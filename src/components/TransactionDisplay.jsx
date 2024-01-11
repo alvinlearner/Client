@@ -17,22 +17,36 @@ export default function DisplayTransaction() {
 
 
   useEffect(() => {
-    const transactionsUrl = "http://localhost:8001/transactions";
-    const clientsUrl = "http://localhost:8001/clients";
+    const fetchData = async () => {
+      try {
+        const transactionsUrl = "http://localhost:8001/transactions";
+        const clientsUrl = "http://localhost:8001/clients";
   
-    Promise.all([
-      fetch(transactionsUrl).then((res) => res.json()),
-      fetch(clientsUrl).then((res) => res.json()),
-    ])
-      .then(([transactionsData, clientsData]) => {
+        const [transactionsResponse, clientsResponse] = await Promise.all([
+          fetch(transactionsUrl),
+          fetch(clientsUrl),
+        ]);
+  
+        if (!transactionsResponse.ok || !clientsResponse.ok) {
+          throw new Error("Failed to fetch data");
+        }
+  
+        const [transactionsData, clientsData] = await Promise.all([
+          transactionsResponse.json(),
+          clientsResponse.json(),
+        ]);
+  
         setTransactions(transactionsData);
         setFilteredTransactions(transactionsData);
         setClients(clientsData);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error(error);
-      });
+      }
+    };
+  
+    fetchData();
   }, []);
+  
 
   const calculateDaysLeft = (start, expire) => {
     const currentDate = new Date();

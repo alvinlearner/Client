@@ -34,8 +34,8 @@
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
-    border: 2px solid #1ca545;
-    background-color: #1ca545;
+    border: 2px solid #4049ce;
+    background-color: #4049ce;
     color: #fff;
     border-radius: 5px;
     cursor: pointer;
@@ -46,7 +46,7 @@
   
   .post-button:hover {
     background-color: #fff;
-    color: #1ca545;
-    border-color: #1ca545;
+    color: #4049ce;
+    border-color: #4049ce;
   }
   

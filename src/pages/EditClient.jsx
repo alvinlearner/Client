@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, Navigate, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import "./editclient.css";
 
 export default function EditClient() {
+
+  const navigate = useNavigate()
+
   const { id } = useParams();
   const [client, setClient] = useState({});
   const [editedClient, setEditedClient] = useState({
@@ -56,44 +59,61 @@ export default function EditClient() {
     }));
   };
 
+
   const handleSaveChanges = async () => {
     try {
-      const url = `http://localhost:8001/clients/${id}`;
-      const response = await fetch(url, {
-        method: "PUT",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(editedClient),
+      const result = await Swal.fire({
+        title: 'Confirm Update',
+        text: 'Are you sure you want to save changes?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, save it!',
+        cancelButtonText: 'Cancel',
       });
-
-      if (!response.ok) {
-        throw new Error("Failed to update client details");
+  
+      if (result.isConfirmed) {
+        // User clicked "Yes, save it!" button
+  
+        const url = `http://localhost:8001/clients/${id}`;
+        const response = await fetch(url, {
+          method: "PUT",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(editedClient),
+        });
+  
+        if (!response.ok) {
+          throw new Error("Failed to update client details");
+        }
+  
+        // Show SweetAlert success confirmation
+        await Swal.fire({
+          icon: "success",
+          title: "Client details updated successfully!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+  
+        // Fetch updated client details immediately after saving
+        const updatedResponse = await fetch(`http://localhost:8001/clients/${id}`, {
+          method: "GET",
+          headers: { "content-type": "application/json" },
+        });
+  
+        if (!updatedResponse.ok) {
+          throw new Error("Failed to fetch updated client details");
+        }
+  
+        const updatedData = await updatedResponse.json();
+        setClient(updatedData);
+      } else {
+        // User clicked "Cancel" or closed the modal
+        Swal.fire('Cancelled', 'Your changes have not been saved.', 'info');
       }
-
-      // Show SweetAlert confirmation
-      Swal.fire({
-        icon: "success",
-        title: "Client details updated successfully!",
-        showConfirmButton: false,
-        timer: 1500, 
-      });
-
-      // Fetch updated client details immediately after saving
-      const updatedResponse = await fetch(`http://localhost:8001/clients/${id}`, {
-        method: "GET",
-        headers: { "content-type": "application/json" },
-      });
-
-      if (!updatedResponse.ok) {
-        throw new Error("Failed to fetch updated client details");
-      }
-
-      const updatedData = await updatedResponse.json();
-      setClient(updatedData);
-
     } catch (error) {
       console.error(error);
     }
-  }
+  };
+  
 
   const handleDeleteClient = () => {
     // Show SweetAlert confirmation for delete
@@ -127,7 +147,7 @@ export default function EditClient() {
           });
 
           // Navigate back to the clients page
-          navigate("/clients");
+          navigate("/client");
 
         } catch (error) {
           console.error(error);
@@ -139,10 +159,10 @@ export default function EditClient() {
 
   return (
     <>
-
     <h2>Edit client info</h2>
+    
     <div className="flex-container">
-      
+    
       {/* CLIENT DETAILS */}
 
 
@@ -237,6 +257,7 @@ export default function EditClient() {
 
 
     </div>
+    <button onClick={() => navigate(`/client`)} className="view-more-button">Back</button>
     </>
 
   );

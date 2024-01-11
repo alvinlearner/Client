@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Clientfilter from "./Clientfilter";
-
+import { Navigate, useNavigate } from "react-router-dom";
 
 import "../styles.css"; 
 
 export default function DisplayClient() {  
+
+  const navigate = useNavigate();
+
   const [clients, setClients] = useState([]);
   const [filteredClients, setFilteredClients] = useState([]);
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
@@ -57,11 +60,7 @@ export default function DisplayClient() {
   };
 
   const keyExtractor = (item, key) => {
-    if (key === "daysLeft") {
-      return calculateDaysLeft(item.start, item.expire);
-    } else {
       return item[key];
-    }
   };
 
   const compareValues = (a, b) => {
@@ -147,9 +146,7 @@ table {
 
               <td className="px-4 py-2">
 
-              {/* <button onClick={() => handleEdit(client.id)}>Edit</button> */}
-
-                <button onClick={() => history.push(`/client/${clients.id}/edit`)} className="view-more-button">
+                <button onClick={() => navigate(`/client/${clients.id}`)} className="view-more-button">
                      View more
                </button>
 

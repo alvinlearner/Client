@@ -20,7 +20,7 @@
       "name": "William Arap",
       "phone": "1201234567",
       "email": "arap@mail.com",
-      "krapin": "123wey7",
+      "krapin": "123WEY7",
       "idno": "000100021",
       "id": 8
     },
@@ -36,7 +36,7 @@
       "name": "levin wang",
       "phone": "071209876",
       "email": "levin@mail.com",
-      "krapin": "224wer24",
+      "krapin": "224WER24",
       "idno": "3429800988",
       "id": 10
     },
@@ -44,7 +44,7 @@
       "name": "carl johnson",
       "phone": "07546321",
       "email": "carl@mail.com",
-      "krapin": "q44d5e5f",
+      "krapin": "Q44D5E5F",
       "idno": "34597411",
       "id": 11
     },
@@ -111,6 +111,24 @@
       "policyno": "AAA/07/070/0/032863/2024",
       "client_id": 2,
       "id": 6
+    },
+    {
+      "start": "2024-01-12",
+      "expire": "2025-01-11",
+      "reg": "KTB234E",
+      "description": "cross async",
+      "policyno": "\tMGL/07/070/0/032863/2024",
+      "client_id": 12,
+      "id": 8
+    },
+    {
+      "start": "2024-01-10",
+      "expire": "2024-02-07",
+      "reg": "ASADSD",
+      "description": "swwsdsd",
+      "policyno": "SDSDWSAW",
+      "client_id": 12,
+      "id": 9
     }
   ]
 }
