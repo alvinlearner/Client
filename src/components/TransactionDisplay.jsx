@@ -192,7 +192,7 @@ th {
 
                         return (
                           <tr key={transaction.id} className="bg-gray-100" >
-                            <td className="px-4 py-2" onClick={()=>navigate(`/client/${client.id}`)}>{client ? client.name : "Unknown Client"}</td>
+                            <td className="px-4 py-2" onClick={()=>navigate(`/client/${client.id}`)} style={{cursor:"pointer"}}>{client ? client.name : "Unknown Client"}</td>
                             <td className="px-4 py-2">{transaction.description}</td>
                             <td className="px-4 py-2">{transaction.reg}</td>
                             <td className="px-4 py-2">{transaction.policyno}</td>
