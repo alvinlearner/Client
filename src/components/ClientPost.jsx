@@ -45,7 +45,7 @@ const Upperkrapin = krapin.toUpperCase()
 
   return (
     <div className="container" style={{ marginBottom: "10px", fontWeight: "bold" }}>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="post-data">
         <label>
           Name:
           <input

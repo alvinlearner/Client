@@ -68,7 +68,7 @@ function AddTransaction() {
   return (
     <>
     <div style={{ marginBottom: "10px", fontWeight: "bold" }}>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="post-data">
         {clients && clients.length > 0 && (
           <label>
             Select Client:

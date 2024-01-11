@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import "./buttons.css"; 
 export default function TransactionFilter({ transactions, onFilter }) {
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -22,8 +22,9 @@ export default function TransactionFilter({ transactions, onFilter }) {
         placeholder="Search for policy"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
+        className="searchbar"
       />
-      <button onClick={handleSearch}>Search</button>
+      <button onClick={handleSearch} className="search-button">Search</button>
     </div>
   );
 }

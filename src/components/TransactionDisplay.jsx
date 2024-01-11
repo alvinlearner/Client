@@ -34,13 +34,6 @@ export default function DisplayTransaction() {
       });
   }, []);
 
-
-
-
-
-
-
-
   const calculateDaysLeft = (start, expire) => {
     const currentDate = new Date();
     const startDate = new Date(start);

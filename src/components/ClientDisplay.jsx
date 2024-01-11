@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Clientfilter from "./Clientfilter";
-// import { useHistory } from "react-router-dom";
-
 
 
 import "../styles.css"; 
 
 export default function DisplayClient() {  
-
-  // const history = useHistory();
-
-
   const [clients, setClients] = useState([]);
   const [filteredClients, setFilteredClients] = useState([]);
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
@@ -155,7 +149,7 @@ table {
 
               {/* <button onClick={() => handleEdit(client.id)}>Edit</button> */}
 
-                <button onClick={() => history.push(`/client/${clients.id}/edit`)}>
+                <button onClick={() => history.push(`/client/${clients.id}/edit`)} className="view-more-button">
                      View more
                </button>
 

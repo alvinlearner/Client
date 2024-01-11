@@ -3,7 +3,7 @@ import "./App.css";
 import { Link, Routes, Route } from "react-router-dom";
 import Client from "./pages/Clients";
 import Motor from "./pages/Motor";
-import EditClient from "./pages/EditClient"; // Import EditClient
+import EditClient from "./pages/EditClient";
 
 function App() {
   return (

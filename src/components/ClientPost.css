@@ -8,9 +8,43 @@
   }
   
 
-  input{
-    margin-right: 1%;
-    padding: 0.1rem;
+
+  .post-data {
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-sizing: border-box; 
+
+
+
+
+    background-color: lightgray;
+    text-align: center;
+
+
+  
   }
 
-  button{ margin-top: 1%;}
+  .post-data label{
+    margin-left: 2%;
+  }
+
+  .post-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 2px solid #3498db;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  }
+  
+  .post-button:hover {
+    background-color: #fff;
+    color: #3498db;
+    border-color: #3498db;
+  }
+  

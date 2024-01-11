@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import "./editclient.css";
 
@@ -93,7 +93,49 @@ export default function EditClient() {
     } catch (error) {
       console.error(error);
     }
-  };
+  }
+
+  const handleDeleteClient = () => {
+    // Show SweetAlert confirmation for delete
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this client!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const url = `http://localhost:8001/clients/${id}`;
+          const response = await fetch(url, {
+            method: "DELETE",
+            headers: { "content-type": "application/json" },
+          });
+
+          if (!response.ok) {
+            throw new Error("Failed to delete client");
+          }
+
+          // Show SweetAlert confirmation for delete success
+          Swal.fire({
+            icon: "success",
+            title: "Client deleted successfully!",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+
+          // Navigate back to the clients page
+          navigate("/clients");
+
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    });
+  }
+
 
   return (
     <>
@@ -101,8 +143,35 @@ export default function EditClient() {
     <h2>Edit client info</h2>
     <div className="flex-container">
       
+      {/* CLIENT DETAILS */}
+
+
+      <div className="flex-item" id="div1">
+      <h2>Client  Information</h2>
+      <ul style={{listStyle:"none"}}>
+        <li>
+          <strong>Name:</strong> {client.name}
+        </li>
+        <li>
+          <strong>Email:</strong> {client.email}
+        </li>
+        <li>
+          <strong>Phone:</strong> {client.phone}
+        </li>
+        <li>
+          <strong>I.D number:</strong> {client.idno}
+        </li>
+        <li>
+          <strong>K.R.A pin:</strong> {client.krapin}
+        </li>
+      </ul>
+    </div>
+
+
+
+      {/* UPDATE FORM */}
       <div className="flex-item" id="div1">    
-      <form>
+      <form className="update-client">
         <h2>Update client</h2>
         <label>
           Name:
@@ -154,32 +223,18 @@ export default function EditClient() {
           />
         </label>
         <br />
-        <button type="button" onClick={handleSaveChanges}>
+        <button type="button" onClick={handleSaveChanges} className="update-button">
           Save Changes
         </button>
+
+        <button type="button" onClick={handleDeleteClient} className="delete-button">
+              Delete Client
+            </button>
+
       </form>
       </div>
 
-      <div className="flex-item" id="div1">
-      <h2>Client  Information</h2>
-      <ul style={{listStyle:"none"}}>
-        <li>
-          <strong>Name:</strong> {client.name}
-        </li>
-        <li>
-          <strong>Email:</strong> {client.email}
-        </li>
-        <li>
-          <strong>Phone:</strong> {client.phone}
-        </li>
-        <li>
-          <strong>I.D number:</strong> {client.idno}
-        </li>
-        <li>
-          <strong>K.R.A pin:</strong> {client.krapin}
-        </li>
-      </ul>
-    </div>
+
 
     </div>
     </>

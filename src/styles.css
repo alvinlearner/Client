@@ -4,3 +4,24 @@
 @import 'tailwindcss/utilities';
 
 
+/* CLIENT DETAIL TABLE */
+
+.view-more-button {
+    padding: 5px 10px;
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 2px solid #3027ae;
+    background-color: #4049ce;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  }
+  
+  .view-more-button:hover {
+    background-color: #fff;
+    color: #3027ae;
+    border-color: #3027ae;
+  }

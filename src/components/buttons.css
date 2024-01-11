@@ -1,0 +1,47 @@
+
+
+/* SEARCH BAR AND BUTTON */
+
+
+/* input{
+  margin-right: 1%;
+  padding: 0.1rem;
+}
+
+button{ margin-top: 1%;}
+ */
+
+
+.search-button {
+    padding: 8px 10px;
+    margin-left: 1%;
+    font-size: 11px;
+    font-weight: bolder;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 2px solid #4049ce;
+    background-color: #4049ce;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    margin-top: 1%;
+  }
+  
+  .search-button:hover {
+    background-color: #fff;
+    color: #4049ce;
+    border-color: #4049ce;
+  }
+  
+  .searchbar {
+    padding: 7px;
+    font-size: 14px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+  }
+  
+  /* Adjust the input width as needed */
+  .searchbar[type="text"] {
+    width: 200px;
+  }

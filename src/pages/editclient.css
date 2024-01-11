@@ -24,3 +24,58 @@
     font-weight: bold;
   }
   
+
+
+  /* UPDATE BUTTON */
+
+  .update-button {
+    margin-top: 1%;
+    padding: 7px 10px;
+    margin-right: 2%;
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 2px solid #3498db;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  }
+  
+  .update-button:hover {
+    background-color: #fff;
+    color: #3498db;
+    border-color: #3498db;
+  }
+
+  /* DELETE BUTTON */
+
+  .delete-button {
+    margin-top: 1%;
+    padding: 7px 10px;
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 2px solid #e74c3c;
+    background-color: #e74c3c;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  }
+  
+  .delete-button:hover {
+    background-color: #fff;
+    color: #e74c3c;
+    border-color: #e74c3c;
+  }
+
+
+  .update-client input{
+
+    margin-top: 2%;
+    margin-left: 1%;
+  }

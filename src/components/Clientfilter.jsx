@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import "./buttons.css"; 
 export default function Clientfilter({ clients, onFilter }) {
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -22,9 +22,10 @@ export default function Clientfilter({ clients, onFilter }) {
         style={{fontWeight:"bold"}}
         placeholder="Search client"
         value={searchTerm}
+        className="searchbar"
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <button onClick={handleSearch}>Search</button>
+      <button onClick={handleSearch} className="search-button">Search</button>
     </div>
   );
 }
