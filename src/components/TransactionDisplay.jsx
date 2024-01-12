@@ -1,7 +1,6 @@
 // DisplayTransaction.jsx
 import React, { useEffect, useState } from "react";
 import TransactionFilter from "./Transactionfilter";
-import TransactionDelete from "./TransactionDelete";
 import { Navigate, useNavigate } from "react-router-dom";
 import "../styles.css"; 
 
@@ -64,15 +63,7 @@ export default function DisplayTransaction() {
     return remainingDays >= 0 ? remainingDays : 0;
   };
 
-  const getStatusColor = (remainingDays) => {
-    if (remainingDays === 0) {
-      return 'red';
-    } else if (remainingDays <= 7) {
-      return 'orange';
-    } else {
-      return 'green';
-    }
-  };
+
 
   const handleFilter = (filteredTransactions) => {
     setFilteredTransactions(filteredTransactions);
@@ -164,17 +155,17 @@ th {
               Client ID
             </th>
 
-            <th className="px-4 py-2" onClick={() => handleSort("description")}>
-              Description
+            <th className="px-4 py-2" onClick={() => handleSort("classification")}>
+              Classification Type
             </th>
             <th className="px-4 py-2" onClick={() => handleSort("reg")}>
-              Registration number
+              Registration Number
             </th>
             <th className="px-4 py-2" onClick={() => handleSort("policyno")}>
-              Policy number
+              Policy Number
             </th>
             <th className="px-4 py-2" onClick={() => handleSort("start")}>
-              Starting date
+              Starting Date
             </th>
             <th className="px-4 py-2" onClick={() => handleSort("expire")}>
               Expiry
@@ -193,15 +184,13 @@ th {
                         return (
                           <tr key={transaction.id} className="bg-gray-100" >
                             <td className="px-4 py-2" onClick={()=>navigate(`/client/${client.id}`)} style={{cursor:"pointer"}}>{client ? client.name : "Unknown Client"}</td>
-                            <td className="px-4 py-2">{transaction.description}</td>
+                            <td className="px-4 py-2">{transaction.classification}</td>
                             <td className="px-4 py-2">{transaction.reg}</td>
                             <td className="px-4 py-2">{transaction.policyno}</td>
                             <td className="px-4 py-2">{transaction.start}</td>
                             <td className="px-4 py-2">{transaction.expire}</td>
                             <td
-                              className={`px-4 py-2 text-${getStatusColor(
-                                calculateDaysLeft(transaction.start, transaction.expire)
-                              )}`}
+                              style={{color: calculateDaysLeft(transaction.start, transaction.expire) > 0 ? 'green' : 'red' }}
                             >
                               {calculateDaysLeft(transaction.start, transaction.expire)} days left
                             </td>

@@ -55,6 +55,14 @@
       "krapin": "A13456670Y",
       "idno": "2345687",
       "id": 12
+    },
+    {
+      "name": "Alvin kenyagah",
+      "phone": "+254720370004",
+      "email": "alvink@mail.com",
+      "krapin": "A12557657U",
+      "idno": "321466885",
+      "id": 13
     }
   ],
   "transactions": [
@@ -64,26 +72,17 @@
       "reg": "KDE239K",
       "start": "2024-01-01",
       "expire": "2025-01-10",
-      "description": "2009 blue toyota premio",
+      "classification": "T.P.O Private",
       "id": 1
     },
     {
+      "client_id": 2,
+      "policyno": "MGL/07/070/0/032223/2023",
+      "reg": "KDJ345P",
       "start": "2023-10-12",
       "expire": "2024-10-12",
-      "reg": "KDJ345P",
-      "description": "2014 nissan xtrail",
-      "policyno": "MGL/07/070/0/032223/2023",
-      "client_id": 2,
+      "classification": "Comprehensive TSV",
       "id": 2
-    },
-    {
-      "start": "2023-01-10",
-      "expire": "2024-01-10",
-      "reg": "KCT659G",
-      "description": "2010 mark x",
-      "policyno": "MGL/07/070/0/032863/2023",
-      "client_id": 9,
-      "id": 3
     },
     {
       "client_id": 8,
@@ -91,17 +90,17 @@
       "reg": "KCH214M",
       "start": "2024-01-12",
       "expire": "2025-01-12",
-      "description": "2013 subaru forester",
-      "id": 4
+      "id": 4,
+      "classification": ""
     },
     {
       "start": "2023-11-10",
       "expire": "2024-11-11",
       "reg": "KDM951T",
-      "description": "2016 mazda demio",
       "policyno": "\tMGL/07/070/0/0325433/2023",
       "client_id": 11,
-      "id": 5
+      "id": 5,
+      "classification": ""
     },
     {
       "client_id": 2,
@@ -109,18 +108,27 @@
       "reg": "KCD234E",
       "start": "2024-01-11",
       "expire": "2024-02-28",
-      "description": "golf gti rs",
       "policy": "aAA/07/070/0/032863/2024",
-      "id": 6
+      "id": 6,
+      "classification": ""
     },
     {
       "start": "2024-01-12",
       "expire": "2025-01-11",
       "reg": "KTB234E",
-      "description": "cross async",
       "policyno": "\tMGL/07/070/0/032863/2024",
       "client_id": 12,
-      "id": 8
+      "id": 8,
+      "classification": ""
+    },
+    {
+      "client_id": 9,
+      "policyno": "MGL/07/070/0/032863/2023",
+      "reg": "KCD231Q",
+      "start": "2024-01-12",
+      "expire": "2024-02-07",
+      "classification": "Comprehensive Special MV",
+      "id": 9
     }
   ]
 }

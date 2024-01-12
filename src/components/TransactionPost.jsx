@@ -6,7 +6,7 @@ function AddTransaction() {
   const [policyno, Setpolicyno] = useState("");
   const [start, setStart] = useState("");
   const [expire, setExpire] = useState("");
-  const [description, setDescription] = useState("");
+  const [classification, setClassification] = useState(""); // Updated state for classification
   const [clientId, setClientId] = useState("");
   const [clients, setClients] = useState([]);
 
@@ -19,15 +19,12 @@ function AddTransaction() {
         return response.json();
       })
       .then((data) => {
-        // console.log("Server response:", data);
-        setClients(data); // Assuming data is an array of clients
+        setClients(data);
       })
       .catch((error) => {
         console.error("Error fetching clients:", error);
       });
   }, []);
-  
-  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,10 +33,9 @@ function AddTransaction() {
       start: start,
       expire: expire,
       reg: reg.toUpperCase(),
-      description: description,
+      classification: classification,
       policyno: policyno.toUpperCase(),
       client_id: parseInt(clientId, 10)
-      
     };
 
     fetch("http://localhost:8001/transactions", {
@@ -55,7 +51,7 @@ function AddTransaction() {
         setStart("");
         setExpire("");
         setReg("");
-        setDescription("");
+        setClassification("");
         Setpolicyno("");
         setClientId("");
         window.location.reload();
@@ -67,83 +63,94 @@ function AddTransaction() {
 
   return (
     <>
-    <div style={{ marginBottom: "10px", fontWeight: "bold" }}>
-      <form onSubmit={handleSubmit} className="post-data">
-        {clients && clients.length > 0 && (
+      <div style={{ marginBottom: "10px", fontWeight: "bold" }}>
+        <form onSubmit={handleSubmit} className="post-data">
+          {clients && clients.length > 0 && (
+            <label>
+              Select Client:
+              <select value={clientId} onChange={(e) => setClientId(e.target.value)} required>
+                <option value="" disabled>Select Client</option>
+                {clients.map((client) => (
+                  <option key={client.id} value={client.id}>
+                    {client.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+          )}
+
           <label>
-            Select Client:
-            <select value={clientId} onChange={(e) => setClientId(e.target.value)} required>
-              <option value="" disabled>Select Client</option>
-              {clients.map((client) => (
-                <option key={client.id} value={client.id}>
-                  {client.name}
-                </option>
-              ))}
+            Classification:
+            <select value={classification} onChange={(e) => setClassification(e.target.value)} required>
+            <option value="" disabled>Select Classification</option>
+            <optgroup label="Comprehensive">
+              <option value="Comprehensive Private">Comprehensive Private</option>
+              <option value="Comprehensive Commercial">Comprehensive Commercial</option>
+              <option value="Comprehensive PSV">Comprehensive P.S.V</option>
+              <option value="Comprehensive TSV">Comprehensive T.S.V</option>
+              <option value="Comprehensive Special MV">Comprehensive Special M.V</option>
+              <option value="Comprehensive Trailer">Comprehensive Trailer</option>
+              </optgroup>
+
+              <optgroup label="T.P.O">
+              <option value="T.P.O Private">T.P.O Private</option>
+              <option value="T.P.O Commercial">T.P.O Commercial</option>
+              <option value="T.P.O PSV">T.P.O P.S.V</option>
+              <option value="T.P.O TSV">T.P.O T.S.V</option>
+              <option value="T.P.O Special MV">T.P.O Special M.V</option>
+              <option value="T.P.O Trailer">T.P.O Trailer</option>\
+              </optgroup>
+
             </select>
+          </label>       
+
+          <label>
+            Registration Number:
+            <input
+              type="text"
+              value={reg}
+              placeholder="Enter Registration number"
+              onChange={(e) => setReg(e.target.value)}
+              required
+            />
           </label>
-        )}
-  
-        <label>
-          Registration Number:
-          <input
-            type="text"
-            value={reg}
-            placeholder="Enter Registration number"
-            onChange={(e) => setReg(e.target.value)}
-            required
-          />
-        </label>
-  
-        <label>
-          Policy Number:
-          <input
-            type="text"
-            value={policyno}
-            placeholder="Enter policy number"
-            onChange={(e) => Setpolicyno(e.target.value)}
-            required
-          />
-        </label>
-  
-        <label>
-          Starting date:
-          <input
-            type="date"
-            value={start}
-            onChange={(e) => setStart(e.target.value)}
-            required
-          />
-        </label>
-  
-        <label>
-          Expiry date:
-          <input
-            type="date"
-            value={expire}
-            onChange={(e) => setExpire(e.target.value)}
-            required
-          />
-        </label>
-  
-        <label>
-          Description:
-          <input
-            type="text"
-            value={description}
-            placeholder="Enter description"
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          />
-        </label>
-  
-        <button type="submit" className="post-button">Add Policy</button>
-      </form>
-    </div>
+
+          <label>
+            Policy Number:
+            <input
+              type="text"
+              value={policyno}
+              placeholder="Enter policy number"
+              onChange={(e) => Setpolicyno(e.target.value)}
+              required
+            />
+          </label>
+
+          <label>
+            Starting date:
+            <input
+              type="date"
+              value={start}
+              onChange={(e) => setStart(e.target.value)}
+              required
+            />
+          </label>
+
+          <label>
+            Expiry date:
+            <input
+              type="date"
+              value={expire}
+              onChange={(e) => setExpire(e.target.value)}
+              required
+            />
+          </label>
+
+          <button type="submit" className="post-button">Add Policy</button>
+        </form>
+      </div>
     </>
   );
-  
 }
 
 export default AddTransaction;
-
-

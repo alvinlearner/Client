@@ -17,7 +17,7 @@ export default function EditTransaction() {
     reg: "",
     start: "",
     expire: "",
-    description: "",
+    classification: "",
   });
 
   useEffect(() => {
@@ -42,7 +42,7 @@ export default function EditTransaction() {
           reg: transactionData.reg,
           start: transactionData.start,
           expire: transactionData.expire,
-          description: transactionData.description,
+          classification: transactionData.classification,
         });
   
         // Fetch client details
@@ -190,15 +190,7 @@ export default function EditTransaction() {
     return remainingDays >= 0 ? remainingDays : 0;
   };
 
-  const getStatusColor = (remainingDays) => {
-    if (remainingDays === 0) {
-      return 'red';
-    } else if (remainingDays <= 7) {
-      return 'orange';
-    } else {
-      return 'green';
-    }
-  };
+ 
 
   return (
     <>
@@ -224,7 +216,7 @@ export default function EditTransaction() {
           <strong>Registration:</strong> {transaction.reg}
         </li>
         <li>
-          <strong>Description:</strong> {transaction.description}
+          <strong>Classification:</strong> {transaction.classification}
         </li>
         <li>
           <strong>Start Date:</strong> {transaction.start}
@@ -233,10 +225,7 @@ export default function EditTransaction() {
           <strong>Expire Date:</strong> {transaction.expire}
         </li>
 
-        <li
-             className={`px-4 py-2 text-${getStatusColor(calculateDaysLeft(transaction.start, transaction.expire) )}`}><strong>Days left: </strong>
-                              {calculateDaysLeft(transaction.start, transaction.expire)} days left
-        </li>
+        <li><strong>Days left: </strong> <em style={{ color: calculateDaysLeft(transaction.start, transaction.expire) > 0 ? 'green' : 'red', color: calculateDaysLeft(transaction.start, transaction.expire) > 10 ? 'green' : 'orange' }}>{calculateDaysLeft(transaction.start, transaction.expire)}</em> days left</li>
 
       </ul>
     </div>
@@ -267,16 +256,42 @@ export default function EditTransaction() {
           />
         </label>
         
-        <label>
-          <p>Description:</p>
-          </label>
-          <textarea
-            type="text"
-            name="description"
-            placeholder="Update description"
-            onChange={handleInputChange}
-            style={{height:"60PX"}}
-          />
+        <br/>
+
+      <label>
+				    Classification:
+
+            <select
+              value={editedTransaction.classification}
+              onChange={(e) =>
+                setEditedTransaction({
+                  ...editedTransaction,
+                  classification: e.target.value,
+                })
+              }
+              required
+            >
+              <option value="" disabled>
+                Select Classification
+              </option>
+              <optgroup label="Comprehensive">
+              <option value="Comprehensive Private">Comprehensive Private</option>
+			        <option value="Comprehensive Commercial">Comprehensive Commercial</option>
+              <option value="Comprehensive PSV">Comprehensive P.S.V</option>
+              <option value="Comprehensive TSV">Comprehensive T.S.V</option>
+              <option value="Comprehensive Special MV">Comprehensive Special M.V</option>
+              <option value="Comprehensive Trailer">Comprehensive Trailer</option>
+              </optgroup>
+              <optgroup label="T.P.O">
+              <option value="T.P.O Private">T.P.O Private</option>
+              <option value="T.P.O Commercial">T.P.O Commercial</option>
+              <option value="T.P.O PSV">T.P.O P.S.V</option>
+              <option value="T.P.O TSV">T.P.O T.S.V</option>
+              <option value="T.P.O Special MV">T.P.O Special M.V</option>
+              <option value="T.P.O Trailer">T.P.O Trailer</option>
+              </optgroup>
+            </select>
+        </label>
 
         <br/>
         <label>
