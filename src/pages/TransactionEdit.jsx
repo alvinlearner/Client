@@ -6,6 +6,8 @@ import "./editclient.css";
 export default function EditTransaction() {
 
   const navigate = useNavigate()
+  const [clientDetails, setClientDetails] = useState({});
+
 
   const { id } = useParams();
   const [transaction, setTransaction] = useState({});
@@ -21,33 +23,49 @@ export default function EditTransaction() {
   useEffect(() => {
     const fetchClientDetails = async () => {
       try {
-        const url = `http://localhost:8001/transactions/${id}`;
-        const response = await fetch(url, {
+        // Fetch transaction details
+        const transactionUrl = `http://localhost:8001/transactions/${id}`;
+        const transactionResponse = await fetch(transactionUrl, {
           method: "GET",
           headers: { "content-type": "application/json" },
         });
-
-        if (!response.ok) {
+  
+        if (!transactionResponse.ok) {
           throw new Error("Failed to fetch transaction details");
         }
-
-        const data = await response.json();
-        setTransaction(data);
+  
+        const transactionData = await transactionResponse.json();
+        setTransaction(transactionData);
         setEditedTransaction({
-          client_id: data.client_id,
-          policyno: data.policyno,
-          reg: data.reg,
-          start: data.start,
-          expire: data.expire,
-          description:data.description,
+          client_id: transactionData.client_id,
+          policyno: transactionData.policyno,
+          reg: transactionData.reg,
+          start: transactionData.start,
+          expire: transactionData.expire,
+          description: transactionData.description,
         });
+  
+        // Fetch client details
+        const clientUrl = `http://localhost:8001/clients/${transactionData.client_id}`;
+        const clientResponse = await fetch(clientUrl, {
+          method: "GET",
+          headers: { "content-type": "application/json" },
+        });
+  
+        if (!clientResponse.ok) {
+          throw new Error("Failed to fetch client details");
+        }
+  
+        const clientData = await clientResponse.json();
+        setClientDetails(clientData);
       } catch (error) {
         console.error(error);
       }
     };
-
+  
     fetchClientDetails();
   }, [id]);
+  
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -194,9 +212,11 @@ export default function EditTransaction() {
       <div className="flex-item" id="div1">
       <h2>Policy  Information</h2>
       <ul style={{listStyle:"none"}}>
-        <li>
-          <strong>Name:</strong> {transaction.client_id}
-        </li>
+  
+      <li>
+      <strong>Name:</strong> {clientDetails.name} {/* Updated line */}
+      </li>
+
         <li>
           <strong>Policy:</strong> {transaction.policyno}
         </li>
@@ -227,16 +247,6 @@ export default function EditTransaction() {
       <div className="flex-item" id="div1">    
       <form className="update-transaction">
         <h2>Update Policy</h2>
-        <label>
-          Name:
-          <input
-            type="text"
-            name="name"
-            placeholder="Update name"
-            onChange={handleInputChange}
-          />
-        </label>
-        <br />
         <label>
           Policy:
           <input
@@ -292,7 +302,7 @@ export default function EditTransaction() {
         </button>
 
         <button type="button" onClick={handleDeleteTransaction} className="delete-button">
-              Delete Client
+              Delete Policy
             </button>
 
       </form>
