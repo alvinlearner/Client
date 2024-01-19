@@ -225,7 +225,7 @@ export default function EditTransaction() {
           <strong>Expire Date:</strong> {transaction.expire}
         </li>
 
-        <li><strong>Days left: </strong> <em style={{ color: calculateDaysLeft(transaction.start, transaction.expire) > 0 ? 'green' : 'red', color: calculateDaysLeft(transaction.start, transaction.expire) > 10 ? 'green' : 'orange' }}>{calculateDaysLeft(transaction.start, transaction.expire)}</em> days left</li>
+        <li><strong>Days left: </strong> <em style={{ color: calculateDaysLeft(transaction.start, transaction.expire) > 0 ? 'black' : 'red'}}>{calculateDaysLeft(transaction.start, transaction.expire)}</em> days left</li>
 
       </ul>
     </div>

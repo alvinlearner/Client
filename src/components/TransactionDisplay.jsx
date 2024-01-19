@@ -190,7 +190,7 @@ th {
                             <td className="px-4 py-2">{transaction.start}</td>
                             <td className="px-4 py-2">{transaction.expire}</td>
                             <td
-                              style={{color: calculateDaysLeft(transaction.start, transaction.expire) > 0 ? 'green' : 'red' }}
+                              style={{color: calculateDaysLeft(transaction.start, transaction.expire) > 0 ? 'black' : 'red' }}
                             >
                               {calculateDaysLeft(transaction.start, transaction.expire)} days left
                             </td>
