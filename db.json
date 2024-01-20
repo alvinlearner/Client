@@ -63,6 +63,14 @@
       "krapin": "A12557657U",
       "idno": "321466885",
       "id": 13
+    },
+    {
+      "name": "Martin Mwangi",
+      "phone": "0712345678",
+      "email": "Mwangi123@mail.com",
+      "krapin": "B1247574P",
+      "idno": "32153566",
+      "id": 14
     }
   ],
   "transactions": [
@@ -118,7 +126,7 @@
       "reg": "KTB234E",
       "start": "2024-01-12",
       "expire": "2025-01-11",
-      "classification": "Comprehensive Private",
+      "classification": "Comprehensive PSV",
       "id": 8
     },
     {
@@ -129,6 +137,24 @@
       "expire": "2024-01-18",
       "classification": "Comprehensive Special MV",
       "id": 9
+    },
+    {
+      "start": "2024-01-20",
+      "expire": "2025-01-20",
+      "reg": "KDM222W",
+      "classification": "Comprehensive Private",
+      "policyno": "MGL/07/070/0/032863/2024",
+      "client_id": 14,
+      "id": 10
+    },
+    {
+      "start": "2024-01-20",
+      "expire": "2024-02-20",
+      "reg": "KDJ202U",
+      "classification": "T.P.O Private",
+      "policyno": "123IDIK",
+      "client_id": 14,
+      "id": 11
     }
   ]
 }

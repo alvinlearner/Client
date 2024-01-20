@@ -167,7 +167,7 @@ export default function EditTransaction() {
           });
 
           // Navigate back to the transactions page
-          navigate("/");
+          navigate("/motor");
 
         } catch (error) {
           console.error(error);
@@ -326,7 +326,7 @@ export default function EditTransaction() {
 
 
     </div>
-    <button onClick={() => navigate(`/`)} className="view-more-button">Back</button>
+    <button onClick={() => navigate(`/motor`)} className="view-more-button">Back</button>
     </>
 
   );

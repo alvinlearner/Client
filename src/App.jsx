@@ -1,30 +1,36 @@
-import React from "react";
-import "./App.css";
-import { Link, Routes, Route } from "react-router-dom";
-import Client from "./pages/Clients";
-import Motor from "./pages/Motor";
-import EditClient from "./pages/ClientEdit";
-import EditTransaction from "./pages/TransactionEdit";
+import React from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import Client from './pages/Clients';
+import Motor from './pages/Motor';
+import EditClient from './pages/ClientEdit';
+import EditTransaction from './pages/TransactionEdit';
+import Login from './pages/Login';
+import NavBar from './components/Navbar';
+import Dashboard from './pages/Dashboard';
+import { useAuth } from './AuthContext';
 
-function App() {
+const App = () => {
+  const { admin } = useAuth();
+
   return (
     <>
-      <nav>
-        <ul style={{ display: "flex", gap: "5%", listStyle: "none" }}>
-          <li><Link to="/">Motor</Link></li>
-          <li><Link to="/client">Client</Link></li>
-        </ul>
-      </nav>
-
+      <NavBar />
       <Routes>
-        <Route path="/" element={<Motor />} />
-        <Route path="/client" element={<Client />} />
-        <Route path="/client/:id/" element={<EditClient />} /> 
-        <Route path="/transaction/:id/" element={<EditTransaction />} /> 
-
+        {admin ? (
+          <>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/motor" element={<Motor />} />
+            <Route path="/client" element={<Client />} />
+            <Route path="/client/:id/" element={<EditClient />} />
+            <Route path="/transaction/:id/" element={<EditTransaction />} />
+          </>
+        ) : (
+          <Route path="/*" element={<Navigate to="/" />} />
+        )}
+        <Route path="/" element={<Login />} />
       </Routes>
     </>
   );
-}
+};
 
 export default App;
