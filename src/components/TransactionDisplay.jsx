@@ -120,7 +120,7 @@ export default function DisplayTransaction() {
   };
 
   return (
-    <div>
+    <div className="container mx-auto p-4">
       <style>
         {`
 
@@ -146,7 +146,8 @@ th {
         `}
       </style>
       <TransactionFilter transactions={transactions} onFilter={handleFilter} />
-      <div style={{overFlowX:"auto"}}>
+      
+      <div style={{ maxWidth: '100%', overflowX: 'auto' }}>
       <table className="table-auto w-full">
         <thead>
           <tr>

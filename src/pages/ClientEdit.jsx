@@ -159,7 +159,7 @@ export default function EditClient() {
 
   return (
     <>
-    <h1>Edit client info</h1>
+    <h1 className="font-bold text-2xl">Edit client info</h1>
     
     <div className="flex-container">
     
@@ -167,7 +167,7 @@ export default function EditClient() {
 
 
       <div className="flex-item" id="div1">
-      <h2>Client  Information</h2>
+      <h2 className="font-bold text-2xl underline mb-1">Client  Information</h2>
       <ul style={{listStyle:"none"}}>
         <li>
           <strong>Name:</strong> {client.name}
@@ -192,62 +192,87 @@ export default function EditClient() {
       {/* UPDATE FORM */}
       <div className="flex-item" id="div1">    
       <form className="update-client">
-        <h2>Update client</h2>
-        <label>
+        <h2 className="font-bold text-2xl underline mb-2">Update client</h2>
+
+
+        <div className="flex items-center mb-1">
+            <label className="mr-2">
           Name:
+          </label>
           <input
             type="text"
+            className="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             name="name"
             placeholder="Update name"
             onChange={handleInputChange}
           />
-        </label>
-        <br />
-        <label>
+        </div>
+
+        <div className="flex items-center mb-1">
+            <label className="mr-2">
           Phone:
+          </label>
           <input
             type="text"
+            className="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             name="phone"
             placeholder="Update phone number"
             onChange={handleInputChange}
           />
-        </label>
-        <br />
-        <label>
+        </div>
+
+        <div className="flex items-center mb-1">
+            <label className="mr-2">
           Email:
+          </label>
           <input
             type="text"
+            className="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             name="email"
             placeholder="Update email"
             onChange={handleInputChange}
           />
-        </label>
-        <br />
-        <label>
-          KRA PIN:
+        </div>
+
+        <div className="flex items-center mb-1">
+            <label className="mr-2">
+          KRA_PIN:
+          </label>
           <input
             type="text"
+            className="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             name="krapin"
             placeholder="Update KRA pin"
             onChange={handleInputChange}
           />
-        </label>
-        <br />
-        <label>
-          ID Number:
+        </div>
+
+        <div className="flex items-center mb-1">
+            <label className="mr-2">
+          ID_Number:
+          </label>
           <input
             type="text"
+            className="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             name="idno"
             placeholder="Update ID number"
             onChange={handleInputChange}
           />
-        </label>
-        <br />
-        <button type="button" onClick={handleSaveChanges} className="update-button">
+        </div>
+        <button
+         type="button"
+        onClick={handleSaveChanges} 
+        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-3 rounded mb-2"
+        >
           Save Changes
         </button>
 
-        <button type="button" onClick={handleDeleteClient} className="delete-button">
+        <button 
+        type="button" 
+        onClick={handleDeleteClient} 
+        className="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded"
+
+        >
               Delete Client
             </button>
 
@@ -257,7 +282,11 @@ export default function EditClient() {
 
 
     </div>
-    <button onClick={() => navigate(`/client`)} className="view-more-button">Back</button>
+    <div class="flex items-center justify-center">
+        <button onClick={() => navigate(`/client`)} className="view-more-button">
+          Back
+        </button>
+    </div>
     </>
 
   );

@@ -63,7 +63,7 @@ function AddTransaction() {
 
   return (
     <>
-      <div style={{ marginBottom: "10px", fontWeight: "bold" }}>
+      <div className="container mx-auto p-4" style={{ marginBottom: "10px", fontWeight: "bold" }}>
         <form onSubmit={handleSubmit} className="post-data">
           {clients && clients.length > 0 && (
             <label>

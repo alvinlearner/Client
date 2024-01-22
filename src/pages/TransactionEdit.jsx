@@ -194,7 +194,7 @@ export default function EditTransaction() {
 
   return (
     <>
-    <h1>Edit transaction info</h1>
+    <h1 className="font-bold text-2xl">Edit transaction info</h1>
     
     <div className="flex-container">
     
@@ -202,7 +202,7 @@ export default function EditTransaction() {
 
 
       <div className="flex-item" id="div1">
-      <h2>Policy  Information</h2>
+      <h2 className="font-bold text-2xl underline py-2">Policy  Information</h2>
       <ul style={{listStyle:"none"}}>
   
       <li>
@@ -235,34 +235,42 @@ export default function EditTransaction() {
       {/* UPDATE FORM */}
       <div className="flex-item" id="div1">    
       <form className="update-transaction">
-        <h2>Update Policy</h2>
-        <label>
-          Policy:
-          <input
-            type="text"
-            name="policy"
-            placeholder="Update policy number"
-            onChange={handleInputChange}
-          />
-        </label>
-        <br />
-        <label>
+        <h2 className="font-bold text-2xl underline mb-2">Update Policy</h2>
+
+        <div className="flex items-center mb-1">
+            <label className="mr-2">
+              Policy:
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              type="text"
+              name="policy"
+              placeholder="Update policy number"
+              onChange={handleInputChange}
+            />
+        </div>
+
+        <div className="flex items-center py-1">
+            <label className="mr-2">
           Registration:
+          </label>
           <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             name="registration"
             placeholder="Update registration"
             onChange={handleInputChange}
           />
-        </label>
+        </div>
         
-        <br/>
 
-      <label>
+        <div className="flex items-center py-1">
+            <label className="mr-2">
 				    Classification:
-
+              </label>
             <select
               value={editedTransaction.classification}
+              className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               onChange={(e) =>
                 setEditedTransaction({
                   ...editedTransaction,
@@ -289,36 +297,49 @@ export default function EditTransaction() {
               <option value="T.P.O TSV">T.P.O T.S.V</option>
               <option value="T.P.O Special MV">T.P.O Special M.V</option>
               <option value="T.P.O Trailer">T.P.O Trailer</option>
-              </optgroup>
-            </select>
-        </label>
+              </optgroup>  
+            </select>            
+        </div>
 
-        <br/>
-        <label>
-          Start Date
+        <div className="flex items-center py-1">
+            <label className="mr-2">    
+        Start_Date:
+          </label>
           <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             type="date"
             name="start"
             onChange={handleInputChange}
           />
-        </label>
-        <br />
-        <label>
+        </div>
+
+        <div className="flex items-center py-1">
+            <label className="mr-2">
           Expire:
+          </label>
           <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             type="date"
             name="expire"
             onChange={handleInputChange}
           />
-        </label>
-        <br />
-        <button type="button" onClick={handleSaveChanges} className="update-button">
+        </div>
+        
+        <button type="button"
+        onClick={handleSaveChanges}
+        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-3 rounded mt-2 mb-3"
+        
+        >
           Save Changes
         </button>
 
-        <button type="button" onClick={handleDeleteTransaction} className="delete-button">
+        <button
+            type="button"
+            onClick={handleDeleteTransaction}
+            className="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded"
+            >
               Delete Policy
-            </button>
+        </button>
 
       </form>
       </div>
@@ -326,7 +347,12 @@ export default function EditTransaction() {
 
 
     </div>
-    <button onClick={() => navigate(`/motor`)} className="view-more-button">Back</button>
+    <div class="flex items-center justify-center">
+        <button onClick={() => navigate(`/motor`)} className="view-more-button">
+          Back
+        </button>
+    </div>
+
     </>
 
   );

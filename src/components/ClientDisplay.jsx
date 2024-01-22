@@ -111,7 +111,7 @@ table {
         `}
       </style>
       <Clientfilter clients={clients} onFilter={handleFilter} />
-      <div style={{overFlowX:"auto"}}>
+      <div style={{ maxWidth: '100%', overflowX: 'auto' }}>
       <table className="table-auto w-full">
         <thead>
           <tr>

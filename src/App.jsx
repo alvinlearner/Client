@@ -6,6 +6,7 @@ import EditClient from './pages/ClientEdit';
 import EditTransaction from './pages/TransactionEdit';
 import Login from './pages/Login';
 import NavBar from './components/Navbar';
+import Companies from './pages/Companies';
 import Dashboard from './pages/Dashboard';
 import { useAuth } from './AuthContext';
 
@@ -22,6 +23,7 @@ const App = () => {
             <Route path="/motor" element={<Motor />} />
             <Route path="/client" element={<Client />} />
             <Route path="/client/:id/" element={<EditClient />} />
+            <Route path="/companies" element={<Companies />} />
             <Route path="/transaction/:id/" element={<EditTransaction />} />
           </>
         ) : (

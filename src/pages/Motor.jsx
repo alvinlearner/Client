@@ -6,7 +6,7 @@ export default function Motor(){
 
 return(
     <>
-    <h1>MOTOR PAGE</h1>
+    <h1 className="font-bold text-3xl">MOTOR PAGE</h1>
     <AddTransaction/>
     <br/>
     <DisplayTransaction/>

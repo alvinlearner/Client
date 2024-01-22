@@ -1,7 +1,14 @@
 {
+  "insurance_company": [
+    {
+      "id": 1,
+      "name": "Jubilee",
+      "email": "Jubilee@Jubilee.com"
+    }
+  ],
   "clients": [
     {
-      "name": "sam david",
+      "name": "David sam",
       "phone": "07201234567",
       "email": "sam@gmail.com",
       "krapin": "adf345678",
@@ -80,7 +87,7 @@
       "reg": "KDE239K",
       "start": "2024-01-01",
       "expire": "2025-01-10",
-      "classification": "T.P.O Private",
+      "classification": "T.P.O Commercial",
       "id": 1
     },
     {

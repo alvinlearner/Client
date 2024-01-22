@@ -7,7 +7,7 @@ export default function Client(){
 
 return(
     <>
-    <h1>CLIENT PAGE</h1>
+    <h1 className="font-bold text-3xl">CLIENT PAGE</h1>
     <ClientPost/>
     <br/>
     <ClientDisplay/>
