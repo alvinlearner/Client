@@ -14,12 +14,6 @@ export default function DisplayTransaction() {
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage] = useState(10);
   const [clients, setClients] = useState([]);
-  
-
-
-
-
-
 
   useEffect(() => {
     const fetchData = async () => {

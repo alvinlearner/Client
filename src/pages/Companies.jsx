@@ -1,9 +1,8 @@
-import { it } from "@faker-js/faker";
-import React, { useState } from "react";
-// import "../components/ClientPost.css";
-
+import React, { useState, useEffect } from "react";
 
 function Companies() {
+
+  const [companies, setCompanies] = useState([]);  
   const [company, setCompany] = useState("");
   const [email, setEmail] = useState("");
   const [phone, SetPhone] = useState("");
@@ -14,6 +13,22 @@ function Companies() {
   const [pcf, setPcf] = useState();
   const [itl, setItl] = useState();
   const [stampduty, setStampduty] = useState();  
+
+  useEffect(() => {
+    fetchCompaniesData();
+  }, []);
+
+  const fetchCompaniesData = () => {
+    fetch("http://localhost:8001/insurance_companies")
+      .then((res) => res.json())
+      .then((data) => {
+        setCompanies(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -61,6 +76,7 @@ function Companies() {
         setLossofuse(""),
         setItl(""),
         setStampduty("")
+        fetchCompaniesData();
         // window.location.reload();
       })
       .catch((error) => {
@@ -69,6 +85,7 @@ function Companies() {
   };
 
   return (
+    
     <div className="container mx-auto p-4" style={{ marginBottom: "10px", fontWeight: "bold" }}>
             <div className="flex items-center justify-center">
                 <h2 className="font-bold text-3xl">Insurance Companies</h2>
@@ -154,7 +171,7 @@ function Companies() {
             value={pvt}
             onChange={(e) => setPvt(e.target.value)}
             required
-            placeholder="Enter P.V.T"
+            placeholder="Enter P.V.T(%)"
           />
         </div>
 
@@ -182,7 +199,7 @@ function Companies() {
             value={pcf}
             onChange={(e) => setPcf(e.target.value)}
             required
-            placeholder="Enter P.C.F"
+            placeholder="Enter P.C.F(%)"
           />
         </div>
 
@@ -197,7 +214,7 @@ function Companies() {
             value={itl}
             onChange={(e) => setItl(e.target.value)}
             required
-            placeholder="Enter I.T.L"
+            placeholder="Enter I.T.L(%)"
           />
         </div>
 
@@ -224,6 +241,50 @@ function Companies() {
         className="bg-green-600 hover:bg-green-500 text-white font-bold py-1 px-3 rounded"
         >Add Insurance company</button>
       </form>
+
+
+         {/* Displaying companies data in a table */}
+      <div className="container mx-auto p-4">
+        <h3 className="font-bold text-xl mb-2">Insurance Companies List</h3>
+        <div style={{ maxWidth: '100%', overflowX: 'auto' }}>
+        <table className="min-w-full bg-white border border-gray-300">
+          <thead>
+            <tr>
+              <th className="border border-gray-300 px-4 py-2">Company</th>
+              <th className="border border-gray-300 px-4 py-2">Phone</th>
+              <th className="border border-gray-300 px-4 py-2">Email</th>
+              <th className="border border-gray-300 px-4 py-2">Rate (%)</th>
+              <th className="border border-gray-300 px-4 py-2">Excess Protector (%)</th>
+              <th className="border border-gray-300 px-4 py-2">P.V.T (%)</th>
+              <th className="border border-gray-300 px-4 py-2">Loss Of Use </th>
+              <th className="border border-gray-300 px-4 py-2">P.C.F (%)</th>
+              <th className="border border-gray-300 px-4 py-2">I.T.L (%)</th>
+              <th className="border border-gray-300 px-4 py-2">Stamp Duty</th>
+              <th className="border border-gray-300 px-4 py-2">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {companies.map((company) => (
+              <tr key={company.id}>
+                <td className="border border-gray-300 px-4 py-2">{company.company}</td>
+                <td className="border border-gray-300 px-4 py-2">{company.phone}</td>
+                <td className="border border-gray-300 px-4 py-2">{company.email}</td>
+                <td className="border border-gray-300 px-4 py-2">{company.rate}%</td>
+                <td className="border border-gray-300 px-4 py-2">{company.excessprotector}%</td>
+                <td className="border border-gray-300 px-4 py-2">{company.pvt}%</td>
+                <td className="border border-gray-300 px-4 py-2">{company.lossofuse}</td>
+                <td className="border border-gray-300 px-4 py-2">{company.pcf}%</td>
+                <td className="border border-gray-300 px-4 py-2">{company.itl}%</td>
+                <td className="border border-gray-300 px-4 py-2">{company.stampduty}</td>
+                <td className="border border-gray-300 px-4 py-2"><button>View more</button></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        </div>
+
+
+        </div>
     </div>
   );
 
