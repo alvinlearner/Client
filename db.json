@@ -201,7 +201,7 @@
       "client_id": 9,
       "policyno": "MGL/07/070/0/032863/2023",
       "reg": "KCD231Q",
-      "premium": "100000",
+      "premium": 123900,
       "start": "2024-01-12",
       "expire": "2024-01-18",
       "classification": "Comprehensive Private",
