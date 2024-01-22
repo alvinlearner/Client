@@ -1,9 +1,13 @@
-/* styles.css */
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
 
 
+
+th{
+  cursor: pointer;
+}
+
+button{
+  cursor: pointer;
+}
 /* CLIENT DETAIL TABLE */
 
 .view-more-button {

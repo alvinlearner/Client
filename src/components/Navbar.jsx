@@ -66,14 +66,6 @@ const NavBar = () => {
               >
                 Client
               </NavLink>
-              <NavLink
-                to="/client-policies"
-                className="cursor-pointer flex items-center fill-lime-400 bg-blue-950 hover:bg-blue-900 active:border active:border-blue-400 rounded-md duration-100 p-2 text-sm text-gray-100 font-bold pr-1"
-                activeClassName="border-b-2 border-white"
-                onClick={closeNav}
-              >
-                Client Policies
-              </NavLink>
               {/* Logout button */}
               <button className="cursor-pointer flex items-center fill-lime-400 bg-red-900 hover:bg-red-600 active:border active:border-blue-400 rounded-md duration-100 p-2 text-sm text-gray-100 font-bold pr-1" onClick={logout}>
                 Logout
