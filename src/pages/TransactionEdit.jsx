@@ -18,6 +18,7 @@ export default function EditTransaction() {
     start: "",
     expire: "",
     classification: "",
+    premium:"",
   });
 
   useEffect(() => {
@@ -40,6 +41,7 @@ export default function EditTransaction() {
           client_id: transactionData.client_id,
           policyno: transactionData.policyno,
           reg: transactionData.reg,
+          premium: transaction.premium,
           start: transactionData.start,
           expire: transactionData.expire,
           classification: transactionData.classification,
@@ -219,6 +221,9 @@ export default function EditTransaction() {
           <strong>Classification:</strong> {transaction.classification}
         </li>
         <li>
+          <strong>Premium:</strong> {transaction.premium}
+        </li>
+        <li>
           <strong>Start Date:</strong> {transaction.start}
         </li>
         <li>
@@ -229,6 +234,12 @@ export default function EditTransaction() {
 
       </ul>
     </div>
+
+      {/* Insurance company cost breakdown */}
+
+      <div className="flex-item" id="div1">
+      <h2 className="font-bold text-2xl underline mb-2">Premium breakdown</h2>
+        </div>
 
 
 
@@ -301,6 +312,19 @@ export default function EditTransaction() {
             </select>            
         </div>
 
+        <div className="flex items-center mb-1">
+            <label className="mr-2">
+              Premium:
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              type="number"
+              name="premium"
+              placeholder="Update premium amount"
+              onChange={handleInputChange}
+            />
+        </div>
+
         <div className="flex items-center py-1">
             <label className="mr-2">    
         Start_Date:
@@ -347,7 +371,7 @@ export default function EditTransaction() {
 
 
     </div>
-    <div class="flex items-center justify-center">
+    <div className="flex items-center justify-center">
         <button onClick={() => navigate(`/motor`)} className="view-more-button">
           Back
         </button>

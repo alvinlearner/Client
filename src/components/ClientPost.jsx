@@ -61,7 +61,7 @@ const Upperkrapin = krapin.toUpperCase()
         <label>
           Phone:
           <input
-            type="text"
+            type="tel"
             value={phone}
             placeholder="Enter phone number"
             onChange={(e) => SetPhone(e.target.value)}
@@ -114,7 +114,9 @@ const Upperkrapin = krapin.toUpperCase()
           />
         </label>
 
-        <button type="submit" className="post-button">Add Client</button>
+        <button type="submit" 
+        className="bg-green-600 hover:bg-green-500 text-white font-bold py-1 px-3 rounded"
+        >Add Client</button>
       </form>
     </div>
   );

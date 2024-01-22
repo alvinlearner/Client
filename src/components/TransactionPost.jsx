@@ -8,6 +8,7 @@ function AddTransaction() {
   const [expire, setExpire] = useState("");
   const [classification, setClassification] = useState(""); // Updated state for classification
   const [clientId, setClientId] = useState("");
+  const [premium, setPremium] = useState();
   const [clients, setClients] = useState([]);
 
   useEffect(() => {
@@ -34,6 +35,7 @@ function AddTransaction() {
       expire: expire,
       reg: reg.toUpperCase(),
       classification: classification,
+      premium: premium,
       policyno: policyno.toUpperCase(),
       client_id: parseInt(clientId, 10)
     };
@@ -54,6 +56,7 @@ function AddTransaction() {
         setClassification("");
         Setpolicyno("");
         setClientId("");
+        setPremium(0)
         window.location.reload();
       })
       .catch((error) => {
@@ -127,6 +130,17 @@ function AddTransaction() {
           </label>
 
           <label>
+            Premium:
+            <input
+              placeholder="Enter premium amount"
+              type="number"
+              value={premium}
+              onChange={(e) => setStart(e.target.value)}
+              required
+            />
+          </label>
+
+          <label>
             Starting date:
             <input
               type="date"
@@ -146,7 +160,9 @@ function AddTransaction() {
             />
           </label>
 
-          <button type="submit" className="post-button">Add Policy</button>
+          <button type="submit"
+            className="bg-green-600 hover:bg-green-500 text-white font-bold py-1 px-3 rounded"
+           >Add Policy</button>
         </form>
       </div>
     </>

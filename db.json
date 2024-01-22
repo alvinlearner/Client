@@ -1,9 +1,33 @@
 {
-  "insurance_company": [
+  "insurance_companies": [
     {
       "id": 1,
-      "name": "Jubilee",
-      "email": "Jubilee@Jubilee.com"
+      "company": "",
+      "email": "",
+      "phone": "",
+      "rate": 0,
+      "excessprotector": 0,
+      "pvt": 0,
+      "lossofuse": 0,
+      "pcf": 0,
+      "itl": 0,
+      "stampduty": 0
+    },
+    {
+      "name": "",
+      "phone": "+254720370004",
+      "email": "alvin47k@gmail.com",
+      "krapin": "",
+      "idno": "",
+      "id": 2
+    },
+    {
+      "name": "",
+      "phone": "+254720370004",
+      "email": "alvin47k@gmail.com",
+      "krapin": "",
+      "idno": "",
+      "id": 3
     }
   ],
   "clients": [
@@ -11,7 +35,7 @@
       "name": "David sam",
       "phone": "07201234567",
       "email": "sam@gmail.com",
-      "krapin": "adf345678",
+      "krapin": "ADF345678",
       "idno": "98765321",
       "id": 2
     },
@@ -85,6 +109,7 @@
       "client_id": 5,
       "policyno": "MGL/07/070/0/032863/2024",
       "reg": "KDE239K",
+      "premium": "12000",
       "start": "2024-01-01",
       "expire": "2025-01-10",
       "classification": "T.P.O Commercial",
@@ -94,6 +119,7 @@
       "client_id": 2,
       "policyno": "MGL/07/070/0/032223/2023",
       "reg": "KDJ345P",
+      "premium": "10000",
       "start": "2023-10-12",
       "expire": "2024-10-12",
       "classification": "Comprehensive TSV",
@@ -105,17 +131,17 @@
       "reg": "KCH214M",
       "start": "2024-01-12",
       "expire": "2025-01-12",
-      "id": 4,
-      "classification": ""
+      "classification": "T.P.O Trailer",
+      "id": 4
     },
     {
+      "client_id": 11,
+      "policyno": "\tMGL/07/070/0/0325433/2023",
+      "reg": "KDM951T",
       "start": "2023-11-10",
       "expire": "2024-11-11",
-      "reg": "KDM951T",
-      "policyno": "\tMGL/07/070/0/0325433/2023",
-      "client_id": 11,
-      "id": 5,
-      "classification": ""
+      "classification": "Comprehensive Commercial",
+      "id": 5
     },
     {
       "client_id": 2,
@@ -123,9 +149,8 @@
       "reg": "KCD234E",
       "start": "2024-01-11",
       "expire": "2024-02-28",
-      "policy": "aAA/07/070/0/032863/2024",
-      "id": 6,
-      "classification": ""
+      "classification": "T.P.O Commercial",
+      "id": 6
     },
     {
       "client_id": 12,
@@ -140,9 +165,10 @@
       "client_id": 9,
       "policyno": "MGL/07/070/0/032863/2023",
       "reg": "KCD231Q",
+      "premium": "100000",
       "start": "2024-01-12",
       "expire": "2024-01-18",
-      "classification": "Comprehensive Special MV",
+      "classification": "Comprehensive Private",
       "id": 9
     },
     {
