@@ -198,7 +198,7 @@ const Upperkrapin = krapin.toUpperCase()
 
         <button type="submit" 
         className="bg-green-600 hover:bg-green-500 text-white font-bold py-1 px-3 rounded"
-        >Add Client</button>
+        >Add Insurance company</button>
       </form>
     </div>
   );
