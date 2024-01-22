@@ -30,12 +30,14 @@ function AddTransaction() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const premiumVlaue = parseInt(premium,10)
+
     const newTransaction = {
       start: start,
       expire: expire,
       reg: reg.toUpperCase(),
       classification: classification,
-      premium: premium,
+      premium: premiumVlaue,
       policyno: policyno.toUpperCase(),
       client_id: parseInt(clientId, 10)
     };
@@ -135,7 +137,7 @@ function AddTransaction() {
               placeholder="Enter premium amount"
               type="number"
               value={premium}
-              onChange={(e) => setStart(e.target.value)}
+              onChange={(e) => setPremium(e.target.value)}
               required
             />
           </label>

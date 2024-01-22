@@ -37,11 +37,12 @@ export default function EditTransaction() {
   
         const transactionData = await transactionResponse.json();
         setTransaction(transactionData);
+        
         setEditedTransaction({
           client_id: transactionData.client_id,
           policyno: transactionData.policyno,
           reg: transactionData.reg,
-          premium: transaction.premium,
+          premium: parseInt(transaction.premium,10),
           start: transactionData.start,
           expire: transactionData.expire,
           classification: transactionData.classification,
@@ -71,16 +72,17 @@ export default function EditTransaction() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-
+  
     // If the input field is "policy", convert the value to uppercase
-    const updatedValue = name === "policyno" ? value.toUpperCase() : value;
-
+    const updatedValue =
+      name === "policyno" ? value.toUpperCase() : name === "premium" ? parseInt(value, 10) : value;
+  
     setEditedTransaction((prevClient) => ({
       ...prevClient,
       [name]: updatedValue,
     }));
   };
-
+  
 
   const handleSaveChanges = async () => {
     try {
