@@ -14,20 +14,56 @@
       "stampduty": 0
     },
     {
-      "name": "",
-      "phone": "+254720370004",
-      "email": "alvin47k@gmail.com",
-      "krapin": "",
-      "idno": "",
-      "id": 2
+      "company": "Jubilee",
+      "phone": "07111111111",
+      "email": "jubilee@j.com",
+      "rate": "30",
+      "excessprotector": "24",
+      "pvt": "22",
+      "lossofuse": "900",
+      "pcf": "12",
+      "itl": "14",
+      "stampduty": "45",
+      "id": 4
     },
     {
-      "name": "",
-      "phone": "+254720370004",
-      "email": "alvin47k@gmail.com",
-      "krapin": "",
-      "idno": "",
-      "id": 3
+      "company": "ACA",
+      "phone": "11111111",
+      "email": "ACA@A.com",
+      "rate": "21",
+      "excessprotector": "21",
+      "pvt": "3",
+      "lossofuse": "2300",
+      "pcf": "10",
+      "itl": "8",
+      "stampduty": "45",
+      "id": 5
+    },
+    {
+      "company": "Icea",
+      "phone": "0987654321",
+      "email": "icea@ic.com",
+      "rate": "12",
+      "excessprotector": "21",
+      "pvt": "31",
+      "lossofuse": "4000",
+      "pcf": "13",
+      "itl": "14",
+      "stampduty": "45",
+      "id": 6
+    },
+    {
+      "company": "Icea",
+      "phone": "0987654321",
+      "email": "icea@ic.com",
+      "rate": 12,
+      "excessprotector": 21,
+      "pvt": 31,
+      "lossofuse": 4000,
+      "pcf": 13,
+      "itl": 14,
+      "stampduty": 45,
+      "id": 7
     }
   ],
   "clients": [

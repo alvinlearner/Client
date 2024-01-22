@@ -1,3 +1,4 @@
+import { it } from "@faker-js/faker";
 import React, { useState } from "react";
 // import "../components/ClientPost.css";
 
@@ -6,21 +7,39 @@ function Companies() {
   const [company, setCompany] = useState("");
   const [email, setEmail] = useState("");
   const [phone, SetPhone] = useState("");
-  const [krapin, setKrapin] = useState("");
-  const [idno, setIdno] = useState("");
+  const [rate, setRate] = useState();
+  const [excessprotector, setExcessprotector] = useState();
+  const [pvt, setPvt] = useState();
+  const [lossofuse, setLossofuse] = useState();
+  const [pcf, setPcf] = useState();
+  const [itl, setItl] = useState();
+  const [stampduty, setStampduty] = useState();  
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-const Upperkrapin = krapin.toUpperCase()
+
+    const rateValue = parseInt(rate, 10);
+    const excessprotectorValue = parseInt(excessprotector, 10);
+    const pvtValue = parseInt(pvt, 10);
+    const lossofuseValue = parseInt(lossofuse, 10);
+    const pcfValue = parseInt(pcf, 10);
+    const itlValue = parseInt(itl, 10);
+    const stampdutyValue = parseInt(stampduty, 10);
+
 
     const newTransaction = {
-      name: name,
-      phone: phone,
-      email: email,
-      krapin: Upperkrapin,
-      idno: idno,
-    };
+        company: company,
+        phone: phone,
+        email: email,
+        rate: rateValue,
+        excessprotector: excessprotectorValue,
+        pvt: pvtValue,
+        lossofuse: lossofuseValue,
+        pcf: pcfValue,
+        itl: itlValue,
+        stampduty: stampdutyValue,
+      };
 
     fetch(`http://localhost:8001/insurance_companies`, {
       method: "POST",
@@ -32,12 +51,17 @@ const Upperkrapin = krapin.toUpperCase()
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        setName("");
+        setCompany("");
         SetPhone("");
         setEmail("");
-        setKrapin("");
-        setIdno("");
-        window.location.reload();
+        setRate("");
+        setExcessprotector(""),
+        setPvt(""),
+        setPcf(""),
+        setLossofuse(""),
+        setItl(""),
+        setStampduty("")
+        // window.location.reload();
       })
       .catch((error) => {
         console.error(error);
@@ -57,9 +81,9 @@ const Upperkrapin = krapin.toUpperCase()
           <input
             type="text"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            value={name}
-            placeholder="Enter Name"
-            onChange={(e) => setName(e.target.value)}
+            value={company}
+            placeholder="Enter Insurance company"
+            onChange={(e) => setCompany(e.target.value)}
             required
           />
         </div>
@@ -94,13 +118,13 @@ const Upperkrapin = krapin.toUpperCase()
 
         <div className="flex items-center py-1">
             <label className="mr-2">
-          Rate_(%):
+          Rate(%):
           </label>
           <input
             type="number"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            value={krapin}
-            onChange={(e) => setKrapin(e.target.value)}
+            value={rate}
+            onChange={(e) => setRate(e.target.value)}
             required
             placeholder="Enter rate(%)"
           />
@@ -108,13 +132,13 @@ const Upperkrapin = krapin.toUpperCase()
 
             <div className="flex items-center py-1">
             <label className="mr-2">
-          Excess_Protector:
+          Excess_Protector(%):
           </label>
           <input
             type="number"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            value={krapin}
-            onChange={(e) => setKrapin(e.target.value)}
+            value={excessprotector}
+            onChange={(e) => setExcessprotector(e.target.value)}
             required
             placeholder="Enter Excess Protector(%)"
           />
@@ -122,13 +146,13 @@ const Upperkrapin = krapin.toUpperCase()
 
         <div className="flex items-center py-1">
             <label className="mr-2">
-          P.V.T:
+          P.V.T(%):
           </label>
           <input
             type="text"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            value={krapin}
-            onChange={(e) => setKrapin(e.target.value)}
+            value={pvt}
+            onChange={(e) => setPvt(e.target.value)}
             required
             placeholder="Enter P.V.T"
           />
@@ -141,8 +165,8 @@ const Upperkrapin = krapin.toUpperCase()
           <input
             type="text"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            value={krapin}
-            onChange={(e) => setKrapin(e.target.value)}
+            value={lossofuse}
+            onChange={(e) => setLossofuse(e.target.value)}
             required
             placeholder="Enter Loss Of Use"
           />
@@ -150,13 +174,13 @@ const Upperkrapin = krapin.toUpperCase()
 
         <div className="flex items-center py-1">
             <label className="mr-2">
-          P.C.F:
+          P.C.F(%):
           </label>
           <input
             type="text"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            value={krapin}
-            onChange={(e) => setKrapin(e.target.value)}
+            value={pcf}
+            onChange={(e) => setPcf(e.target.value)}
             required
             placeholder="Enter P.C.F"
           />
@@ -165,13 +189,13 @@ const Upperkrapin = krapin.toUpperCase()
 
         <div className="flex items-center py-1">
             <label className="mr-2">
-          I.T.L:
+          I.T.L(%):
           </label>
           <input
             type="text"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            value={krapin}
-            onChange={(e) => setKrapin(e.target.value)}
+            value={itl}
+            onChange={(e) => setItl(e.target.value)}
             required
             placeholder="Enter I.T.L"
           />
@@ -187,8 +211,8 @@ const Upperkrapin = krapin.toUpperCase()
           <input
             type="text"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            value={idno}
-            onChange={(e) => setIdno(e.target.value)}
+            value={stampduty}
+            onChange={(e) => setStampduty(e.target.value)}
             required
             placeholder="Enter Stamp duty"
           />
