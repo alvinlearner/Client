@@ -9,7 +9,7 @@ import NavBar from './components/Navbar';
 import Companies from './pages/Companies';
 import Dashboard from './pages/Dashboard';
 import { useAuth } from './AuthContext';
-import EditCompanies from './pages/EditCompanies';
+import EditCompany from './pages/EditCompanies';
 
 const App = () => {
   const { admin } = useAuth();
@@ -26,7 +26,7 @@ const App = () => {
             <Route path="/client/:id/" element={<EditClient />} />
             <Route path="/companies" element={<Companies />} />
             <Route path="/transaction/:id/" element={<EditTransaction />} />
-            <Route path="/companies/edit" element={<EditCompanies />} />
+            <Route path="/companies/:id" element={<EditCompany />} />
           </>
         ) : (
           <Route path="/*" element={<Navigate to="/" />} />

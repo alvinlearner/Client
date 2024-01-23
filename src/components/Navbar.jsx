@@ -31,7 +31,7 @@ const NavBar = () => {
     <nav className="  bg-gray-800 p-4 mb-4 bg-opacity-60">
       <div className="container flex justify-between items-center relative">
         {/* Brand/logo */}
-        <Link to="/" className="text-white text-xl font-bold">
+        <Link to="/dashboard" className="text-white text-xl font-bold">
           <img src={logo} alt='logo' style={{ width: 36 }} />
         </Link>
   
@@ -42,14 +42,14 @@ const NavBar = () => {
           </button>
           {isNavOpen && (
             <div className="absolute top-full right-1 bg-gray-800 bg-opacity-60 p-4 mt-5 space-y-2">
-              <NavLink
+              {/* <NavLink
                 to="/dashboard"
                 className="cursor-pointer flex items-center fill-lime-400 bg-blue-950 hover:bg-blue-900 active:border active:border-blue-400 rounded-md duration-100 p-2 text-sm text-gray-100 font-bold pr-1"
                 activeClassName="border-b-2 border-white"
                 onClick={closeNav}
               >
                 Dashboard
-              </NavLink>
+              </NavLink> */}
               <NavLink
                 to="/motor"
                 className="cursor-pointer flex items-center fill-lime-400 bg-blue-950 hover:bg-blue-900 active:border active:border-blue-400 rounded-md duration-100 p-2 text-sm text-gray-100 font-bold pr-1"
@@ -84,14 +84,14 @@ const NavBar = () => {
   
         {/* Navigation links */}
         <div className="hidden md:flex md:items-center space-x-4 ml-auto"> {/* Remove mx-auto */}
-          <NavLink
+          {/* <NavLink
             to="/dashboard"
             className="text-white hover:text-blue-400"
             activeClassName="border-b-2 border-white"
             onClick={closeNav}
           >
             Dashboard
-          </NavLink>
+          </NavLink> */}
           <NavLink
             to="/motor"
             className="text-white hover:text-blue-400"

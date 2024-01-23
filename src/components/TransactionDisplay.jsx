@@ -180,12 +180,12 @@ th {
 
                         return (
                           <tr key={transaction.id} className="bg-gray-100" >
-                            <td className="px-4 py-2" onClick={()=>navigate(`/client/${client.id}`)} style={{cursor:"pointer"}}>{client ? client.name : "Unknown Client"}</td>
-                            <td className="px-4 py-2">{transaction.classification}</td>
-                            <td className="px-4 py-2">{transaction.reg}</td>
-                            <td className="px-4 py-2">{transaction.policyno}</td>
-                            <td className="px-4 py-2">{transaction.start}</td>
-                            <td className="px-4 py-2">{transaction.expire}</td>
+                            <td className="px-4 py-2 font-bold" onClick={()=>navigate(`/client/${client.id}`)} style={{cursor:"pointer"}}>{client ? client.name : "Unknown Client"}</td>
+                            <td className="px-4 py-2 font-bold">{transaction.classification}</td>
+                            <td className="px-4 py-2 font-bold">{transaction.reg}</td>
+                            <td className="px-4 py-2 font-bold">{transaction.policyno}</td>
+                            <td className="px-4 py-2 font-bold">{transaction.start}</td>
+                            <td className="px-4 py-2 font-bold">{transaction.expire}</td>
                             <td
                               style={{color: calculateDaysLeft(transaction.start, transaction.expire) > 0 ? 'black' : 'red' }}
                             >

@@ -159,7 +159,7 @@ export default function EditClient() {
 
   return (
     <>
-    <h1 className="font-bold text-2xl">Edit client info</h1>
+    <h1 className="font-bold text-4xl">Edit client information</h1>
     
     <div className="flex-container">
     
@@ -167,21 +167,22 @@ export default function EditClient() {
 
 
       <div className="flex-item" id="div1">
-      <h2 className="font-bold text-2xl underline mb-1">Client  Information</h2>
-      <ul style={{listStyle:"none"}}>
-        <li>
+      <h2 className="font-bold text-3xl underline mb-1">Client  Information</h2>
+      <ul style={{listStyle:"none"}} >
+
+        <li className="text-xl">
           <strong>Name:</strong> {client.name}
         </li>
-        <li>
+        <li className="text-xl">
           <strong>Email:</strong> {client.email}
-        </li>
-        <li>
+        </li >
+        <li className="text-xl">
           <strong>Phone:</strong> {client.phone}
         </li>
-        <li>
+        <li className="text-xl">
           <strong>I.D number:</strong> {client.idno}
         </li>
-        <li>
+        <li className="text-xl">
           <strong>K.R.A pin:</strong> {client.krapin}
         </li>
       </ul>
@@ -192,11 +193,11 @@ export default function EditClient() {
       {/* UPDATE FORM */}
       <div className="flex-item" id="div1">    
       <form className="update-client">
-        <h2 className="font-bold text-2xl underline mb-2">Update client</h2>
+        <h2 className="font-bold text-3xl underline mb-2">Update client</h2>
 
 
         <div className="flex items-center mb-1">
-            <label className="mr-2">
+            <label className="mr-2 text-xl">
           Name:
           </label>
           <input
@@ -209,7 +210,7 @@ export default function EditClient() {
         </div>
 
         <div className="flex items-center mb-1">
-            <label className="mr-2">
+            <label className="mr-2 text-xl">
           Phone:
           </label>
           <input
@@ -222,7 +223,7 @@ export default function EditClient() {
         </div>
 
         <div className="flex items-center mb-1">
-            <label className="mr-2">
+            <label className="mr-2 text-xl">
           Email:
           </label>
           <input
@@ -235,7 +236,7 @@ export default function EditClient() {
         </div>
 
         <div className="flex items-center mb-1">
-            <label className="mr-2">
+            <label className="mr-2 text-xl">
           KRA_PIN:
           </label>
           <input
@@ -248,7 +249,7 @@ export default function EditClient() {
         </div>
 
         <div className="flex items-center mb-1">
-            <label className="mr-2">
+            <label className="mr-2 text-xl">
           ID_Number:
           </label>
           <input

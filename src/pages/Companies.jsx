@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
+
 // import '../style.css'
 
 function Companies() {
+
+  const navigate = useNavigate();
 
   const [companies, setCompanies] = useState([]);  
   const [company, setCompany] = useState("");
@@ -245,6 +249,32 @@ function Companies() {
 
 
          {/* Displaying companies data in a table */}
+
+         <style>
+        {`
+
+table {
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    
+  }
+  
+  tr:nth-child(even) {
+    background-color: #CACEC7;
+  }
+  
+  th {
+    background-color: #00818D;
+    color: white;
+  }       
+        `}
+      </style>
+
       <div className="container mx-auto p-4">
         <h3 className="font-bold text-xl mb-2">Insurance Companies List</h3>
         <div style={{ maxWidth: '100%', overflowX: 'auto' }}>
@@ -277,7 +307,7 @@ function Companies() {
                 <td className="border border-gray-300 px-4 py-2">{company.pcf}%</td>
                 <td className="border border-gray-300 px-4 py-2">{company.itl}%</td>
                 <td className="border border-gray-300 px-4 py-2">{company.stampduty}</td>
-                <td className="border border-gray-300 px-4 py-2"><button>View more</button></td>
+                <td className="border border-gray-300 px-4 py-2"><button onClick={() => navigate(`/companies/${company.id}`)} className="view-more-button">View more</button></td>
               </tr>
             ))}
           </tbody>

@@ -32,7 +32,7 @@ function Login() {
           timer: 1000,
           buttons: false,
         }).then(() => {
-          navigate('/dashboard');
+          navigate('/motor');
         });
       })
       .catch((error) => {

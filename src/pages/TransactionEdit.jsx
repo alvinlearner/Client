@@ -198,7 +198,7 @@ export default function EditTransaction() {
 
   return (
     <>
-    <h1 className="font-bold text-2xl">Edit transaction info</h1>
+    <h1 className="font-bold text-4xl">Edit transaction info</h1>
     
     <div className="flex-container">
     
@@ -206,33 +206,33 @@ export default function EditTransaction() {
 
 
       <div className="flex-item" id="div1">
-      <h2 className="font-bold text-2xl underline py-2">Policy  Information</h2>
+      <h2 className="font-bold text-3xl underline py-2">Policy  Information</h2>
       <ul style={{listStyle:"none"}}>
   
-      <li>
+      <li className="text-xl">
       <strong>Name:</strong> {clientDetails.name} {/* Updated line */}
       </li>
 
-        <li>
+        <li className="text-xl">
           <strong>Policy:</strong> {transaction.policyno}
         </li>
-        <li>
+        <li className="text-xl">
           <strong>Registration:</strong> {transaction.reg}
         </li>
-        <li>
+        <li className="text-xl">
           <strong>Classification:</strong> {transaction.classification}
         </li>
-        <li>
+        <li className="text-xl">
           <strong>Premium:</strong> {transaction.premium}
         </li>
-        <li>
+        <li className="text-xl">
           <strong>Start Date:</strong> {transaction.start}
         </li>
-        <li>
+        <li className="text-xl">
           <strong>Expire Date:</strong> {transaction.expire}
         </li>
 
-        <li><strong>Days left: </strong> <em style={{ color: calculateDaysLeft(transaction.start, transaction.expire) > 0 ? 'black' : 'red'}}>{calculateDaysLeft(transaction.start, transaction.expire)}</em> days left</li>
+        <li className="text-xl"><strong>Days left: </strong> <em style={{ color: calculateDaysLeft(transaction.start, transaction.expire) > 0 ? 'black' : 'red'}}>{calculateDaysLeft(transaction.start, transaction.expire)}</em> days left</li>
 
       </ul>
     </div>
@@ -240,7 +240,7 @@ export default function EditTransaction() {
       {/* Insurance company cost breakdown */}
 
       <div className="flex-item" id="div1">
-      <h2 className="font-bold text-2xl underline mb-2">Premium breakdown</h2>
+      <h2 className="font-bold text-3xl underline mb-2">Premium breakdown</h2>
         </div>
 
 
@@ -248,10 +248,10 @@ export default function EditTransaction() {
       {/* UPDATE FORM */}
       <div className="flex-item" id="div1">    
       <form className="update-transaction">
-        <h2 className="font-bold text-2xl underline mb-2">Update Policy</h2>
+        <h2 className="font-bold text-3xl underline mb-3">Update Policy</h2>
 
         <div className="flex items-center mb-1">
-            <label className="mr-2">
+            <label className="mr-2 text-xl">
               Policy:
             </label>
             <input
@@ -264,7 +264,7 @@ export default function EditTransaction() {
         </div>
 
         <div className="flex items-center py-1">
-            <label className="mr-2">
+            <label className="mr-2 text-xl">
           Registration:
           </label>
           <input
@@ -278,7 +278,7 @@ export default function EditTransaction() {
         
 
         <div className="flex items-center py-1">
-            <label className="mr-2">
+            <label className="mr-2 text-xl">
 				    Classification:
               </label>
             <select
@@ -315,7 +315,7 @@ export default function EditTransaction() {
         </div>
 
         <div className="flex items-center mb-1">
-            <label className="mr-2">
+            <label className="mr-2 text-xl">
               Premium:
             </label>
             <input
@@ -328,7 +328,7 @@ export default function EditTransaction() {
         </div>
 
         <div className="flex items-center py-1">
-            <label className="mr-2">    
+            <label className="mr-2 text-xl">    
         Start_Date:
           </label>
           <input
@@ -340,7 +340,7 @@ export default function EditTransaction() {
         </div>
 
         <div className="flex items-center py-1">
-            <label className="mr-2">
+            <label className="mr-2 text-xl">
           Expire:
           </label>
           <input

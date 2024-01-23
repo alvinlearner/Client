@@ -86,7 +86,8 @@ export default function DisplayClient() {
 
   return (
     <div className="container mx-auto p-4">
-      <style>
+
+<style>
         {`
 
 table {
@@ -110,6 +111,7 @@ table {
   }       
         `}
       </style>
+
       <Clientfilter clients={clients} onFilter={handleFilter} />
       <div style={{ maxWidth: '100%', overflowX: 'auto' }}>
       <table className="table-auto w-full">
@@ -137,7 +139,7 @@ table {
         </thead>
         <tbody>
           {currentRows.map((clients) => (
-            <tr key={clients.id} className="bg-gray-100">
+            <tr key={clients.id} className="bg-gray-100 font-bold hover:font-light">
               <td className="px-4 py-2">{clients.name}</td>
               <td className="px-4 py-2">{clients.phone}</td>
               <td className="px-4 py-2">{clients.email}</td>
