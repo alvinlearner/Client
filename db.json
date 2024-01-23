@@ -1,17 +1,17 @@
 {
   "insurance_companies": [
     {
-      "id": 1,
       "company": "",
+      "phone": "0987654321",
       "email": "",
-      "phone": "",
-      "rate": 0,
+      "rate": 123,
       "excessprotector": 0,
       "pvt": 0,
       "lossofuse": 0,
       "pcf": 0,
       "itl": 0,
-      "stampduty": 0
+      "stampduty": 0,
+      "id": 1
     },
     {
       "company": "Jubilee",

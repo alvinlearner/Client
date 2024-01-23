@@ -57,18 +57,30 @@ export default function EditCompany() {
     fetchCompanyDetails();
   }, [id]);
 
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-
-    // If the input field is "krapin", convert the value to uppercase
-    const updatedValue = name === "stampduty" ? parseInt(value, 10) : value;
-
-
+  
+    // List of fields that should be updated as integers
+    const integerFields = [
+      "rate",
+      "excessprotector",
+      "pvt",
+      "lossofuse",
+      "pcf",
+      "itl",
+      "stampduty",
+    ];
+  
+    // If the input field is in the integerFields list, convert the value to an integer
+    const updatedValue = integerFields.includes(name) ? parseInt(value, 10) : value;
+  
     setEditedCompany((prevCompany) => ({
       ...prevCompany,
       [name]: updatedValue,
     }));
   };
+  
 
 
   const handleSaveChanges = async () => {
@@ -139,7 +151,7 @@ export default function EditCompany() {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const url = `http://localhost:8001/insurance_company/${id}`;
+          const url = `http://localhost:8001/insurance_companies/${id}`;
           const response = await fetch(url, {
             method: "DELETE",
             headers: { "content-type": "application/json" },
@@ -183,12 +195,15 @@ export default function EditCompany() {
         <li className="text-xl">
           <strong>Company:</strong> {company.company}
         </li>
-        <li className="text-xl">
-          <strong>Email:</strong> {company.email}
-        </li>
+
         <li className="text-xl">
           <strong>Phone:</strong> {company.phone}
         </li>
+
+        <li className="text-xl">
+          <strong>Email:</strong> {company.email}
+        </li>
+
         <li className="text-xl">
           <strong>Rate(%):</strong> {company.rate}%
         </li>
@@ -199,7 +214,7 @@ export default function EditCompany() {
           <strong>P.V.T(%):</strong> {company.pvt}%
         </li>
         <li className="text-xl">
-          <strong>Loss of Use:</strong> {company.lossofuse}
+          <strong>Loss of use:</strong> {company.lossofuse}
         </li>
         <li className="text-xl">
           <strong>P.C.F(%):</strong> {company.itl}%
@@ -223,13 +238,13 @@ export default function EditCompany() {
 
         <div className="flex items-center mb-1">
             <label className="mr-2">
-          Name:
+          Company:
           </label>
           <input
             type="text"
             className="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            name="name"
-            placeholder="Update name"
+            name="company"
+            placeholder="Update company name"
             onChange={handleInputChange}
           />
         </div>
@@ -239,7 +254,7 @@ export default function EditCompany() {
           Phone:
           </label>
           <input
-            type="text"
+            type="tel"
             className="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             name="phone"
             placeholder="Update phone number"
@@ -262,26 +277,91 @@ export default function EditCompany() {
 
         <div className="flex items-center mb-1">
             <label className="mr-2">
-          KRA_PIN:
+          Rate(%):
           </label>
           <input
-            type="text"
+            type="number"
             className="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            name="krapin"
-            placeholder="Update KRA pin"
+            name="rate"
+            placeholder="Update Rate(%)"
             onChange={handleInputChange}
           />
         </div>
 
         <div className="flex items-center mb-1">
             <label className="mr-2">
-          ID_Number:
+            Excess_Protector(%):
           </label>
           <input
-            type="text"
+            type="number"
             className="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            name="idno"
-            placeholder="Update ID number"
+            name="excessprotector"
+            placeholder="Update Excess protector(%)"
+            onChange={handleInputChange}
+          />
+        </div>
+
+        <div className="flex items-center mb-1">
+            <label className="mr-2">
+            P.V.T(%):
+          </label>
+          <input
+            type="number"
+            className="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            name="pvt"
+            placeholder="Update P.V.T(%)"
+            onChange={handleInputChange}
+          />
+        </div>
+
+        <div className="flex items-center mb-1">
+            <label className="mr-2">
+          Loss_of_use:
+          </label>
+          <input
+            type="number"
+            className="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            name="lossofuse"
+            placeholder="Update Loss of use"
+            onChange={handleInputChange}
+          />
+        </div>
+
+        <div className="flex items-center mb-1">
+            <label className="mr-2">
+            P.C.F(%):
+          </label>
+          <input
+            type="number"
+            className="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            name="pcf"
+            placeholder="Update P.C.F(%)"
+            onChange={handleInputChange}
+          />
+        </div>
+
+        <div className="flex items-center mb-1">
+            <label className="mr-2">
+            I.T.L(%):
+          </label>
+          <input
+            type="number"
+            className="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            name="itl"
+            placeholder="Update I.T.L(%)"
+            onChange={handleInputChange}
+          />
+        </div>
+
+        <div className="flex items-center mb-1">
+            <label className="mr-2">
+          Stamp_duty:
+          </label>
+          <input
+            type="number"
+            className="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            name="stampduty"
+            placeholder="Update Stamp duty"
             onChange={handleInputChange}
           />
         </div>
