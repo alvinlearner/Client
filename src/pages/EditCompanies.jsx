@@ -11,8 +11,6 @@ export default function EditCompany() {
   const [company, setCompany] = useState({});
   const [editedCompany, setEditedCompany] = useState({
     company: "",
-    phone: "",
-    email: "",
     rate: "",
     excessprotector: "",
     pvt: "",
@@ -39,8 +37,6 @@ export default function EditCompany() {
         setCompany(data);
         setEditedCompany({
           company: data.company,
-          phone: data.phone,
-          email: data.email,
           rate: data.rate,
           excessprotector: data.excessprotector,
           pvt: data.pvt,
@@ -195,15 +191,6 @@ export default function EditCompany() {
         <li className="text-xl">
           <strong>Company:</strong> {company.company}
         </li>
-
-        <li className="text-xl">
-          <strong>Phone:</strong> {company.phone}
-        </li>
-
-        <li className="text-xl">
-          <strong>Email:</strong> {company.email}
-        </li>
-
         <li className="text-xl">
           <strong>Rate(%):</strong> {company.rate}%
         </li>
@@ -245,32 +232,6 @@ export default function EditCompany() {
             className="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             name="company"
             placeholder="Update company name"
-            onChange={handleInputChange}
-          />
-        </div>
-
-        <div className="flex items-center mb-1">
-            <label className="mr-2">
-          Phone:
-          </label>
-          <input
-            type="tel"
-            className="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            name="phone"
-            placeholder="Update phone number"
-            onChange={handleInputChange}
-          />
-        </div>
-
-        <div className="flex items-center mb-1">
-            <label className="mr-2">
-          Email:
-          </label>
-          <input
-            type="text"
-            className="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            name="email"
-            placeholder="Update email"
             onChange={handleInputChange}
           />
         </div>

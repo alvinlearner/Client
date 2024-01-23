@@ -9,8 +9,6 @@ function Companies() {
 
   const [companies, setCompanies] = useState([]);  
   const [company, setCompany] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, SetPhone] = useState("");
   const [rate, setRate] = useState();
   const [excessprotector, setExcessprotector] = useState();
   const [pvt, setPvt] = useState();
@@ -50,8 +48,6 @@ function Companies() {
 
     const newTransaction = {
         company: company,
-        phone: phone,
-        email: email,
         rate: rateValue,
         excessprotector: excessprotectorValue,
         pvt: pvtValue,
@@ -72,8 +68,6 @@ function Companies() {
       .then((data) => {
         console.log(data);
         setCompany("");
-        SetPhone("");
-        setEmail("");
         setRate("");
         setExcessprotector(""),
         setPvt(""),
@@ -106,34 +100,6 @@ function Companies() {
             value={company}
             placeholder="Enter Insurance company"
             onChange={(e) => setCompany(e.target.value)}
-            required
-          />
-        </div>
-
-        <div className="flex items-center py-1">
-            <label className="mr-2">
-          Phone:
-          </label>
-          <input
-            type="tel"
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            value={phone}
-            placeholder="Enter phone number"
-            onChange={(e) => SetPhone(e.target.value)}
-            required
-          />
-        </div>
-
-        <div className="flex items-center py-1">
-            <label className="mr-2">
-          Email:
-          </label>
-          <input
-            type="email"
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            value={email}
-            placeholder="Enter email"
-            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
@@ -282,8 +248,6 @@ table {
           <thead>
             <tr>
               <th className="border border-gray-300 px-4 py-2">Company</th>
-              <th className="border border-gray-300 px-4 py-2">Phone</th>
-              <th className="border border-gray-300 px-4 py-2">Email</th>
               <th className="border border-gray-300 px-4 py-2">Rate (%)</th>
               <th className="border border-gray-300 px-4 py-2">Excess Protector (%)</th>
               <th className="border border-gray-300 px-4 py-2">P.V.T (%)</th>
@@ -298,8 +262,6 @@ table {
             {companies.map((company) => (
               <tr key={company.id}>
                 <td className="border border-gray-300 px-4 py-2">{company.company}</td>
-                <td className="border border-gray-300 px-4 py-2">{company.phone}</td>
-                <td className="border border-gray-300 px-4 py-2">{company.email}</td>
                 <td className="border border-gray-300 px-4 py-2">{company.rate}%</td>
                 <td className="border border-gray-300 px-4 py-2">{company.excessprotector}%</td>
                 <td className="border border-gray-300 px-4 py-2">{company.pvt}%</td>

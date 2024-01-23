@@ -2,8 +2,6 @@
   "insurance_companies": [
     {
       "company": "CIC",
-      "phone": "0987654321",
-      "email": "",
       "rate": 123,
       "excessprotector": 0,
       "pvt": 0,
@@ -15,8 +13,6 @@
     },
     {
       "company": "Jubilee",
-      "phone": "07111111111",
-      "email": "jubilee@j.com",
       "rate": "30",
       "excessprotector": "24",
       "pvt": "22",
@@ -27,9 +23,7 @@
       "id": 4
     },
     {
-      "company": "ACA",
-      "phone": "11111111",
-      "email": "ACA@A.com",
+      "company": "Amanco",
       "rate": "21",
       "excessprotector": "21",
       "pvt": "3",
@@ -41,8 +35,6 @@
     },
     {
       "company": "Icea",
-      "phone": "0987654321",
-      "email": "icea@ic.com",
       "rate": "12",
       "excessprotector": "21",
       "pvt": 23,
@@ -87,7 +79,7 @@
       "id": 9
     },
     {
-      "name": "levin wang",
+      "name": "levin tom",
       "phone": "071209876",
       "email": "levin@mail.com",
       "krapin": "224WER24",
@@ -111,20 +103,12 @@
       "id": 12
     },
     {
-      "name": "Alvin kenyagah",
-      "phone": "+254720370004",
-      "email": "alvink@mail.com",
-      "krapin": "A12557657U",
-      "idno": "321466885",
-      "id": 13
-    },
-    {
-      "name": "Martin Mwangi",
-      "phone": "0712345678",
-      "email": "Mwangi123@mail.com",
-      "krapin": "B1247574P",
-      "idno": "32153566",
-      "id": 14
+      "name": "James Roy",
+      "phone": "079812345678",
+      "email": "jerry@mail.com",
+      "krapin": "IUYTR76543",
+      "idno": "987654",
+      "id": 15
     }
   ],
   "transactions": [
@@ -196,24 +180,6 @@
       "id": 9
     },
     {
-      "start": "2024-01-20",
-      "expire": "2025-01-20",
-      "reg": "KDM222W",
-      "classification": "Comprehensive Private",
-      "policyno": "MGL/07/070/0/032863/2024",
-      "client_id": 14,
-      "id": 10
-    },
-    {
-      "start": "2024-01-20",
-      "expire": "2024-02-20",
-      "reg": "KDJ202U",
-      "classification": "T.P.O Private",
-      "policyno": "123IDIK",
-      "client_id": 14,
-      "id": 11
-    },
-    {
       "client_id": 2,
       "policyno": "QWER13434",
       "reg": "KCR234R",
@@ -225,15 +191,15 @@
       "id": 12
     },
     {
-      "start": "2024-01-01",
-      "expire": "2024-02-09",
-      "reg": "KDP200P",
+      "start": "2024-01-23",
+      "expire": "2025-01-23",
+      "reg": "KBT543W",
       "classification": "T.P.O Private",
-      "premium": 6660,
-      "policyno": "QWWEW22",
-      "client_id": 11,
+      "premium": 10000,
+      "policyno": "POIUYTR65432",
+      "client_id": 15,
       "company_id": 1,
-      "id": 13
+      "id": 14
     }
   ]
 }
