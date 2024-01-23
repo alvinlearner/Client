@@ -8,8 +8,13 @@ function AddTransaction() {
   const [expire, setExpire] = useState("");
   const [classification, setClassification] = useState(""); // Updated state for classification
   const [clientId, setClientId] = useState("");
+  const [companyId, setCompanyId] = useState("");
+  const [companies, setCompanies] = useState([]);
   const [premium, setPremium] = useState();
   const [clients, setClients] = useState([]);
+
+
+      // CLIENT IDS
 
   useEffect(() => {
     fetch("http://localhost:8001/clients")
@@ -27,6 +32,25 @@ function AddTransaction() {
       });
   }, []);
 
+        // COMPANY IDS
+
+
+        useEffect(() => {
+          fetch("http://localhost:8001/insurance_companies")
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+              }
+              return response.json();
+            })
+            .then((data) => {
+              setCompanies(data); // Corrected: setCompanies instead of setCompanyId
+            })
+            .catch((error) => {
+              console.error("Error fetching companies:", error);
+            });
+        }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -39,7 +63,8 @@ function AddTransaction() {
       classification: classification,
       premium: premiumVlaue,
       policyno: policyno.toUpperCase(),
-      client_id: parseInt(clientId, 10)
+      client_id: parseInt(clientId, 10),
+      company_id: parseInt(companyId, 10)
     };
 
     fetch("http://localhost:8001/transactions", {
@@ -83,6 +108,22 @@ function AddTransaction() {
               </select>
             </label>
           )}
+
+
+            {companies && companies.length > 0 && (
+              <label>
+                Select Companies:
+                <select value={companyId} onChange={(e) => setCompanyId(e.target.value)} required>
+                  <option value="" disabled>Select Company</option>
+                  {companies.map((company) => (
+                    <option key={company.id} value={company.id}>
+                      {company.company}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            )}
+                        
 
           <label>
             Classification:

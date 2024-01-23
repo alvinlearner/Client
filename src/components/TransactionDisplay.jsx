@@ -14,30 +14,35 @@ export default function DisplayTransaction() {
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage] = useState(10);
   const [clients, setClients] = useState([]);
+  const [companies, setCompanies] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const transactionsUrl = "http://localhost:8001/transactions";
         const clientsUrl = "http://localhost:8001/clients";
+        const companyUrl = "http://localhost:8001/insurance_companies";
   
-        const [transactionsResponse, clientsResponse] = await Promise.all([
+        const [transactionsResponse, clientsResponse, companyResponse] = await Promise.all([
           fetch(transactionsUrl),
           fetch(clientsUrl),
+          fetch(companyUrl),
         ]);
   
         if (!transactionsResponse.ok || !clientsResponse.ok) {
           throw new Error("Failed to fetch data");
         }
   
-        const [transactionsData, clientsData] = await Promise.all([
+        const [transactionsData, clientsData, companyData] = await Promise.all([
           transactionsResponse.json(),
           clientsResponse.json(),
+          companyResponse.json(),
         ]);
   
         setTransactions(transactionsData);
         setFilteredTransactions(transactionsData);
         setClients(clientsData);
+        setCompanies(companyData);
       } catch (error) {
         console.error(error);
       }
@@ -152,6 +157,10 @@ th {
               Client ID
             </th>
 
+            <th className="px-4 py-2" >
+              Insurance Company
+            </th>
+
             <th className="px-4 py-2" onClick={() => handleSort("classification")}>
               Classification Type
             </th>
@@ -177,10 +186,13 @@ th {
                       {currentRows.map((transaction) => {
                         // Find the client by ID
                         const client = clients.find((client) => client.id === transaction.client_id);
+                        const company = companies.find((company) => company.id === transaction.company_id);
+
 
                         return (
                           <tr key={transaction.id} className="bg-gray-100" >
                             <td className="px-4 py-2 font-bold" onClick={()=>navigate(`/client/${client.id}`)} style={{cursor:"pointer"}}>{client ? client.name : "Unknown Client"}</td>
+                            <td className="px-4 py-2 font-bold">{company ? company.company : "Unknown Insurance"}</td>
                             <td className="px-4 py-2 font-bold">{transaction.classification}</td>
                             <td className="px-4 py-2 font-bold">{transaction.reg}</td>
                             <td className="px-4 py-2 font-bold">{transaction.policyno}</td>

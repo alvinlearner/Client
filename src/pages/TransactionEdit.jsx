@@ -1,9 +1,44 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Navigate, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import "./editclient.css";
 
+
+
+
+
 export default function EditTransaction() {
+
+
+  const [updatedInsuranceCompany, setUpdatedInsuranceCompany] = useState("");
+
+
+  const [insuranceCompanies, setInsuranceCompanies] = useState([]);
+
+  
+
+useEffect(() => {
+  const fetchInsuranceCompanies = async () => {
+    try {
+      const insuranceCompaniesUrl = "http://localhost:8001/insurance_companies";
+      const insuranceCompaniesResponse = await fetch(insuranceCompaniesUrl);
+
+      if (!insuranceCompaniesResponse.ok) {
+        throw new Error("Failed to fetch insurance companies");
+      }
+
+      const insuranceCompaniesData = await insuranceCompaniesResponse.json();
+      setInsuranceCompanies(insuranceCompaniesData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  fetchInsuranceCompanies();
+}, []);
+
+
+
 
   const navigate = useNavigate()
   const [clientDetails, setClientDetails] = useState({});
@@ -75,13 +110,20 @@ export default function EditTransaction() {
   
     // If the input field is "policy", convert the value to uppercase
     const updatedValue =
-      name === "policyno" ? value.toUpperCase() : name === "premium" ? parseInt(value, 10) : value;
+      name === "policyno"
+        ? value.toUpperCase()
+        : name === "premium"
+        ? parseInt(value, 10)
+        : name === "company_id" // add this condition for the insurance company
+        ? parseInt(value, 10)  // convert value to a number
+        : value;
   
     setEditedTransaction((prevClient) => ({
       ...prevClient,
       [name]: updatedValue,
     }));
   };
+  
   
 
   const handleSaveChanges = async () => {
@@ -98,11 +140,17 @@ export default function EditTransaction() {
       if (result.isConfirmed) {
         // User clicked "Yes, save it!" button
   
+        // Include the updated insurance company ID in the editedTransaction object
+        const updatedTransaction = {
+          ...editedTransaction,
+          company_id: updatedInsuranceCompany,
+        };
+  
         const url = `http://localhost:8001/transactions/${id}`;
         const response = await fetch(url, {
           method: "PUT",
           headers: { "content-type": "application/json" },
-          body: JSON.stringify(editedTransaction),
+          body: JSON.stringify(updatedTransaction),
         });
   
         if (!response.ok) {
@@ -112,7 +160,7 @@ export default function EditTransaction() {
         // Show SweetAlert success confirmation
         await Swal.fire({
           icon: "success",
-          title: "Client details updated successfully!",
+          title: "Transaction details updated successfully!",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -129,6 +177,7 @@ export default function EditTransaction() {
   
         const updatedData = await updatedResponse.json();
         setTransaction(updatedData);
+  
       } else {
         // User clicked "Cancel" or closed the modal
         Swal.fire('Cancelled', 'Your changes have not been saved.', 'info');
@@ -137,6 +186,7 @@ export default function EditTransaction() {
       console.error(error);
     }
   };
+  
   
 
   const handleDeleteTransaction = () => {
@@ -167,7 +217,7 @@ export default function EditTransaction() {
             icon: "success",
             title: "Policy deleted successfully!",
             showConfirmButton: false,
-            timer: 1500,
+            timer: 1500 ,
           });
 
           // Navigate back to the transactions page
@@ -219,6 +269,15 @@ export default function EditTransaction() {
         <li className="text-xl">
           <strong>Registration:</strong> {transaction.reg}
         </li>
+
+          {/* INSURANCE COMPANY */}
+          
+          <li className="text-xl">
+            <strong>Insurance company:</strong>{" "}
+            {insuranceCompanies.find((company) => company.id === transaction.company_id)?.company}
+          </li>
+
+
         <li className="text-xl">
           <strong>Classification:</strong> {transaction.classification}
         </li>
@@ -275,6 +334,28 @@ export default function EditTransaction() {
             onChange={handleInputChange}
           />
         </div>
+
+
+        <div className="flex items-center py-1">
+          <label className="mr-2 text-xl">Company:</label>
+          <select
+                value={updatedInsuranceCompany}
+                onChange={(e) => setUpdatedInsuranceCompany(parseInt(e.target.value, 10))}
+                className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                required
+              >
+                <option value="" disabled>
+                  Select Insurance Company
+                </option>
+                {insuranceCompanies.map((company) => (
+                  <option key={company.id} value={company.id}>
+                    {company.company}
+                  </option>
+                ))}
+           </select>
+
+        </div>
+
         
 
         <div className="flex items-center py-1">

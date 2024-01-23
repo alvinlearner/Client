@@ -1,7 +1,7 @@
 {
   "insurance_companies": [
     {
-      "company": "",
+      "company": "CIC",
       "phone": "0987654321",
       "email": "",
       "rate": 123,
@@ -45,25 +45,12 @@
       "email": "icea@ic.com",
       "rate": "12",
       "excessprotector": "21",
-      "pvt": "31",
+      "pvt": 23,
       "lossofuse": "4000",
       "pcf": "13",
       "itl": "14",
       "stampduty": "45",
       "id": 6
-    },
-    {
-      "company": "Icea",
-      "phone": "0987654321",
-      "email": "icea@ic.com",
-      "rate": 12,
-      "excessprotector": 21,
-      "pvt": 31,
-      "lossofuse": 4000,
-      "pcf": 13,
-      "itl": 14,
-      "stampduty": 45,
-      "id": 7
     }
   ],
   "clients": [
@@ -145,10 +132,11 @@
       "client_id": 5,
       "policyno": "MGL/07/070/0/032863/2024",
       "reg": "KDE239K",
-      "premium": 12300,
+      "premium": 12000,
       "start": "2024-01-01",
       "expire": "2025-01-10",
-      "classification": "T.P.O Commercial",
+      "classification": "Comprehensive TSV",
+      "company_id": 4,
       "id": 1
     },
     {
@@ -224,6 +212,28 @@
       "policyno": "123IDIK",
       "client_id": 14,
       "id": 11
+    },
+    {
+      "client_id": 2,
+      "policyno": "QWER13434",
+      "reg": "KCR234R",
+      "premium": null,
+      "start": "2024-01-15",
+      "expire": "2024-02-09",
+      "classification": "Comprehensive PSV",
+      "company_id": "4",
+      "id": 12
+    },
+    {
+      "start": "2024-01-01",
+      "expire": "2024-02-09",
+      "reg": "KDP200P",
+      "classification": "T.P.O Private",
+      "premium": 6660,
+      "policyno": "QWWEW22",
+      "client_id": 11,
+      "company_id": 1,
+      "id": 13
     }
   ]
 }
