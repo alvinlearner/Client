@@ -52,6 +52,7 @@ useEffect(() => {
     reg: "",
     start: "",
     expire: "",
+    company:"",
     classification: "",
     premium:"",
   });
@@ -72,12 +73,12 @@ useEffect(() => {
   
         const transactionData = await transactionResponse.json();
         setTransaction(transactionData);
-        
+  
         setEditedTransaction({
           client_id: transactionData.client_id,
           policyno: transactionData.policyno,
           reg: transactionData.reg,
-          premium: parseInt(transaction.premium,10),
+          premium: parseInt(transactionData.premium, 10),
           start: transactionData.start,
           expire: transactionData.expire,
           classification: transactionData.classification,
@@ -96,6 +97,9 @@ useEffect(() => {
   
         const clientData = await clientResponse.json();
         setClientDetails(clientData);
+  
+        // Set the initial value of updatedInsuranceCompany
+        setUpdatedInsuranceCompany(clientData.company_id || ""); // Assuming company_id is a string
       } catch (error) {
         console.error(error);
       }
@@ -108,9 +112,9 @@ useEffect(() => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
   
-    // If the input field is "policy", convert the value to uppercase
+    // If the input field is "policyno", "reg", or "classification", convert the value to uppercase
     const updatedValue =
-      name === "policyno"
+      (name === "policyno" || name === "reg" || name === "classification")
         ? value.toUpperCase()
         : name === "premium"
         ? parseInt(value, 10)
@@ -118,11 +122,20 @@ useEffect(() => {
         ? parseInt(value, 10)  // convert value to a number
         : value;
   
-    setEditedTransaction((prevClient) => ({
-      ...prevClient,
+    // Preserve existing values for "premium", "company_id", and "classification" when updating other fields
+    const updatedTransaction = {
+      ...editedTransaction,
       [name]: updatedValue,
-    }));
+      premium: name === "premium" ? parseInt(value, 10) : editedTransaction.premium,
+      company_id: name === "company_id" ? parseInt(value, 10) : updatedInsuranceCompany,
+      classification: name === "classification" ? value.toUpperCase() : editedTransaction.classification,
+    };
+  
+    setEditedTransaction(updatedTransaction);
   };
+  
+  
+  
   
   
 
@@ -186,6 +199,7 @@ useEffect(() => {
       console.error(error);
     }
   };
+  
   
   
 
@@ -316,7 +330,7 @@ useEffect(() => {
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               type="text"
-              name="policy"
+              name="policyno"
               placeholder="Update policy number"
               onChange={handleInputChange}
             />
@@ -329,7 +343,7 @@ useEffect(() => {
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            name="registration"
+            name="reg"
             placeholder="Update registration"
             onChange={handleInputChange}
           />
@@ -363,6 +377,7 @@ useEffect(() => {
 				    Classification:
               </label>
             <select
+              name= "classification"
               value={editedTransaction.classification}
               className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               onChange={(e) =>

@@ -48,7 +48,7 @@
   "clients": [
     {
       "name": "David sam",
-      "phone": "07201234567",
+      "phone": "+254720100000",
       "email": "sam@gmail.com",
       "krapin": "ADF345678",
       "idno": "98765321",
@@ -126,11 +126,12 @@
     {
       "client_id": 2,
       "policyno": "MGL/07/070/0/032223/2023",
-      "reg": "KDJ345P",
-      "premium": "10000",
-      "start": "2023-10-12",
-      "expire": "2024-10-12",
-      "classification": "Comprehensive TSV",
+      "reg": "KDM332O",
+      "premium": 5432,
+      "start": "2023-11-24",
+      "expire": "2024-11-24",
+      "classification": "Comprehensive Private",
+      "company_id": 5,
       "id": 2
     },
     {
@@ -187,7 +188,7 @@
       "start": "2024-01-15",
       "expire": "2024-02-09",
       "classification": "Comprehensive PSV",
-      "company_id": "4",
+      "company_id": 1,
       "id": 12
     },
     {

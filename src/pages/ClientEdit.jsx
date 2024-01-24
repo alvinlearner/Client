@@ -174,17 +174,18 @@ export default function EditClient() {
           <strong>Name:</strong> {client.name}
         </li>
         <li className="text-xl">
+          <strong>Phone:</strong> {client.phone}
+        </li>
+        <li className="text-xl">
           <strong>Email:</strong> {client.email}
         </li >
         <li className="text-xl">
-          <strong>Phone:</strong> {client.phone}
+          <strong>K.R.A pin:</strong> {client.krapin}
         </li>
         <li className="text-xl">
           <strong>I.D number:</strong> {client.idno}
         </li>
-        <li className="text-xl">
-          <strong>K.R.A pin:</strong> {client.krapin}
-        </li>
+
       </ul>
     </div>
 
@@ -205,6 +206,7 @@ export default function EditClient() {
             className="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             name="name"
             placeholder="Update name"
+            autoComplete="off"
             onChange={handleInputChange}
           />
         </div>
@@ -218,6 +220,7 @@ export default function EditClient() {
             className="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             name="phone"
             placeholder="Update phone number"
+            autoComplete="off"
             onChange={handleInputChange}
           />
         </div>
@@ -231,6 +234,7 @@ export default function EditClient() {
             className="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             name="email"
             placeholder="Update email"
+            autoComplete="off"
             onChange={handleInputChange}
           />
         </div>
@@ -244,6 +248,7 @@ export default function EditClient() {
             className="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             name="krapin"
             placeholder="Update KRA pin"
+            autoComplete="off"
             onChange={handleInputChange}
           />
         </div>
@@ -257,6 +262,7 @@ export default function EditClient() {
             className="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             name="idno"
             placeholder="Update ID number"
+            autoComplete="off"
             onChange={handleInputChange}
           />
         </div>

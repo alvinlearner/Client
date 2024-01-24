@@ -15,7 +15,7 @@ const NavBar = () => {
   };
 
   const closeNav = () => {
-    setIsNavOpen(true);
+    setIsNavOpen(false);
   };
 
   // Check if the current route is the login page
