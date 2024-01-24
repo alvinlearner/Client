@@ -125,13 +125,13 @@
     },
     {
       "client_id": 2,
-      "policyno": "MGL/07/070/0/032223/2023",
-      "reg": "KDM332O",
+      "policyno": "MGL/07/070/0/032223/2024",
+      "reg": "KDM543W",
       "premium": 5432,
       "start": "2023-11-24",
       "expire": "2024-11-24",
       "classification": "Comprehensive Private",
-      "company_id": 5,
+      "company_id": 1,
       "id": 2
     },
     {

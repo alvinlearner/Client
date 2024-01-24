@@ -109,6 +109,8 @@ useEffect(() => {
   }, [id]);
   
 
+
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
   
@@ -122,19 +124,20 @@ useEffect(() => {
         ? parseInt(value, 10)  // convert value to a number
         : value;
   
-    // Preserve existing values for "premium", "company_id", and "classification" when updating other fields
-    const updatedTransaction = {
-      ...editedTransaction,
-      [name]: updatedValue,
-      premium: name === "premium" ? parseInt(value, 10) : editedTransaction.premium,
-      company_id: name === "company_id" ? parseInt(value, 10) : updatedInsuranceCompany,
-      classification: name === "classification" ? value.toUpperCase() : editedTransaction.classification,
-    };
-  
-    setEditedTransaction(updatedTransaction);
+    // Update the company_id directly in the editedTransaction state only if it's not the select input
+    if (name !== "company_id") {
+      setEditedTransaction((prevTransaction) => ({
+        ...prevTransaction,
+        [name]: updatedValue,
+        premium: name === "premium" ? parseInt(value, 10) : prevTransaction.premium,
+        classification: name === "classification" ? value.toUpperCase() : prevTransaction.classification,
+        company_id: name === "company_id" ? parseInt(value, 10) : prevTransaction.company_id,
+      }));
+    } else {
+      // Handle the case when the change comes from the select input
+      setUpdatedInsuranceCompany(parseInt(value, 10));
+    }
   };
-  
-  
   
   
   
@@ -353,6 +356,7 @@ useEffect(() => {
         <div className="flex items-center py-1">
           <label className="mr-2 text-xl">Company:</label>
           <select
+                name='company_id'
                 value={updatedInsuranceCompany}
                 onChange={(e) => setUpdatedInsuranceCompany(parseInt(e.target.value, 10))}
                 className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -377,7 +381,6 @@ useEffect(() => {
 				    Classification:
               </label>
             <select
-              name= "classification"
               value={editedTransaction.classification}
               className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               onChange={(e) =>
