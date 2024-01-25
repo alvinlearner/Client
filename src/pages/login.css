@@ -34,16 +34,18 @@
   .cover button {
     display: inline;
     margin-top: 1em;
-    background-color: #007bff;
+    background-color: #0269d8;
     border: none;
     border-radius: 0.5em;
     cursor: pointer;  width: 30%;
     padding: 8px;
+    color: #fff;
   }
   
   .cover button:hover {
     
     color: white;
+    background-color: #2e93ff;
   }
   
   /* Additional styles for responsiveness */

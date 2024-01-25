@@ -38,12 +38,12 @@ function Login() {
       .catch((error) => {
         console.error('Error:', error);
         swal({
-          title: 'Error',
-          text: 'Invalid login',
+          title: 'Incorrect username or password',
+          text: `Please enter valid credentials!`,
           icon: 'error',
           buttons: false,
         });
-        setError('An error occurred. Please try again.'); // Set error message
+        setError(`An error occurred. Please try again.`); // Set error message
       });
   };
 
@@ -58,12 +58,14 @@ function Login() {
             placeholder='Username'
             value={username}
             onChange={handleUsernameChange}
+            required
           />
           <input
             type='password'
             placeholder=' Password'
             value={password}
             onChange={handlePasswordChange}
+            required
           />
 
           {error && <p className='error-message'>{error}</p>}
