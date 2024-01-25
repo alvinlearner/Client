@@ -22,7 +22,7 @@ const Upperkrapin = krapin.toUpperCase()
       idno: idno,
     };
 
-    fetch(`http://localhost:8001/clients`, {
+    fetch(`https://insurancetestdatabase.vercel.app/clients`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

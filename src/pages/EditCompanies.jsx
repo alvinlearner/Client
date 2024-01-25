@@ -23,7 +23,7 @@ export default function EditCompany() {
   useEffect(() => {
     const fetchCompanyDetails = async () => {
       try {
-        const url = `http://localhost:8001/insurance_companies/${id}`;
+        const url = `https://insurancetestdatabase.vercel.app/insurance_companies/${id}`;
         const response = await fetch(url, {
           method: "GET",
           headers: { "content-type": "application/json" },
@@ -93,7 +93,7 @@ export default function EditCompany() {
       if (result.isConfirmed) {
         // User clicked "Yes, save it!" button
   
-        const url = `http://localhost:8001/insurance_companies/${id}`;
+        const url = `https://insurancetestdatabase.vercel.app/insurance_companies/${id}`;
         const response = await fetch(url, {
           method: "PUT",
           headers: { "content-type": "application/json" },
@@ -113,7 +113,7 @@ export default function EditCompany() {
         });
   
         // Fetch updated company details immediately after saving
-        const updatedResponse = await fetch(`http://localhost:8001/insurance_companies/${id}`, {
+        const updatedResponse = await fetch(`https://insurancetestdatabase.vercel.app/insurance_companies/${id}`, {
           method: "GET",
           headers: { "content-type": "application/json" },
         });
@@ -147,7 +147,7 @@ export default function EditCompany() {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const url = `http://localhost:8001/insurance_companies/${id}`;
+          const url = `https://insurancetestdatabase.vercel.app/insurance_companies/${id}`;
           const response = await fetch(url, {
             method: "DELETE",
             headers: { "content-type": "application/json" },

@@ -22,7 +22,7 @@ function Companies() {
   }, []);
 
   const fetchCompaniesData = () => {
-    fetch("http://localhost:8001/insurance_companies")
+    fetch("https://insurancetestdatabase.vercel.app/insurance_companies")
       .then((res) => res.json())
       .then((data) => {
         setCompanies(data);
@@ -57,7 +57,7 @@ function Companies() {
         stampduty: stampdutyValue,
       };
 
-    fetch(`http://localhost:8001/insurance_companies`, {
+    fetch(`https://insurancetestdatabase.vercel.app/insurance_companies`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

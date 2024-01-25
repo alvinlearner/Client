@@ -17,7 +17,7 @@ function AddTransaction() {
       // CLIENT IDS
 
   useEffect(() => {
-    fetch("http://localhost:8001/clients")
+    fetch("https://insurancetestdatabase.vercel.app/clients")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -36,7 +36,7 @@ function AddTransaction() {
 
 
         useEffect(() => {
-          fetch("http://localhost:8001/insurance_companies")
+          fetch("https://insurancetestdatabase.vercel.app/insurance_companies")
             .then((response) => {
               if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -67,7 +67,7 @@ function AddTransaction() {
       company_id: parseInt(companyId, 10)
     };
 
-    fetch("http://localhost:8001/transactions", {
+    fetch("https://insurancetestdatabase.vercel.app/transactions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

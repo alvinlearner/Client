@@ -14,7 +14,7 @@ export default function DisplayClient() {
   const [rowsPerPage] = useState(10);
 
   useEffect(() => {
-    const url = `http://localhost:8001/clients`;
+    const url = `https://insurancetestdatabase.vercel.app/clients`;
 
     fetch(url, {
       method: "GET",

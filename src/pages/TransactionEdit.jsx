@@ -20,7 +20,7 @@ export default function EditTransaction() {
 useEffect(() => {
   const fetchInsuranceCompanies = async () => {
     try {
-      const insuranceCompaniesUrl = "http://localhost:8001/insurance_companies";
+      const insuranceCompaniesUrl = "https://insurancetestdatabase.vercel.app/insurance_companies";
       const insuranceCompaniesResponse = await fetch(insuranceCompaniesUrl);
 
       if (!insuranceCompaniesResponse.ok) {
@@ -61,7 +61,7 @@ useEffect(() => {
     const fetchClientDetails = async () => {
       try {
         // Fetch transaction details
-        const transactionUrl = `http://localhost:8001/transactions/${id}`;
+        const transactionUrl = `https://insurancetestdatabase.vercel.app/transactions/${id}`;
         const transactionResponse = await fetch(transactionUrl, {
           method: "GET",
           headers: { "content-type": "application/json" },
@@ -85,7 +85,7 @@ useEffect(() => {
         });
   
         // Fetch client details
-        const clientUrl = `http://localhost:8001/clients/${transactionData.client_id}`;
+        const clientUrl = `https://insurancetestdatabase.vercel.app/clients/${transactionData.client_id}`;
         const clientResponse = await fetch(clientUrl, {
           method: "GET",
           headers: { "content-type": "application/json" },
@@ -162,7 +162,7 @@ useEffect(() => {
           company_id: updatedInsuranceCompany,
         };
   
-        const url = `http://localhost:8001/transactions/${id}`;
+        const url = `https://insurancetestdatabase.vercel.app/transactions/${id}`;
         const response = await fetch(url, {
           method: "PUT",
           headers: { "content-type": "application/json" },
@@ -182,7 +182,7 @@ useEffect(() => {
         });
   
         // Fetch updated transaction details immediately after saving
-        const updatedResponse = await fetch(`http://localhost:8001/transactions/${id}`, {
+        const updatedResponse = await fetch(`https://insurancetestdatabase.vercel.app/transactions/${id}`, {
           method: "GET",
           headers: { "content-type": "application/json" },
         });
@@ -219,7 +219,7 @@ useEffect(() => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const url = `http://localhost:8001/transactions/${id}`;
+          const url = `https://insurancetestdatabase.vercel.app/transactions/${id}`;
           const response = await fetch(url, {
             method: "DELETE",
             headers: { "content-type": "application/json" },

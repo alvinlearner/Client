@@ -19,9 +19,9 @@ export default function DisplayTransaction() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const transactionsUrl = "http://localhost:8001/transactions";
-        const clientsUrl = "http://localhost:8001/clients";
-        const companyUrl = "http://localhost:8001/insurance_companies";
+        const transactionsUrl = "https://insurancetestdatabase.vercel.app/transactions";
+        const clientsUrl = "https://insurancetestdatabase.vercel.app/clients";
+        const companyUrl = "https://insurancetestdatabase.vercel.app/insurance_companies";
   
         const [transactionsResponse, clientsResponse, companyResponse] = await Promise.all([
           fetch(transactionsUrl),
