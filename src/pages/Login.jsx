@@ -12,6 +12,7 @@ function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [isLoggingIn, setIsLoggingIn] = useState(false); // New state for tracking login status
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -22,6 +23,9 @@ function Login() {
   };
 
   const handleLogin = () => {
+    // Disable the button and update text during login process
+    setIsLoggingIn(true);
+
     // Perform login logic and redirect on success
     login({ username, password })
       .then(() => {
@@ -43,7 +47,11 @@ function Login() {
           icon: 'error',
           buttons: false,
         });
-        setError(`An error occurred. Please try again.`); // Set error message
+        setError(`An error occurred. Please try again.`);
+      })
+      .finally(() => {
+        // Enable the button after the login process is complete (success or failure)
+        setIsLoggingIn(false);
       });
   };
 
@@ -69,8 +77,8 @@ function Login() {
           />
 
           {error && <p className='error-message'>{error}</p>}
-          <button type='button' onClick={handleLogin}>
-            Log in
+          <button type='button' onClick={handleLogin} disabled={isLoggingIn}>
+            {isLoggingIn ? 'Logging in...' : 'Log in'}
           </button>
         </form>
         <p style={{ marginTop: '50px' }}>
