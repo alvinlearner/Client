@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async ({ username, password }) => {
     try {
-      const response = await fetch('https://insurancetestdatabase.vercel.app/login', {
+      const response = await fetch('https://insurance-u3z5.onrender.com/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ export const AuthProvider = ({ children }) => {
       });
 
       if (result) {
-        const response = await fetch('http://localhost:3000/logout', {
+        const response = await fetch('https://insurance-u3z5.onrender.com/logout', {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
