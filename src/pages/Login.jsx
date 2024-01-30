@@ -7,52 +7,6 @@ import swal from 'sweetalert';
 import './login.css';
 import Spinner from './spinner';
 
-// function Login() {
-//   const navigate = useNavigate();
-//   const { login } = useAuth();
-//   const [username, setUsername] = useState('');
-//   const [password, setPassword] = useState('');
-//   const [error, setError] = useState('');
-//   const [isLoggingIn, setIsLoggingIn] = useState(false); // New state for tracking login status
-
-//   const handleUsernameChange = (e) => {
-//     setUsername(e.target.value);
-//   };
-
-//   const handlePasswordChange = (e) => {
-//     setPassword(e.target.value);
-//   };
-
-//   const handleLogin = () => {
-//     // Disable the button and update text during login process
-//     setIsLoggingIn(true);
-
-//     // Perform login logic and redirect on success
-//     login({ username, password })
-//       .then(() => {
-//         swal({
-//           title: 'Success',
-//           text: 'Login Successful!',
-//           icon: 'success',
-//           timer: 1000,
-//           buttons: false,
-//         })
-//       })
-//       .catch((error) => {
-//         console.error('Error:', error);
-//         swal({
-//           title: 'Incorrect username or password',
-//           text: `Please enter valid credentials!`,
-//           icon: 'error',
-//           buttons: false,
-//         });
-//         setError(`An error occurred. Please try again.`);
-//       })
-//       .finally(() => {
-//         // Enable the button after the login process is complete (success or failure)
-//         setIsLoggingIn(false);
-//       });
-//   };
 
 
 function Login() {
