@@ -18,7 +18,11 @@ const App = () => {
     <>
       <NavBar />
       <Routes>
-        {admin ? (
+        {/* Redirect to Dashboard if authenticated */}
+        {admin && <Route path="/" element={<Navigate to="/dashboard" />} />}
+
+        {/* Authenticated routes */}
+        {admin && (
           <>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/motor" element={<Motor />} />
@@ -28,10 +32,10 @@ const App = () => {
             <Route path="/transaction/:id/" element={<EditTransaction />} />
             <Route path="/companies/:id" element={<EditCompany />} />
           </>
-        ) : (
-          <Route path="/*" element={<Navigate to="/" />} />
         )}
-        <Route path="/" element={<Login />} />
+
+        {/* Unauthenticated route */}
+        {!admin && <Route path="/*" element={<Login />} />}
       </Routes>
     </>
   );

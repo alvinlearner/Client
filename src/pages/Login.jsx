@@ -35,9 +35,7 @@ function Login() {
           icon: 'success',
           timer: 1000,
           buttons: false,
-        }).then(() => {
-          navigate('/motor');
-        });
+        })
       })
       .catch((error) => {
         console.error('Error:', error);
