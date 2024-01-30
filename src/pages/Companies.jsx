@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Motornav from "../components/Motornav";
 
 // import '../style.css'
 
@@ -86,7 +87,9 @@ function Companies() {
   return (
     
     <div className="container mx-auto p-4" style={{ marginBottom: "10px", fontWeight: "bold" }}>
+            <Motornav/>
             <div className="flex items-center justify-center">
+              
                 <h2 className="font-bold text-3xl">Insurance Companies</h2>
             </div>
       <form onSubmit={handleSubmit} className="post-data">
