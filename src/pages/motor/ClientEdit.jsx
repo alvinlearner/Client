@@ -20,7 +20,7 @@ export default function EditClient() {
   useEffect(() => {
     const fetchClientDetails = async () => {
       try {
-        const url = `https://insurancetestdatabase.vercel.app/clients/${id}`;
+        const url = `http://127.0.0.1:3000/clients/${id}`;
         const response = await fetch(url, {
           method: "GET",
           headers: { "content-type": "application/json" },
@@ -74,7 +74,7 @@ export default function EditClient() {
       if (result.isConfirmed) {
         // User clicked "Yes, save it!" button
   
-        const url = `https://insurancetestdatabase.vercel.app/clients/${id}`;
+        const url = `http://127.0.0.1:3000/clients/${id}`;
         const response = await fetch(url, {
           method: "PUT",
           headers: { "content-type": "application/json" },
@@ -94,7 +94,7 @@ export default function EditClient() {
         });
   
         // Fetch updated client details immediately after saving
-        const updatedResponse = await fetch(`https://insurancetestdatabase.vercel.app/clients/${id}`, {
+        const updatedResponse = await fetch(`http://127.0.0.1:3000/clients/${id}`, {
           method: "GET",
           headers: { "content-type": "application/json" },
         });
@@ -128,7 +128,7 @@ export default function EditClient() {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const url = `https://insurancetestdatabase.vercel.app/clients/${id}`;
+          const url = `http://127.0.0.1:3000/clients/${id}`;
           const response = await fetch(url, {
             method: "DELETE",
             headers: { "content-type": "application/json" },
@@ -192,8 +192,7 @@ export default function EditClient() {
 
 
       {/* UPDATE FORM */}
-      <div className="flex-item" id="div1">    
-      <form className="update-client">
+      <form className="update-client flex-item">
         <h2 className="font-bold text-3xl underline mb-2">Update client</h2>
 
 
@@ -284,12 +283,12 @@ export default function EditClient() {
             </button>
 
       </form>
-      </div>
+
 
 
 
     </div>
-    <div class="flex items-center justify-center">
+    <div className="flex items-center justify-center">
         <button onClick={() => navigate(`/client`)} className="view-more-button">
           Back
         </button>

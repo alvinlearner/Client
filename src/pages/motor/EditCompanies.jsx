@@ -23,7 +23,7 @@ export default function EditCompany() {
   useEffect(() => {
     const fetchCompanyDetails = async () => {
       try {
-        const url = `https://insurancetestdatabase.vercel.app/insurance_companies/${id}`;
+        const url = `http://127.0.0.1:3000/companies/${id}`;
         const response = await fetch(url, {
           method: "GET",
           headers: { "content-type": "application/json" },
@@ -93,7 +93,7 @@ export default function EditCompany() {
       if (result.isConfirmed) {
         // User clicked "Yes, save it!" button
   
-        const url = `https://insurancetestdatabase.vercel.app/insurance_companies/${id}`;
+        const url = `http://127.0.0.1:3000/insurance_companies/${id}`;
         const response = await fetch(url, {
           method: "PUT",
           headers: { "content-type": "application/json" },
@@ -113,7 +113,7 @@ export default function EditCompany() {
         });
   
         // Fetch updated company details immediately after saving
-        const updatedResponse = await fetch(`https://insurancetestdatabase.vercel.app/insurance_companies/${id}`, {
+        const updatedResponse = await fetch(`http://127.0.0.1:3000/insurance_companies/${id}`, {
           method: "GET",
           headers: { "content-type": "application/json" },
         });
@@ -147,7 +147,7 @@ export default function EditCompany() {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const url = `https://insurancetestdatabase.vercel.app/insurance_companies/${id}`;
+          const url = `http://127.0.0.1:3000/insurance_companies/${id}`;
           const response = await fetch(url, {
             method: "DELETE",
             headers: { "content-type": "application/json" },
@@ -185,11 +185,11 @@ export default function EditCompany() {
       {/* COMPANY DETAILS */}
 
 
-      <div className="flex-item" id="div1">
+      <div className="flex-item">
       <h2 className="font-bold text-3xl underline mb-1">Company Information</h2>
       <ul style={{listStyle:"none"}}>
         <li className="text-xl">
-          <strong>Company:</strong> {company.company}
+          <strong>Company:</strong> {company.organization}
         </li>
         <li className="text-xl">
           <strong>Rate(%):</strong> {company.rate}%
@@ -217,12 +217,9 @@ export default function EditCompany() {
 
 
 
-      {/* UPDATE FORM */}
-      <div className="flex-item" id="div1">    
-      <form className="update-client">
-        <h2 className="font-bold text-2xl underline mb-2">Update company</h2>
-
-
+      {/* UPDATE FORM */}    
+      <form className="update-client flex-item">
+        <h2 className="font-bold text-3xl underline mb-2">Update company</h2>
         <div className="flex items-center mb-1">
             <label className="mr-2">
           Company:
@@ -350,12 +347,12 @@ export default function EditCompany() {
      </div>       
 
       </form>
-      </div>
+
 
 
 
     </div>
-    <div class="flex items-center justify-center">
+    <div className="flex items-center justify-center">
         <button onClick={() => navigate(`/companies`)} className="view-more-button">
           Back
         </button>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Motornav from "../components/Motornav";
+import Motornav from "../../components/Motornav";
 
 // import '../style.css'
 
@@ -18,16 +18,21 @@ function Companies() {
   const [itl, setItl] = useState();
   const [stampduty, setStampduty] = useState();  
 
+  const url = "http://127.0.0.1:3000/companies"
+  // const url = '""http://127.0.0.1:3000/insurance_companies""'
+
+
   useEffect(() => {
     fetchCompaniesData();
   }, []);
 
   const fetchCompaniesData = () => {
-    fetch("https://insurancetestdatabase.vercel.app/insurance_companies")
+    fetch(url)
       .then((res) => res.json())
       .then((data) => {
         setCompanies(data);
       })
+
       .catch((error) => {
         console.error(error);
       });
@@ -48,7 +53,7 @@ function Companies() {
 
 
     const newTransaction = {
-        company: company,
+        organization: company,
         rate: rateValue,
         excessprotector: excessprotectorValue,
         pvt: pvtValue,
@@ -58,7 +63,8 @@ function Companies() {
         stampduty: stampdutyValue,
       };
 
-    fetch(`https://insurancetestdatabase.vercel.app/insurance_companies`, {
+
+    fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -93,7 +99,7 @@ function Companies() {
                 <h2 className="font-bold text-3xl">Insurance Companies</h2>
             </div>
       <form onSubmit={handleSubmit} className="post-data">
-      <div className="flex items-center py-1">
+      <div className="flex items-center">
             <label className="mr-2">
           Company:
           </label>
@@ -264,7 +270,7 @@ table {
           <tbody>
             {companies.map((company) => (
               <tr key={company.id}>
-                <td className="border border-gray-300 px-4 py-2">{company.company}</td>
+                <td className="border border-gray-300 px-4 py-2">{company.organization}</td>
                 <td className="border border-gray-300 px-4 py-2">{company.rate}%</td>
                 <td className="border border-gray-300 px-4 py-2">{company.excessprotector}%</td>
                 <td className="border border-gray-300 px-4 py-2">{company.pvt}%</td>

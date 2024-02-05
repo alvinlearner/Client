@@ -1,7 +1,8 @@
 import React from "react";
-import ClientPost from "../components/ClientPost";
-import ClientDisplay from "../components/ClientDisplay"
-import Motornav from "../components/Motornav";
+import ClientPost from "../../components/ClientPost";
+import ClientDisplay from "../../components/ClientDisplay"
+import Motornav from "../../components/Motornav";
+
 
 
 export default function Client(){

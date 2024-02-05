@@ -1,15 +1,18 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import Client from './pages/Clients';
-import Motor from './pages/Motor';
-import EditClient from './pages/ClientEdit';
-import EditTransaction from './pages/TransactionEdit';
+import Client from './pages/motor/Clients';
+import Motor from './pages/motor/Motor';
+import EditTransaction from './pages/motor//TransactionEdit';
 import Login from './pages/Login';
 import NavBar from './components/Navbar';
-import Companies from './pages/Companies';
+import Companies from './pages/motor/Companies';
 import Dashboard from './pages/Dashboard';
 import { useAuth } from './AuthContext';
-import EditCompany from './pages/EditCompanies';
+
+import MedicalTable from './pages/medical/medical';
+
+import EditCompany from './pages/motor/EditCompanies'
+import EditClient from './pages/motor/ClientEdit';
 
 const App = () => {
   const { admin } = useAuth();
@@ -31,6 +34,8 @@ const App = () => {
             <Route path="/companies" element={<Companies />} />
             <Route path="/transaction/:id/" element={<EditTransaction />} />
             <Route path="/companies/:id" element={<EditCompany />} />
+
+            <Route path="/medical" element={<MedicalTable />} />
           </>
         )}
 

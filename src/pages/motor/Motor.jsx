@@ -1,7 +1,7 @@
 import React from "react";
-import AddTransaction from "../components/TransactionPost";
-import DisplayTransaction from "../components/TransactionDisplay";
-import Motornav from "../components/Motornav";
+import AddTransaction from "../../components/TransactionPost";
+import DisplayTransaction from "../../components/TransactionDisplay";
+import Motornav from "../../components/Motornav";
 
 export default function Motor(){
 

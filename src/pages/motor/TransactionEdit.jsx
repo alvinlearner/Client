@@ -20,7 +20,7 @@ export default function EditTransaction() {
 useEffect(() => {
   const fetchInsuranceCompanies = async () => {
     try {
-      const insuranceCompaniesUrl = "https://insurancetestdatabase.vercel.app/insurance_companies";
+      const insuranceCompaniesUrl = "http://127.0.0.1:3000/companies";
       const insuranceCompaniesResponse = await fetch(insuranceCompaniesUrl);
 
       if (!insuranceCompaniesResponse.ok) {
@@ -54,57 +54,47 @@ useEffect(() => {
     expire: "",
     company:"",
     classification: "",
-    premium:"",
+    proposed:"",
   });
 
   useEffect(() => {
     const fetchClientDetails = async () => {
       try {
         // Fetch transaction details
-        const transactionUrl = `https://insurancetestdatabase.vercel.app/transactions/${id}`;
+        const transactionUrl = `http://127.0.0.1:3000/transactions/${id}`;
         const transactionResponse = await fetch(transactionUrl, {
           method: "GET",
           headers: { "content-type": "application/json" },
         });
-  
+    
         if (!transactionResponse.ok) {
           throw new Error("Failed to fetch transaction details");
         }
-  
+    
         const transactionData = await transactionResponse.json();
         setTransaction(transactionData);
-  
+    
         setEditedTransaction({
           client_id: transactionData.client_id,
           policyno: transactionData.policyno,
           reg: transactionData.reg,
-          premium: parseInt(transactionData.premium, 10),
+          proposed: parseInt(transactionData.proposed, 10),
           start: transactionData.start,
           expire: transactionData.expire,
           classification: transactionData.classification,
         });
-  
-        // Fetch client details
-        const clientUrl = `https://insurancetestdatabase.vercel.app/clients/${transactionData.client_id}`;
-        const clientResponse = await fetch(clientUrl, {
-          method: "GET",
-          headers: { "content-type": "application/json" },
-        });
-  
-        if (!clientResponse.ok) {
-          throw new Error("Failed to fetch client details");
-        }
-  
-        const clientData = await clientResponse.json();
-        setClientDetails(clientData);
-  
-        // Set the initial value of updatedInsuranceCompany
-        setUpdatedInsuranceCompany(clientData.company_id || ""); // Assuming company_id is a string
+    
+        // Set client details directly from the transactionData
+        setClientDetails(transactionData.client);
+    
+        // Set insurance company details directly from the transactionData
+        setUpdatedInsuranceCompany(transactionData.company.organization || "");
       } catch (error) {
         console.error(error);
       }
     };
-  
+    
+    
     fetchClientDetails();
   }, [id]);
   
@@ -118,7 +108,7 @@ useEffect(() => {
     const updatedValue =
       (name === "policyno" || name === "reg" || name === "classification")
         ? value.toUpperCase()
-        : name === "premium"
+        : name === "proposed"
         ? parseInt(value, 10)
         : name === "company_id" // add this condition for the insurance company
         ? parseInt(value, 10)  // convert value to a number
@@ -129,7 +119,7 @@ useEffect(() => {
       setEditedTransaction((prevTransaction) => ({
         ...prevTransaction,
         [name]: updatedValue,
-        premium: name === "premium" ? parseInt(value, 10) : prevTransaction.premium,
+        proposed: name === "proposed" ? parseInt(value, 10) : prevTransaction.proposed,
         classification: name === "classification" ? value.toUpperCase() : prevTransaction.classification,
         company_id: name === "company_id" ? parseInt(value, 10) : prevTransaction.company_id,
       }));
@@ -162,7 +152,7 @@ useEffect(() => {
           company_id: updatedInsuranceCompany,
         };
   
-        const url = `https://insurancetestdatabase.vercel.app/transactions/${id}`;
+        const url = `http://127.0.0.1:3000/transactions/${id}`;
         const response = await fetch(url, {
           method: "PUT",
           headers: { "content-type": "application/json" },
@@ -182,7 +172,7 @@ useEffect(() => {
         });
   
         // Fetch updated transaction details immediately after saving
-        const updatedResponse = await fetch(`https://insurancetestdatabase.vercel.app/transactions/${id}`, {
+        const updatedResponse = await fetch(`http://127.0.0.1:3000/transactions/${id}`, {
           method: "GET",
           headers: { "content-type": "application/json" },
         });
@@ -219,7 +209,7 @@ useEffect(() => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const url = `https://insurancetestdatabase.vercel.app/transactions/${id}`;
+          const url = `http://127.0.0.1:3000/transactions/${id}`;
           const response = await fetch(url, {
             method: "DELETE",
             headers: { "content-type": "application/json" },
@@ -270,60 +260,75 @@ useEffect(() => {
     <div className="flex-container">
     
       {/* CLIENT DETAILS */}
-
-
-      <div className="flex-item" id="div1">
-      <h2 className="font-bold text-3xl underline py-2">Policy  Information</h2>
-      <ul style={{listStyle:"none"}}>
-  
+<div className="flex-item" id="div1">
+  <h2 className="font-bold text-3xl underline py-2">Policy Information</h2>
+  <ul style={{ listStyle: "none" }}>
+    <li className="text-xl">
+      <strong>Name:</strong> {clientDetails.name}
+    </li>
+    <li className="text-xl">
+      <strong>Policy:</strong> {transaction.policyno}
+    </li>
+    <li className="text-xl">
+      <strong>Registration:</strong> {transaction.reg}
+    </li>
+    {/* INSURANCE COMPANY */}
       <li className="text-xl">
-      <strong>Name:</strong> {clientDetails.name} {/* Updated line */}
+        <strong>Insurance company:</strong>{" "}
+        {transaction.company && transaction.company.organization}
       </li>
-
-        <li className="text-xl">
-          <strong>Policy:</strong> {transaction.policyno}
-        </li>
-        <li className="text-xl">
-          <strong>Registration:</strong> {transaction.reg}
-        </li>
-
-          {/* INSURANCE COMPANY */}
-          
-          <li className="text-xl">
-            <strong>Insurance company:</strong>{" "}
-            {insuranceCompanies.find((company) => company.id === transaction.company_id)?.company}
-          </li>
-
-
-        <li className="text-xl">
-          <strong>Classification:</strong> {transaction.classification}
-        </li>
-        <li className="text-xl">
-          <strong>Premium:</strong> {transaction.premium}
-        </li>
-        <li className="text-xl">
-          <strong>Start Date:</strong> {transaction.start}
-        </li>
-        <li className="text-xl">
-          <strong>Expire Date:</strong> {transaction.expire}
-        </li>
-
-        <li className="text-xl"><strong>Days left: </strong> <em style={{ color: calculateDaysLeft(transaction.start, transaction.expire) > 0 ? 'black' : 'red'}}>{calculateDaysLeft(transaction.start, transaction.expire)}</em> days left</li>
-
-      </ul>
-    </div>
+    <li className="text-xl">
+      <strong>Classification:</strong> {transaction.classification}
+    </li>
+    <li className="text-xl">
+      <strong>Proposed value:</strong> {transaction.proposed}
+    </li>
+    <li className="text-xl">
+      <strong>Start Date:</strong> {transaction.start}
+    </li>
+    <li className="text-xl">
+      <strong>Expire Date:</strong> {transaction.expire}
+    </li>
+    <li className="text-xl">
+      <strong>Days left:</strong>{" "}
+      <em
+        style={{
+          color:
+            calculateDaysLeft(transaction.start, transaction.expire) > 0
+              ? "black"
+              : "red",
+        }}
+      >
+        {calculateDaysLeft(transaction.start, transaction.expire)} days left
+      </em>
+    </li>
+  </ul>
+</div>
 
       {/* Insurance company cost breakdown */}
 
       <div className="flex-item" id="div1">
-      <h2 className="font-bold text-3xl underline mb-2">Premium breakdown</h2>
-        </div>
+      <h2 className="font-bold text-3xl underline mb-2 ">Premium breakdown</h2>
+
+        <ul className="text-xl">
+
+      <li><strong className="mr-2">Rate:</strong>{transaction.proposed} </li>
+      <li><strong className="mr-2">Excess Protector:</strong></li>
+      <li><strong className="mr-2">P.V.T:</strong></li>	
+      <li><strong className="mr-2">Loss Of Use:</strong></li>
+      <li><strong className="mr-2">P.C.F:</strong></li>
+      <li><strong className="mr-2">I.T.L:</strong></li>	
+      <li><strong className="mr-2">Stamp Duty:</strong></li>
+      <li className="mt-3 mr-2"><strong className="text-3xl">Premium:</strong></li>
+      </ul>
+
+      </div>
 
 
 
       {/* UPDATE FORM */}
-      <div className="flex-item" id="div1">    
-      <form className="update-transaction">
+  
+      <form className="update-transaction flex-item">
         <h2 className="font-bold text-3xl underline mb-3">Update Policy</h2>
 
         <div className="flex items-center mb-1">
@@ -367,7 +372,7 @@ useEffect(() => {
                 </option>
                 {insuranceCompanies.map((company) => (
                   <option key={company.id} value={company.id}>
-                    {company.company}
+                    {company.organization}
                   </option>
                 ))}
            </select>
@@ -415,13 +420,13 @@ useEffect(() => {
 
         <div className="flex items-center mb-1">
             <label className="mr-2 text-xl">
-              Premium:
+              Proposed:
             </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               type="number"
-              name="premium"
-              placeholder="Update premium amount"
+              name="proposed"
+              placeholder="Update proposed value amount"
               onChange={handleInputChange}
             />
         </div>
@@ -467,7 +472,7 @@ useEffect(() => {
         </button>
 
       </form>
-      </div>
+
 
 
 

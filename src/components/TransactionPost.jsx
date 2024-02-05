@@ -1,23 +1,24 @@
 import React, { useState, useEffect } from "react";
+import Swal from 'sweetalert2';
 import "./ClientPost.css";
 
 function AddTransaction() {
   const [reg, setReg] = useState("");
-  const [policyno, Setpolicyno] = useState("");
+  const [policyno, setPolicyno] = useState("");
   const [start, setStart] = useState("");
   const [expire, setExpire] = useState("");
   const [classification, setClassification] = useState(""); // Updated state for classification
   const [clientId, setClientId] = useState("");
   const [companyId, setCompanyId] = useState("");
   const [companies, setCompanies] = useState([]);
-  const [premium, setPremium] = useState();
+  const [proposed, setProposed] = useState();
   const [clients, setClients] = useState([]);
 
 
       // CLIENT IDS
 
   useEffect(() => {
-    fetch("https://insurancetestdatabase.vercel.app/clients")
+    fetch("http://127.0.0.1:3000/clients")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -36,7 +37,7 @@ function AddTransaction() {
 
 
         useEffect(() => {
-          fetch("https://insurancetestdatabase.vercel.app/insurance_companies")
+          fetch("http://127.0.0.1:3000/companies")
             .then((response) => {
               if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -53,43 +54,64 @@ function AddTransaction() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const premiumVlaue = parseInt(premium,10)
-
+  
+    const proposedValue = parseInt(proposed, 10);
+  
     const newTransaction = {
       start: start,
       expire: expire,
       reg: reg.toUpperCase(),
       classification: classification,
-      premium: premiumVlaue,
+      proposed: proposedValue,
       policyno: policyno.toUpperCase(),
       client_id: parseInt(clientId, 10),
       company_id: parseInt(companyId, 10)
     };
-
-    fetch("https://insurancetestdatabase.vercel.app/transactions", {
+  
+    fetch("http://127.0.0.1:3000/transactions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(newTransaction),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! Status: ${res.status}`);
+        }
+        return res.json();
+      })
       .then((data) => {
         console.log(data);
         setStart("");
         setExpire("");
         setReg("");
         setClassification("");
-        Setpolicyno("");
+        setPolicyno("");
         setClientId("");
-        setPremium(0)
-        window.location.reload();
+        setProposed(0);
+  
+        // Use SweetAlert for success feedback
+        Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text: 'Policy added successfully!',
+        });
+  
+        // window.location.reload();
       })
       .catch((error) => {
         console.error(error);
+  
+        // Use SweetAlert for error feedback
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Failed to add policy. Please try again.',
+        });
       });
   };
+  
 
   return (
     <>
@@ -117,7 +139,7 @@ function AddTransaction() {
                   <option value="" disabled>Select Company</option>
                   {companies.map((company) => (
                     <option key={company.id} value={company.id}>
-                      {company.company}
+                      {company.organization}
                     </option>
                   ))}
                 </select>
@@ -167,18 +189,18 @@ function AddTransaction() {
               type="text"
               value={policyno}
               placeholder="Enter policy number"
-              onChange={(e) => Setpolicyno(e.target.value)}
+              onChange={(e) => setPolicyno(e.target.value)}
               required
             />
           </label>
 
           <label>
-            Premium:
+            Proposed value:
             <input
-              placeholder="Enter premium amount"
+              placeholder="Enter proposed value amount"
               type="number"
-              value={premium}
-              onChange={(e) => setPremium(e.target.value)}
+              value={proposed}
+              onChange={(e) => setProposed(e.target.value)}
               required
             />
           </label>

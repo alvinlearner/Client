@@ -1,7 +1,7 @@
 // DisplayTransaction.jsx
 import React, { useEffect, useState } from "react";
 import TransactionFilter from "./Transactionfilter";
-import { Navigate, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import "../styles.css"; 
 
 export default function DisplayTransaction() {
@@ -19,34 +19,23 @@ export default function DisplayTransaction() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const transactionsUrl = "https://insurancetestdatabase.vercel.app/transactions";
-        const clientsUrl = "https://insurancetestdatabase.vercel.app/clients";
-        const companyUrl = "https://insurancetestdatabase.vercel.app/insurance_companies";
-  
-        const [transactionsResponse, clientsResponse, companyResponse] = await Promise.all([
-          fetch(transactionsUrl),
-          fetch(clientsUrl),
-          fetch(companyUrl),
-        ]);
-  
-        if (!transactionsResponse.ok || !clientsResponse.ok) {
-          throw new Error("Failed to fetch data");
-        }
-  
-        const [transactionsData, clientsData, companyData] = await Promise.all([
-          transactionsResponse.json(),
-          clientsResponse.json(),
-          companyResponse.json(),
-        ]);
-  
-        setTransactions(transactionsData);
-        setFilteredTransactions(transactionsData);
-        setClients(clientsData);
-        setCompanies(companyData);
+          const transactionsUrl = "http://127.0.0.1:3000/transactions";
+    
+          const transactionsResponse = await fetch(transactionsUrl);
+    
+          if (!transactionsResponse.ok) {
+              throw new Error("Failed to fetch data");
+          }
+    
+          const transactionsData = await transactionsResponse.json();
+    
+          setTransactions(transactionsData);
+          setFilteredTransactions(transactionsData);
       } catch (error) {
-        console.error(error);
+          console.error(error);
       }
-    };
+  };
+  
   
     fetchData();
   }, []);
@@ -120,6 +109,8 @@ export default function DisplayTransaction() {
     setCurrentPage(pageNumber);
   };
 
+
+  
   return (
     <div className="container mx-auto p-4">
       <style>
@@ -190,9 +181,9 @@ th {
 
 
                         return (
-                          <tr key={transaction.id} className="bg-gray-100" >
-                            <td className="px-4 py-2 font-bold" onClick={()=>navigate(`/client/${client.id}`)} style={{cursor:"pointer"}}>{client ? client.name : "Unknown Client"}</td>
-                            <td className="px-4 py-2 font-bold">{company ? company.company : "Unknown Insurance"}</td>
+                          <tr key={transaction.id} className="bg-gray-100">
+                          <td className="px-4 py-2 font-bold" onClick={() => navigate(`/client/${transaction.client.id}`)} style={{ cursor: "pointer" }}>{transaction.client ? transaction.client.name : "Unknown Client"}</td>
+                          <td className="px-4 py-2 font-bold">{transaction.company ? transaction.company.organization : "Unknown Insurance"}</td>
                             <td className="px-4 py-2 font-bold">{transaction.classification}</td>
                             <td className="px-4 py-2 font-bold">{transaction.reg}</td>
                             <td className="px-4 py-2 font-bold">{transaction.policyno}</td>

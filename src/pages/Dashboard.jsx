@@ -1,49 +1,26 @@
-import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import React  from 'react';
 
 
 export default function Dashboard(){
-
-  const [targetNumber, setTargetNumber] = useState(generateRandomNumber());
-  const [userGuess, setUserGuess] = useState('');
-  const [feedback, setFeedback] = useState('');
-
-  function generateRandomNumber() {
-    return Math.floor(Math.random() * 100) + 1;
-  }
-
-  const handleInputChange = (event) => {
-    setUserGuess(event.target.value);
-  };
-
-  const handleGuess = () => {
-    const guessedNumber = parseInt(userGuess, 10);
-
-    if (isNaN(guessedNumber)) {
-      setFeedback('Please enter a valid number');
-    } else {
-      if (guessedNumber === targetNumber) {
-        setFeedback('Congratulations! You guessed the correct number!');
-      } else if (guessedNumber < targetNumber) {
-        setFeedback('Too low. Try again!');
-      } else {
-        setFeedback('Too high. Try again!');
-      }
-    }
-  };
+  const navigate = useNavigate();
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '20vh' }}>
-      <h1 className='font-bold mb-3'>Guess the Number Game</h1>
-      <input
-        type="text"
-        value={userGuess}
-        onChange={handleInputChange}
-        placeholder="Enter your guess"
-      />
+    <>
+<div className="flex-container text-2xl font-bold">
 
-      <p>{feedback}</p>
+<div className="flex-item bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" style={{cursor:"pointer", textAlign:'center'}} onClick={() => navigate('/motor')} > Motor</div>
 
-      <button onClick={handleGuess} className="view-more-button mt-3">Guess</button>
-    </div>
+<div className="flex-item bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" style={{cursor:"pointer", textAlign:'center'}} onClick={() => navigate('/medical')} >Medical</div>
+
+</div>
+
+<div className="flex-container text-2xl font-bold" >
+<div className="flex-item bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" style={{cursor:"pointer", textAlign:'center'}} >General</div>
+<div className="flex-item bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" style={{cursor:"pointer", textAlign:'center'}} onClick={() => navigate('/general')}>All risk</div>
+</div>
+
+</>
+
   );
 };

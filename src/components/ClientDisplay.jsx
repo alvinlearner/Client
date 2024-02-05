@@ -14,7 +14,7 @@ export default function DisplayClient() {
   const [rowsPerPage] = useState(10);
 
   useEffect(() => {
-    const url = `https://insurancetestdatabase.vercel.app/clients`;
+    const url = `http://127.0.0.1:3000/clients`;
 
     fetch(url, {
       method: "GET",
@@ -139,7 +139,7 @@ table {
         </thead>
         <tbody>
           {currentRows.map((clients) => (
-            <tr key={clients.id} className="bg-gray-100 font-bold hover:font-light">
+            <tr key={clients.id} className="bg-gray-100 font-bold">
               <td className="px-4 py-2">{clients.name}</td>
               <td className="px-4 py-2">{clients.phone}</td>
               <td className="px-4 py-2">{clients.email}</td>
