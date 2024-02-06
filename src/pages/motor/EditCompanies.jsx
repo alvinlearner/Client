@@ -10,7 +10,7 @@ export default function EditCompany() {
   const { id } = useParams();
   const [company, setCompany] = useState({});
   const [editedCompany, setEditedCompany] = useState({
-    company: "",
+    organization: "",
     rate: "",
     excessprotector: "",
     pvt: "",
@@ -36,7 +36,7 @@ export default function EditCompany() {
         const data = await response.json();
         setCompany(data);
         setEditedCompany({
-          company: data.company,
+          organization: data.organization,
           rate: data.rate,
           excessprotector: data.excessprotector,
           pvt: data.pvt,
@@ -93,7 +93,7 @@ export default function EditCompany() {
       if (result.isConfirmed) {
         // User clicked "Yes, save it!" button
   
-        const url = `http://127.0.0.1:3000/insurance_companies/${id}`;
+        const url = `http://127.0.0.1:3000/companies/${id}`;
         const response = await fetch(url, {
           method: "PUT",
           headers: { "content-type": "application/json" },
@@ -113,7 +113,7 @@ export default function EditCompany() {
         });
   
         // Fetch updated company details immediately after saving
-        const updatedResponse = await fetch(`http://127.0.0.1:3000/insurance_companies/${id}`, {
+        const updatedResponse = await fetch(`http://127.0.0.1:3000/companies/${id}`, {
           method: "GET",
           headers: { "content-type": "application/json" },
         });
@@ -147,7 +147,7 @@ export default function EditCompany() {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const url = `http://127.0.0.1:3000/insurance_companies/${id}`;
+          const url = `http://127.0.0.1:3000/companies/${id}`;
           const response = await fetch(url, {
             method: "DELETE",
             headers: { "content-type": "application/json" },
@@ -227,7 +227,7 @@ export default function EditCompany() {
           <input
             type="text"
             className="shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            name="company"
+            name="organization"
             placeholder="Update company name"
             onChange={handleInputChange}
           />

@@ -100,7 +100,6 @@ useEffect(() => {
   
 
 
-  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
   
@@ -110,24 +109,23 @@ useEffect(() => {
         ? value.toUpperCase()
         : name === "proposed"
         ? parseInt(value, 10)
-        : name === "company_id" // add this condition for the insurance company
-        ? parseInt(value, 10)  // convert value to a number
         : value;
   
-    // Update the company_id directly in the editedTransaction state only if it's not the select input
-    if (name !== "company_id") {
-      setEditedTransaction((prevTransaction) => ({
-        ...prevTransaction,
-        [name]: updatedValue,
-        proposed: name === "proposed" ? parseInt(value, 10) : prevTransaction.proposed,
-        classification: name === "classification" ? value.toUpperCase() : prevTransaction.classification,
-        company_id: name === "company_id" ? parseInt(value, 10) : prevTransaction.company_id,
-      }));
-    } else {
-      // Handle the case when the change comes from the select input
-      setUpdatedInsuranceCompany(parseInt(value, 10));
+    // Update the editedTransaction state, including company_id
+    setEditedTransaction((prevTransaction) => ({
+      ...prevTransaction,
+      [name]: name === "company_id" ? parseInt(value, 10) : updatedValue,
+    }));
+  
+    // Update the displayed insurance company name
+    if (name === "company_id") {
+      setUpdatedInsuranceCompany(value);
     }
   };
+  
+  
+  
+  
   
   
   
@@ -146,18 +144,18 @@ useEffect(() => {
       if (result.isConfirmed) {
         // User clicked "Yes, save it!" button
   
-        // Include the updated insurance company ID in the editedTransaction object
         const updatedTransaction = {
           ...editedTransaction,
-          company_id: updatedInsuranceCompany,
+          company_id: editedTransaction.company_id, // Use the correct company_id
         };
-  
+        
         const url = `http://127.0.0.1:3000/transactions/${id}`;
         const response = await fetch(url, {
           method: "PUT",
           headers: { "content-type": "application/json" },
           body: JSON.stringify(updatedTransaction),
         });
+        
   
         if (!response.ok) {
           throw new Error("Failed to update transaction details");
@@ -251,6 +249,20 @@ useEffect(() => {
     return remainingDays >= 0 ? remainingDays : 0;
   };
 
+
+
+// Calculate the breakdown values
+const rate = transaction.company ? (transaction.proposed * transaction.company.rate) / 100 : 0;
+const excessProtector = transaction.company ? (transaction.proposed * transaction.company.excessprotector) / 100 : 0;
+const pvt = transaction.company ? (transaction.proposed * transaction.company.pvt) / 100 : 0;
+const pcf = transaction.company ? (transaction.proposed * transaction.company.pcf) / 100 : 0;
+const lossOfUse = transaction.company ? transaction.company.lossofuse : 0;
+const itl = transaction.company ? (transaction.proposed * transaction.company.itl) / 100 : 0;
+const stampDuty = transaction.company ? transaction.company.stampduty : 0;
+
+const premium = rate + excessProtector + pvt + pcf+ lossOfUse + itl + stampDuty;
+
+  
  
 
   return (
@@ -305,23 +317,44 @@ useEffect(() => {
   </ul>
 </div>
 
+     
       {/* Insurance company cost breakdown */}
-
       <div className="flex-item" id="div1">
-      <h2 className="font-bold text-3xl underline mb-2 ">Premium breakdown</h2>
+        <h2 className="font-bold text-3xl underline mb-2 ">Premium breakdown</h2>
 
         <ul className="text-xl">
-
-      <li><strong className="mr-2">Rate:</strong>{transaction.proposed} </li>
-      <li><strong className="mr-2">Excess Protector:</strong></li>
-      <li><strong className="mr-2">P.V.T:</strong></li>	
-      <li><strong className="mr-2">Loss Of Use:</strong></li>
-      <li><strong className="mr-2">P.C.F:</strong></li>
-      <li><strong className="mr-2">I.T.L:</strong></li>	
-      <li><strong className="mr-2">Stamp Duty:</strong></li>
-      <li className="mt-3 mr-2"><strong className="text-3xl">Premium:</strong></li>
-      </ul>
-
+          <li>
+            <strong className="mr-2">Rate:</strong>
+            {rate}
+          </li>
+          <li>
+            <strong className="mr-2">Excess Protector:</strong>
+            {excessProtector}
+          </li>
+          <li>
+            <strong className="mr-2">P.V.T:</strong>
+            {pvt}
+          </li>
+          <li>
+            <strong className="mr-2">Loss Of Use:</strong>
+            {lossOfUse}
+          </li>
+          <li>
+            <strong className="mr-2">P.C.F:</strong>
+            {pcf}
+          </li>
+          <li>
+            <strong className="mr-2">I.T.L:</strong>
+            {itl}
+          </li>
+          <li>
+            <strong className="mr-2">Stamp Duty:</strong>
+            {stampDuty}
+          </li>
+          <li className="mt-3 mr-2">
+            <strong className="text-3xl">Premium:</strong> {premium}
+          </li>
+        </ul>
       </div>
 
 
