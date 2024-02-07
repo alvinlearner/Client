@@ -20,7 +20,7 @@ export default function EditTransaction() {
 useEffect(() => {
   const fetchInsuranceCompanies = async () => {
     try {
-      const insuranceCompaniesUrl = "http://127.0.0.1:3000/companies";
+      const insuranceCompaniesUrl = "https://insurance-xgcq.onrender.com/companies";
       const insuranceCompaniesResponse = await fetch(insuranceCompaniesUrl);
 
       if (!insuranceCompaniesResponse.ok) {
@@ -61,7 +61,7 @@ useEffect(() => {
     const fetchClientDetails = async () => {
       try {
         // Fetch transaction details
-        const transactionUrl = `http://127.0.0.1:3000/transactions/${id}`;
+        const transactionUrl = `https://insurance-xgcq.onrender.com/transactions/${id}`;
         const transactionResponse = await fetch(transactionUrl, {
           method: "GET",
           headers: { "content-type": "application/json" },
@@ -149,7 +149,7 @@ useEffect(() => {
           company_id: editedTransaction.company_id, // Use the correct company_id
         };
         
-        const url = `http://127.0.0.1:3000/transactions/${id}`;
+        const url = `https://insurance-xgcq.onrender.com/transactions/${id}`;
         const response = await fetch(url, {
           method: "PUT",
           headers: { "content-type": "application/json" },
@@ -170,7 +170,7 @@ useEffect(() => {
         });
   
         // Fetch updated transaction details immediately after saving
-        const updatedResponse = await fetch(`http://127.0.0.1:3000/transactions/${id}`, {
+        const updatedResponse = await fetch(`https://insurance-xgcq.onrender.com/transactions/${id}`, {
           method: "GET",
           headers: { "content-type": "application/json" },
         });
@@ -207,7 +207,7 @@ useEffect(() => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const url = `http://127.0.0.1:3000/transactions/${id}`;
+          const url = `https://insurance-xgcq.onrender.com/transactions/${id}`;
           const response = await fetch(url, {
             method: "DELETE",
             headers: { "content-type": "application/json" },

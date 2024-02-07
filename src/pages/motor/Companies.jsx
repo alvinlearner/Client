@@ -18,8 +18,8 @@ function Companies() {
   const [itl, setItl] = useState();
   const [stampduty, setStampduty] = useState();  
 
-  const url = "http://127.0.0.1:3000/companies"
-  // const url = '""http://127.0.0.1:3000/insurance_companies""'
+  const url = "https://insurance-xgcq.onrender.com/companies"
+  // const url = '""https://insurance-xgcq.onrender.com/insurance_companies""'
 
 
   useEffect(() => {

@@ -18,7 +18,7 @@ function AddTransaction() {
       // CLIENT IDS
 
   useEffect(() => {
-    fetch("http://127.0.0.1:3000/clients")
+    fetch("https://insurance-xgcq.onrender.com/clients")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -37,7 +37,7 @@ function AddTransaction() {
 
 
         useEffect(() => {
-          fetch("http://127.0.0.1:3000/companies")
+          fetch("https://insurance-xgcq.onrender.com/companies")
             .then((response) => {
               if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -68,7 +68,7 @@ function AddTransaction() {
       company_id: parseInt(companyId, 10)
     };
   
-    fetch("http://127.0.0.1:3000/transactions", {
+    fetch("https://insurance-xgcq.onrender.com/transactions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

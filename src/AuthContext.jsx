@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async ({ username, password }) => {
     try {
-      const response = await fetch('http://127.0.0.1:3000/login', {
+      const response = await fetch('https://insurance-xgcq.onrender.com/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ export const AuthProvider = ({ children }) => {
       });
 
       if (result) {
-        const response = await fetch('http://127.0.0.1:3000/logout', {
+        const response = await fetch('https://insurance-xgcq.onrender.com/logout', {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',

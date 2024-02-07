@@ -7,7 +7,7 @@ const MedicalTable = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:3000/transactions');
+        const response = await fetch('https://insurance-xgcq.onrender.com/transactions');
         const data = await response.json();
         // Sorting transactions based on the "start" date in ascending order
         const sortedTransactions = data.sort((a, b) => new Date(a.start) - new Date(b.start));
