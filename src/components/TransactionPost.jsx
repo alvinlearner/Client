@@ -20,7 +20,7 @@ function AddTransaction() {
       // CLIENT IDS
 
   useEffect(() => {
-    fetch("http://localhost:3000/clients")
+    fetch("https://insurance-xgcq.onrender.com/clients")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -39,7 +39,7 @@ function AddTransaction() {
 
 
         useEffect(() => {
-          fetch("http://localhost:3000/companies")
+          fetch("https://insurance-xgcq.onrender.com/companies")
             .then((response) => {
               if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -86,7 +86,7 @@ function AddTransaction() {
       company_id: companyId,
     };
   
-    fetch("http://localhost:3000/transactions", {
+    fetch("https://insurance-xgcq.onrender.com/transactions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -139,11 +139,12 @@ function AddTransaction() {
       {/* CLIENT AND INSURANCE AUTO COMPLETE SELECT */}
 
 
+    <div >
 
-        <label>
+        <label >
             Select Client:
-
             <Select
+            className="w-60"
               defaultValue={null}
               onChange={(selectedOption) => setClientId(selectedOption ? selectedOption.value : null)}
               options={clients.map((client) => ({ value: client.id, label: client.name }))}
@@ -155,22 +156,21 @@ function AddTransaction() {
 
      
 
-          <label>
+          <label >
             Select Company:
-
             <Select
               defaultValue={null}
               onChange={(selectedOption) => setCompanyId(selectedOption ? selectedOption.value : null)}
               options={companies.map((company) => ({ value: company.id, label: company.organization }))}
               isSearchable
               placeholder="Select Company"
-              className="h-16"
+              className="w-60"
             />
 
           </label>
 
 
-    
+    </div>
 
           <label>
             Classification:

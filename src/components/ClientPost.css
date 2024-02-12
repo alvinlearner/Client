@@ -17,7 +17,7 @@
 
 
 
-    background-color: lightgray;
+    background-color: rgba(211, 211, 211, 0.473);
     text-align: center;
 
 
@@ -26,7 +26,10 @@
 
   .post-data label{
     margin-left: 2%;
+    margin-top: 1%;
   }
+
+
 
   .post-button {
     padding: 5px 10px;

@@ -20,7 +20,7 @@ export default function EditTransaction() {
 useEffect(() => {
   const fetchInsuranceCompanies = async () => {
     try {
-      const insuranceCompaniesUrl = "http://localhost:3000/companies";
+      const insuranceCompaniesUrl = "https://insurance-xgcq.onrender.com/companies";
       const insuranceCompaniesResponse = await fetch(insuranceCompaniesUrl);
 
       if (!insuranceCompaniesResponse.ok) {
@@ -61,7 +61,7 @@ useEffect(() => {
     const fetchClientDetails = async () => {
       try {
         // Fetch transaction details
-        const transactionUrl = `http://localhost:3000/transactions/${id}`;
+        const transactionUrl = `https://insurance-xgcq.onrender.com/transactions/${id}`;
         const transactionResponse = await fetch(transactionUrl, {
           method: "GET",
           headers: { "content-type": "application/json" },
@@ -149,7 +149,7 @@ useEffect(() => {
           company_id: editedTransaction.company_id, // Use the correct company_id
         };
         
-        const url = `http://localhost:3000/transactions/${id}`;
+        const url = `https://insurance-xgcq.onrender.com/transactions/${id}`;
         const response = await fetch(url, {
           method: "PUT",
           headers: { "content-type": "application/json" },
@@ -170,7 +170,7 @@ useEffect(() => {
         });
   
         // Fetch updated transaction details immediately after saving
-        const updatedResponse = await fetch(`http://localhost:3000/transactions/${id}`, {
+        const updatedResponse = await fetch(`https://insurance-xgcq.onrender.com/transactions/${id}`, {
           method: "GET",
           headers: { "content-type": "application/json" },
         });
@@ -207,7 +207,7 @@ useEffect(() => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const url = `http://localhost:3000/transactions/${id}`;
+          const url = `https://insurance-xgcq.onrender.com/transactions/${id}`;
           const response = await fetch(url, {
             method: "DELETE",
             headers: { "content-type": "application/json" },
@@ -408,7 +408,7 @@ console.log("transation.proposed",typeof(transaction.proposed))
         </div>
 
 
-        <div className="flex items-center py-1">
+        {/* <div className="flex items-center py-1">
           <label className="mr-2 text-xl">Company:</label>
           <select
                 name='company_id'
@@ -427,7 +427,7 @@ console.log("transation.proposed",typeof(transaction.proposed))
                 ))}
            </select>
 
-        </div>
+        </div> */}
 
         
 
@@ -481,7 +481,7 @@ console.log("transation.proposed",typeof(transaction.proposed))
             />
         </div>
 
-        <div className="flex items-center py-1">
+        {/* <div className="flex items-center py-1">
             <label className="mr-2 text-xl">    
         Start_Date:
           </label>
@@ -491,9 +491,9 @@ console.log("transation.proposed",typeof(transaction.proposed))
             name="start"
             onChange={handleInputChange}
           />
-        </div>
+        </div> */}
 
-        <div className="flex items-center py-1">
+        {/* <div className="flex items-center py-1">
             <label className="mr-2 text-xl">
           Expire:
           </label>
@@ -503,7 +503,7 @@ console.log("transation.proposed",typeof(transaction.proposed))
             name="expire"
             onChange={handleInputChange}
           />
-        </div>
+        </div> */}
         
         <button type="button"
         onClick={handleSaveChanges}

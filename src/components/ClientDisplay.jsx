@@ -14,7 +14,7 @@ export default function DisplayClient() {
   const [rowsPerPage] = useState(10);
 
   useEffect(() => {
-    const url = `http://localhost:3000/clients`;
+    const url = `https://insurance-xgcq.onrender.com/clients`;
 
     fetch(url, {
       method: "GET",

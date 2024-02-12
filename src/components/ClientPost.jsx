@@ -22,7 +22,7 @@ const Upperkrapin = krapin.toUpperCase()
       idno: idno,
     };
 
-    fetch(`http://localhost:3000/clients`, {
+    fetch(`https://insurance-xgcq.onrender.com/clients`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

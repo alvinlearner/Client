@@ -20,7 +20,7 @@ export default function EditClient() {
   useEffect(() => {
     const fetchClientDetails = async () => {
       try {
-        const url = `http://localhost:3000/clients/${id}`;
+        const url = `https://insurance-xgcq.onrender.com/clients/${id}`;
         const response = await fetch(url, {
           method: "GET",
           headers: { "content-type": "application/json" },
@@ -74,7 +74,7 @@ export default function EditClient() {
       if (result.isConfirmed) {
         // User clicked "Yes, save it!" button
   
-        const url = `http://localhost:3000/clients/${id}`;
+        const url = `https://insurance-xgcq.onrender.com/clients/${id}`;
         const response = await fetch(url, {
           method: "PUT",
           headers: { "content-type": "application/json" },
@@ -94,7 +94,7 @@ export default function EditClient() {
         });
   
         // Fetch updated client details immediately after saving
-        const updatedResponse = await fetch(`http://localhost:3000/clients/${id}`, {
+        const updatedResponse = await fetch(`https://insurance-xgcq.onrender.com/clients/${id}`, {
           method: "GET",
           headers: { "content-type": "application/json" },
         });
@@ -128,7 +128,7 @@ export default function EditClient() {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const url = `http://localhost:3000/clients/${id}`;
+          const url = `https://insurance-xgcq.onrender.com/clients/${id}`;
           const response = await fetch(url, {
             method: "DELETE",
             headers: { "content-type": "application/json" },
