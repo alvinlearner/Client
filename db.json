@@ -1,206 +1,31 @@
-{
-  "insurance_companies": [
-    {
-      "company": "APA",
-      "rate": 123,
-      "excessprotector": 0,
-      "pvt": 0,
-      "lossofuse": 0,
-      "pcf": 0,
-      "itl": 0,
-      "stampduty": 0,
-      "id": 1
-    },
-    {
-      "company": "Jubilee",
-      "rate": "30",
-      "excessprotector": "24",
-      "pvt": "22",
-      "lossofuse": "900",
-      "pcf": "12",
-      "itl": "14",
-      "stampduty": "45",
-      "id": 4
-    },
-    {
-      "company": "Amanco",
-      "rate": "21",
-      "excessprotector": "21",
-      "pvt": "3",
-      "lossofuse": "2300",
-      "pcf": "10",
-      "itl": "8",
-      "stampduty": "45",
-      "id": 5
-    },
-    {
-      "company": "Icea",
-      "rate": "12",
-      "excessprotector": "21",
-      "pvt": 23,
-      "lossofuse": "4000",
-      "pcf": "13",
-      "itl": "14",
-      "stampduty": "45",
-      "id": 6
-    }
-  ],
-  "clients": [
-    {
-      "name": "David sam",
-      "phone": "+254720100000",
-      "email": "sam@gmail.com",
-      "krapin": "ADF345678",
-      "idno": "98765321",
-      "id": 2
-    },
-    {
-      "name": "Herbert Ndetu",
-      "phone": "0722789456",
-      "email": "herbert@mail.com",
-      "krapin": "A236785W",
-      "idno": "000100021",
-      "id": 5
-    },
-    {
-      "name": "William Arap",
-      "phone": "1201234567",
-      "email": "arap@mail.com",
-      "krapin": "123WEY7",
-      "idno": "000100021",
-      "id": 8
-    },
-    {
-      "name": "debbie violet",
-      "phone": "0123457896",
-      "email": "deb@mail.com",
-      "krapin": "11qwe123z",
-      "idno": "32165498",
-      "id": 9
-    },
-    {
-      "name": "levin tom",
-      "phone": "071209876",
-      "email": "levin@mail.com",
-      "krapin": "224WER24",
-      "idno": "3429800988",
-      "id": 10
-    },
-    {
-      "name": "carl johnson",
-      "phone": "07546321",
-      "email": "carl@mail.com",
-      "krapin": "Q44D5E5F",
-      "idno": "34597411",
-      "id": 11
-    },
-    {
-      "name": "uncle rodger",
-      "phone": "07123789654",
-      "email": "rodger@mail.com",
-      "krapin": "A13456670Y",
-      "idno": "2345687",
-      "id": 12
-    },
-    {
-      "name": "James Roy",
-      "phone": "079812345678",
-      "email": "jerry@mail.com",
-      "krapin": "IUYTR76543",
-      "idno": "987654",
-      "id": 15
-    }
-  ],
-  "transactions": [
-    {
-      "client_id": 5,
-      "policyno": "MGL/07/070/0/032863/2024",
-      "reg": "KDE239K",
-      "premium": 12000,
-      "start": "2024-01-01",
-      "expire": "2025-01-10",
-      "classification": "Comprehensive TSV",
-      "company_id": 4,
-      "id": 1
-    },
-    {
-      "client_id": 2,
-      "policyno": "MGL/07/070/0/032223/2024",
-      "reg": "KDM543W",
-      "premium": 5432,
-      "start": "2023-11-24",
-      "expire": "2024-11-24",
+{ "transactions":[
+  {
+      "id": 1,
+      "policyno": "MC/5/2024",
+      "reg": "KCY357V",
+      "proposed": 1000000,
+      "start": "2024-02-07",
+      "expire": "2025-02-06",
       "classification": "Comprehensive Private",
-      "company_id": 1,
-      "id": 2
-    },
-    {
-      "client_id": 8,
-      "policyno": "\tMGL/07/070/0/032863/2023",
-      "reg": "KCH214M",
-      "start": "2024-01-12",
-      "expire": "2025-01-12",
-      "classification": "T.P.O Trailer",
-      "id": 4
-    },
-    {
-      "client_id": 11,
-      "policyno": "\tMGL/07/070/0/0325433/2023",
-      "reg": "KDM951T",
-      "start": "2023-11-10",
-      "expire": "2024-11-11",
-      "classification": "Comprehensive Commercial",
-      "id": 5
-    },
-    {
-      "client_id": 2,
-      "policyno": "AAA/07/070/0/032863/2024",
-      "reg": "KCD234E",
-      "start": "2024-01-11",
-      "expire": "2024-02-28",
-      "classification": "T.P.O Commercial",
-      "id": 6
-    },
-    {
-      "client_id": 12,
-      "policyno": "\tMGL/07/070/0/032863/2024",
-      "reg": "KTB234E",
-      "start": "2024-01-12",
-      "expire": "2025-01-11",
-      "classification": "Comprehensive PSV",
-      "id": 8
-    },
-    {
-      "client_id": 9,
-      "policyno": "MGL/07/070/0/032863/2023",
-      "reg": "KCD231Q",
-      "premium": 123900,
-      "start": "2024-01-12",
-      "expire": "2024-01-18",
-      "classification": "Comprehensive Private",
-      "id": 9
-    },
-    {
-      "client_id": 2,
-      "policyno": "QWER13434",
-      "reg": "KCR234R",
-      "premium": null,
-      "start": "2024-01-15",
-      "expire": "2024-02-09",
-      "classification": "Comprehensive PSV",
-      "company_id": 1,
-      "id": 12
-    },
-    {
-      "start": "2024-01-23",
-      "expire": "2025-01-23",
-      "reg": "KBT543W",
-      "classification": "T.P.O Private",
-      "premium": 10000,
-      "policyno": "POIUYTR65432",
-      "client_id": 15,
-      "company_id": 1,
-      "id": 14
-    }
-  ]
+      "client": {
+          "id": 1,
+          "name": "OLIVER A",
+          "phone": "0702910583",
+          "email": "OLOO986@GMAIL.COM",
+          "krapin": "A006595761O",
+          "idno": "29139652"
+      },
+      "company": {
+          "id": 1,
+          "organization": "AMACO",
+          "rate": "4",
+          "excessprotector": "0.5",
+          "pvt": "0.05",
+          "lossofuse": 2500,
+          "pcf": "0.25",
+          "itl": "0.3",
+          "stampduty": 40
+      }
+  }
+]
 }

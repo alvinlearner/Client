@@ -23,7 +23,7 @@ export default function EditCompany() {
   useEffect(() => {
     const fetchCompanyDetails = async () => {
       try {
-        const url = `https://insurance-xgcq.onrender.com/companies/${id}`;
+        const url = `http://localhost:3000/companies/${id}`;
         const response = await fetch(url, {
           method: "GET",
           headers: { "content-type": "application/json" },
@@ -69,7 +69,7 @@ export default function EditCompany() {
     ];
   
     // If the input field is in the integerFields list, convert the value to an integer
-    const updatedValue = integerFields.includes(name) ? parseInt(value, 10) : value;
+    const updatedValue = integerFields.includes(name) ? parseFloat(value, 10) : value;
   
     setEditedCompany((prevCompany) => ({
       ...prevCompany,
@@ -93,7 +93,7 @@ export default function EditCompany() {
       if (result.isConfirmed) {
         // User clicked "Yes, save it!" button
   
-        const url = `https://insurance-xgcq.onrender.com/companies/${id}`;
+        const url = `http://localhost:3000/companies/${id}`;
         const response = await fetch(url, {
           method: "PUT",
           headers: { "content-type": "application/json" },
@@ -113,7 +113,7 @@ export default function EditCompany() {
         });
   
         // Fetch updated company details immediately after saving
-        const updatedResponse = await fetch(`https://insurance-xgcq.onrender.com/companies/${id}`, {
+        const updatedResponse = await fetch(`http://localhost:3000/companies/${id}`, {
           method: "GET",
           headers: { "content-type": "application/json" },
         });
@@ -147,7 +147,7 @@ export default function EditCompany() {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const url = `https://insurance-xgcq.onrender.com/companies/${id}`;
+          const url = `http://localhost:3000/companies/${id}`;
           const response = await fetch(url, {
             method: "DELETE",
             headers: { "content-type": "application/json" },

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Swal from 'sweetalert2';
 import "./ClientPost.css";
+import Select from 'react-select';
 
 function AddTransaction() {
   const [reg, setReg] = useState("");
@@ -8,8 +9,9 @@ function AddTransaction() {
   const [start, setStart] = useState("");
   const [expire, setExpire] = useState("");
   const [classification, setClassification] = useState(""); // Updated state for classification
-  const [clientId, setClientId] = useState("");
-  const [companyId, setCompanyId] = useState("");
+  const [clientId, setClientId] = useState(null);
+  const [companyId, setCompanyId] = useState(null);
+  
   const [companies, setCompanies] = useState([]);
   const [proposed, setProposed] = useState();
   const [clients, setClients] = useState([]);
@@ -18,7 +20,7 @@ function AddTransaction() {
       // CLIENT IDS
 
   useEffect(() => {
-    fetch("https://insurance-xgcq.onrender.com/clients")
+    fetch("http://localhost:3000/clients")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -37,7 +39,7 @@ function AddTransaction() {
 
 
         useEffect(() => {
-          fetch("https://insurance-xgcq.onrender.com/companies")
+          fetch("http://localhost:3000/companies")
             .then((response) => {
               if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -52,10 +54,26 @@ function AddTransaction() {
             });
         }, []);
 
+
+        // HANDLE ADDING 365 DAYS TO EXPIRE DATE
+
+        const handleStartDateChange = (e) => {
+          const selectedStartDate = e.target.value;
+          setStart(selectedStartDate);
+      
+          // Calculate expiry date by adding 365 days to the selected start date
+          const expiryDate = new Date(selectedStartDate);
+          expiryDate.setDate(expiryDate.getDate() + 364);
+      
+          // Format the expiry date as 'YYYY-MM-DD'
+          const formattedExpiryDate = expiryDate.toISOString().split('T')[0];
+          setExpire(formattedExpiryDate);
+        };
+
   const handleSubmit = (e) => {
     e.preventDefault();
   
-    const proposedValue = parseInt(proposed, 10);
+    const proposedValue = parseFloat(proposed, 10);
   
     const newTransaction = {
       start: start,
@@ -64,11 +82,11 @@ function AddTransaction() {
       classification: classification,
       proposed: proposedValue,
       policyno: policyno.toUpperCase(),
-      client_id: parseInt(clientId, 10),
-      company_id: parseInt(companyId, 10)
+      client_id: clientId,
+      company_id: companyId,
     };
   
-    fetch("https://insurance-xgcq.onrender.com/transactions", {
+    fetch("http://localhost:3000/transactions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -98,7 +116,7 @@ function AddTransaction() {
           text: 'Policy added successfully!',
         });
   
-        // window.location.reload();
+        window.location.reload();
       })
       .catch((error) => {
         console.error(error);
@@ -117,35 +135,42 @@ function AddTransaction() {
     <>
       <div className="container mx-auto p-4" style={{ marginBottom: "10px", fontWeight: "bold" }}>
         <form onSubmit={handleSubmit} className="post-data">
-          {clients && clients.length > 0 && (
-            <label>
-              Select Client:
-              <select value={clientId} onChange={(e) => setClientId(e.target.value)} required>
-                <option value="" disabled>Select Client</option>
-                {clients.map((client) => (
-                  <option key={client.id} value={client.id}>
-                    {client.name}
-                  </option>
-                ))}
-              </select>
-            </label>
-          )}
+        
+      {/* CLIENT AND INSURANCE AUTO COMPLETE SELECT */}
 
 
-            {companies && companies.length > 0 && (
-              <label>
-                Select Companies:
-                <select value={companyId} onChange={(e) => setCompanyId(e.target.value)} required>
-                  <option value="" disabled>Select Company</option>
-                  {companies.map((company) => (
-                    <option key={company.id} value={company.id}>
-                      {company.organization}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            )}
-                        
+
+        <label>
+            Select Client:
+
+            <Select
+              defaultValue={null}
+              onChange={(selectedOption) => setClientId(selectedOption ? selectedOption.value : null)}
+              options={clients.map((client) => ({ value: client.id, label: client.name }))}
+              isSearchable
+              placeholder="Select Client"
+            />
+
+          </label>
+
+     
+
+          <label>
+            Select Company:
+
+            <Select
+              defaultValue={null}
+              onChange={(selectedOption) => setCompanyId(selectedOption ? selectedOption.value : null)}
+              options={companies.map((company) => ({ value: company.id, label: company.organization }))}
+              isSearchable
+              placeholder="Select Company"
+              className="h-16"
+            />
+
+          </label>
+
+
+    
 
           <label>
             Classification:
@@ -210,7 +235,7 @@ function AddTransaction() {
             <input
               type="date"
               value={start}
-              onChange={(e) => setStart(e.target.value)}
+              onChange={handleStartDateChange}
               required
             />
           </label>
@@ -220,10 +245,12 @@ function AddTransaction() {
             <input
               type="date"
               value={expire}
-              onChange={(e) => setExpire(e.target.value)}
+              onChange={() => {}}
+              readOnly
               required
             />
           </label>
+
 
           <button type="submit"
             className="bg-green-600 hover:bg-green-500 text-white font-bold py-1 px-3 rounded"

@@ -18,8 +18,8 @@ function Companies() {
   const [itl, setItl] = useState();
   const [stampduty, setStampduty] = useState();  
 
-  const url = "https://insurance-xgcq.onrender.com/companies"
-  // const url = '""https://insurance-xgcq.onrender.com/insurance_companies""'
+  const url = "http://localhost:3000/companies"
+  // const url = '""http://localhost:3000/insurance_companies""'
 
 
   useEffect(() => {
@@ -43,13 +43,13 @@ function Companies() {
     e.preventDefault();
 
 
-    const rateValue = parseInt(rate, 10);
-    const excessprotectorValue = parseInt(excessprotector, 10);
-    const pvtValue = parseInt(pvt, 10);
-    const lossofuseValue = parseInt(lossofuse, 10);
-    const pcfValue = parseInt(pcf, 10);
-    const itlValue = parseInt(itl, 10);
-    const stampdutyValue = parseInt(stampduty, 10);
+    const rateValue = parseFloat(rate, 10);
+    const excessprotectorValue = parseFloat(excessprotector, 10);
+    const pvtValue = parseFloat(pvt, 10);
+    const lossofuseValue = parseFloat(lossofuse, 10);
+    const pcfValue = parseFloat(pcf, 10);
+    const itlValue = parseFloat(itl, 10);
+    const stampdutyValue = parseFloat(stampduty, 10);
 
 
     const newTransaction = {

@@ -20,7 +20,7 @@ export default function EditTransaction() {
 useEffect(() => {
   const fetchInsuranceCompanies = async () => {
     try {
-      const insuranceCompaniesUrl = "https://insurance-xgcq.onrender.com/companies";
+      const insuranceCompaniesUrl = "http://localhost:3000/companies";
       const insuranceCompaniesResponse = await fetch(insuranceCompaniesUrl);
 
       if (!insuranceCompaniesResponse.ok) {
@@ -61,7 +61,7 @@ useEffect(() => {
     const fetchClientDetails = async () => {
       try {
         // Fetch transaction details
-        const transactionUrl = `https://insurance-xgcq.onrender.com/transactions/${id}`;
+        const transactionUrl = `http://localhost:3000/transactions/${id}`;
         const transactionResponse = await fetch(transactionUrl, {
           method: "GET",
           headers: { "content-type": "application/json" },
@@ -78,7 +78,7 @@ useEffect(() => {
           client_id: transactionData.client_id,
           policyno: transactionData.policyno,
           reg: transactionData.reg,
-          proposed: parseInt(transactionData.proposed, 10),
+          proposed: parseFloat(transactionData.proposed, 10),
           start: transactionData.start,
           expire: transactionData.expire,
           classification: transactionData.classification,
@@ -108,13 +108,13 @@ useEffect(() => {
       (name === "policyno" || name === "reg" || name === "classification")
         ? value.toUpperCase()
         : name === "proposed"
-        ? parseInt(value, 10)
+        ? parseFloat(value, 10)
         : value;
   
     // Update the editedTransaction state, including company_id
     setEditedTransaction((prevTransaction) => ({
       ...prevTransaction,
-      [name]: name === "company_id" ? parseInt(value, 10) : updatedValue,
+      [name]: name === "company_id" ? parseFloat(value, 10) : updatedValue,
     }));
   
     // Update the displayed insurance company name
@@ -149,7 +149,7 @@ useEffect(() => {
           company_id: editedTransaction.company_id, // Use the correct company_id
         };
         
-        const url = `https://insurance-xgcq.onrender.com/transactions/${id}`;
+        const url = `http://localhost:3000/transactions/${id}`;
         const response = await fetch(url, {
           method: "PUT",
           headers: { "content-type": "application/json" },
@@ -170,7 +170,7 @@ useEffect(() => {
         });
   
         // Fetch updated transaction details immediately after saving
-        const updatedResponse = await fetch(`https://insurance-xgcq.onrender.com/transactions/${id}`, {
+        const updatedResponse = await fetch(`http://localhost:3000/transactions/${id}`, {
           method: "GET",
           headers: { "content-type": "application/json" },
         });
@@ -207,7 +207,7 @@ useEffect(() => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const url = `https://insurance-xgcq.onrender.com/transactions/${id}`;
+          const url = `http://localhost:3000/transactions/${id}`;
           const response = await fetch(url, {
             method: "DELETE",
             headers: { "content-type": "application/json" },
@@ -251,18 +251,34 @@ useEffect(() => {
 
 
 
-// Calculate the breakdown values
-const rate = transaction.company ? (transaction.proposed * transaction.company.rate) / 100 : 0;
-const excessProtector = transaction.company ? (transaction.proposed * transaction.company.excessprotector) / 100 : 0;
-const pvt = transaction.company ? (transaction.proposed * transaction.company.pvt) / 100 : 0;
-const pcf = transaction.company ? (transaction.proposed * transaction.company.pcf) / 100 : 0;
-const lossOfUse = transaction.company ? transaction.company.lossofuse : 0;
-const itl = transaction.company ? (transaction.proposed * transaction.company.itl) / 100 : 0;
-const stampDuty = transaction.company ? transaction.company.stampduty : 0;
-
-const premium = rate + excessProtector + pvt + pcf+ lossOfUse + itl + stampDuty;
-
+  const rate = transaction.company ? (parseFloat(transaction.proposed) * transaction.company.rate) / 100 : 0;
+  const excessProtector = transaction.company ? ((parseFloat(transaction.proposed) * transaction.company.excessprotector).toFixed(3) / 100) : 0;
+  const pvt = transaction.company ? ((parseFloat(transaction.proposed) * transaction.company.pvt).toFixed(3)) / 100 : 0;
+  const pcf = transaction.company ? ((parseFloat(transaction.proposed) * transaction.company.pcf).toFixed(3)) / 100 : 0;
+  const lossOfUse = transaction.company ? parseFloat(transaction.company.lossofuse) : 0;
+  const itl = transaction.company ? ((parseFloat(transaction.proposed) * transaction.company.itl) .toFixed(3)) / 100 : 0;
+  const stampDuty = transaction.company ? parseFloat(transaction.company.stampduty) : 0;
   
+  // console.log("Rate:", typeof(rate));
+  // console.log("Excess Protector:", typeof(excessProtector));
+  // console.log("P.V.T:", typeof(pvt));
+  // console.log("P.C.F:", typeof(transaction.company.pcf));
+  // console.log("Loss Of Use:", typeof(lossOfUse));
+  // console.log("I.T.L:", typeof(itl));
+  // console.log("Stamp Duty:", typeof(stampDuty));
+  
+  const premium = rate + excessProtector + pvt + pcf + lossOfUse + itl + stampDuty;
+  
+  // console.log("Premium:", typeof(premium));
+  
+  // Check if premium is a valid number before using toFixed
+  const premiumFloat = isNaN(premium) ? 0 : parseFloat(premium.toFixed(2));
+  
+  // console.log("Premium Float:", premiumFloat);
+  
+console.log("transation.proposed",typeof(transaction.proposed))
+  
+
  
 
   return (
@@ -352,8 +368,9 @@ const premium = rate + excessProtector + pvt + pcf+ lossOfUse + itl + stampDuty;
             {stampDuty}
           </li>
           <li className="mt-3 mr-2">
-            <strong className="text-3xl">Premium:</strong> {premium}
+            <strong className="text-3xl">Premium:</strong> {premiumFloat}
           </li>
+
         </ul>
       </div>
 
@@ -396,7 +413,7 @@ const premium = rate + excessProtector + pvt + pcf+ lossOfUse + itl + stampDuty;
           <select
                 name='company_id'
                 value={updatedInsuranceCompany}
-                onChange={(e) => setUpdatedInsuranceCompany(parseInt(e.target.value, 10))}
+                onChange={(e) => setUpdatedInsuranceCompany(parseFloat(e.target.value, 10))}
                 className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 required
               >

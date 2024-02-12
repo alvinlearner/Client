@@ -19,7 +19,7 @@ export default function DisplayTransaction() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-          const transactionsUrl = "https://insurance-xgcq.onrender.com/transactions";
+          const transactionsUrl = "http://localhost:3000/transactions";
     
           const transactionsResponse = await fetch(transactionsUrl);
     
