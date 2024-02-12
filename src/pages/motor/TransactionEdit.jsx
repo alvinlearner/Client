@@ -276,7 +276,7 @@ useEffect(() => {
   
   // console.log("Premium Float:", premiumFloat);
   
-console.log("transation.proposed",typeof(transaction.proposed))
+// console.log("transation.proposed",typeof(transaction.proposed))
   
 
  
