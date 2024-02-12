@@ -65,10 +65,10 @@ const Upperkrapin = krapin.toUpperCase()
             value={phone}
             placeholder="Enter phone number"
             onChange={(e) => SetPhone(e.target.value)}
-            pattern="^\+(?:[0-9] ?){6,14}[0-9]$"
-       title="Phone number must be in the format +1234567890"
-       oninvalid="setCustomValidity('Phone number must be in the format +1234567890')"
-       oninput="setCustomValidity('')" 
+      //       pattern="^\+(?:[0-9] ?){6,14}[0-9]$"
+      //  title="Phone number must be in the format +1234567890"
+      //  oninvalid="setCustomValidity('Phone number must be in the format +1234567890')"
+      //  oninput="setCustomValidity('')" 
             required
           />
         </label>
