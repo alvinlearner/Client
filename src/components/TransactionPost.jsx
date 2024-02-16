@@ -139,10 +139,11 @@ function AddTransaction() {
       {/* CLIENT AND INSURANCE AUTO COMPLETE SELECT */}
 
 
-    <div >
 
-        <label >
+      <div className="inputwrapper">
+        <label>
             Select Client:
+      
             <Select
             className="w-60"
               defaultValue={null}
@@ -151,12 +152,14 @@ function AddTransaction() {
               isSearchable
               placeholder="Select Client"
             />
+            </label>
+          </div>
 
-          </label>
 
      
 
-          <label >
+          <div className="inputwrapper">
+          <label>
             Select Company:
             <Select
               defaultValue={null}
@@ -166,14 +169,17 @@ function AddTransaction() {
               placeholder="Select Company"
               className="w-60"
             />
-
           </label>
+          </div>
 
 
-    </div>
+   
 
-          <label>
+
+    <div className="inputwrapper">
+          <label style={{textAlign:"left"}}>
             Classification:
+            </label><span/>
             <select value={classification} onChange={(e) => setClassification(e.target.value)} required>
             <option value="" disabled>Select Classification</option>
             <optgroup label="Comprehensive">
@@ -195,21 +201,25 @@ function AddTransaction() {
               </optgroup>
 
             </select>
-          </label>       
+    </div>
 
+       <div className="inputwrapper">
           <label>
             Registration Number:
-            <input
+            </label><span/>
+          <input
               type="text"
               value={reg}
               placeholder="Enter Registration number"
               onChange={(e) => setReg(e.target.value)}
               required
             />
-          </label>
+        </div>
 
+        <div className="inputwrapper">
           <label>
             Policy Number:
+            </label><span/>
             <input
               type="text"
               value={policyno}
@@ -217,10 +227,13 @@ function AddTransaction() {
               onChange={(e) => setPolicyno(e.target.value)}
               required
             />
-          </label>
+          </div>
 
-          <label>
+
+          <div className="inputwrapper">
+          <label >
             Proposed value:
+            </label>
             <input
               placeholder="Enter proposed value amount"
               type="number"
@@ -228,9 +241,10 @@ function AddTransaction() {
               onChange={(e) => setProposed(e.target.value)}
               required
             />
-          </label>
+          </div>
 
-          <label>
+        <div className="inputwrapper">
+          <label >
             Starting date:
             <input
               type="date"
@@ -238,10 +252,14 @@ function AddTransaction() {
               onChange={handleStartDateChange}
               required
             />
-          </label>
+            </label>
+          </div>
 
+
+          <div className="inputwrapper">
           <label>
             Expiry date:
+            
             <input
               type="date"
               value={expire}
@@ -249,11 +267,12 @@ function AddTransaction() {
               readOnly
               required
             />
-          </label>
+            </label>
+          </div>
 
 
           <button type="submit"
-            className="bg-green-600 hover:bg-green-500 text-white font-bold py-1 px-3 rounded"
+            className="bg-green-600 hover:bg-green-500 text-white font-bold py-1 px-3 rounded mt-2" 
            >Add Policy</button>
         </form>
       </div>

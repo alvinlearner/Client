@@ -46,9 +46,13 @@ const Upperkrapin = krapin.toUpperCase()
 
   return (
     <div className="container mx-auto p-4" style={{ marginBottom: "10px", fontWeight: "bold" }}>
+      
       <form onSubmit={handleSubmit} className="post-data">
-        <label>
+
+        <div className="inputwrapper">
+        <label >
           Name:
+          </label><span/>
           <input
             type="text"
             value={name}
@@ -56,10 +60,14 @@ const Upperkrapin = krapin.toUpperCase()
             onChange={(e) => setName(e.target.value)}
             required
           />
-        </label>
+        </div>
 
-        <label>
+
+
+      <div className="inputwrapper">
+        <label >
           Phone:
+          </label> <span/>
           <input
             type="tel"
             value={phone}
@@ -71,10 +79,12 @@ const Upperkrapin = krapin.toUpperCase()
       //  oninput="setCustomValidity('')" 
             required
           />
-        </label>
+      </div>
 
-        <label>
+      <div className="inputwrapper">
+        <label >
           Email:
+          </label><span/>
           <input
             type="email"
             value={email}
@@ -82,10 +92,14 @@ const Upperkrapin = krapin.toUpperCase()
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </label>
+     </div>
 
-        <label>
+
+     <div className="inputwrapper">
+        <label >
           K.R.A pin:
+          </label>
+          <span/>
           <input
             type="text"
             value={krapin}
@@ -93,10 +107,13 @@ const Upperkrapin = krapin.toUpperCase()
             required
             placeholder="Enter K.R.A pin"
           />
-        </label>
+       </div>
 
+
+      <div className="inputwrapper">
         <label>
           I.D number:
+          </label><span/>
           <input
             type="text"
             value={idno}
@@ -104,9 +121,9 @@ const Upperkrapin = krapin.toUpperCase()
             required
             placeholder="Enter I.D number"
           />
-        </label>
-
-        <label>
+        
+      </div>
+        {/* <label>
           Documents:
           <input
             type="file"
@@ -116,10 +133,10 @@ const Upperkrapin = krapin.toUpperCase()
             
             
           />
-        </label>
+        </label> */}
 
         <button type="submit" 
-        className="bg-green-600 hover:bg-green-500 text-white font-bold py-1 px-3 rounded"
+        className="bg-green-600 hover:bg-green-500 text-white font-bold mt-4 py-1 px-3 rounded"
         >Add Client</button>
       </form>
     </div>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Motornav from "../../components/Motornav";
 
+import "../../components/ClientPost.css";
 // import '../style.css'
 
 function Companies() {
@@ -98,14 +99,20 @@ function Companies() {
               
                 <h2 className="font-bold text-3xl">Insurance Companies</h2>
             </div>
+
+
+
+    {/* POST INSURANCE COMPANY */}
+
       <form onSubmit={handleSubmit} className="post-data">
-      <div className="flex items-center">
-            <label className="mr-2">
+
+      <div className="inputwrapper">
+            <label className="mr-2 ">
           Company:
           </label>
           <input
             type="text"
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className=" pl-0 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             value={company}
             placeholder="Enter Insurance company"
             onChange={(e) => setCompany(e.target.value)}
@@ -113,10 +120,10 @@ function Companies() {
           />
         </div>
 
-        <div className="flex items-center py-1">
+        <div className="inputwrapper">
             <label className="mr-2">
           Rate(%):
-          </label>
+          </label><span/>
           <input
             type="number"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -127,7 +134,7 @@ function Companies() {
           />
         </div>
 
-            <div className="flex items-center py-1">
+            <div className="inputwrapper">
             <label className="mr-2">
           Excess_Protector(%):
           </label>
@@ -141,7 +148,7 @@ function Companies() {
           />
         </div>
 
-        <div className="flex items-center py-1">
+        <div className="inputwrapper">
             <label className="mr-2">
           P.V.T(%):
           </label>
@@ -155,7 +162,7 @@ function Companies() {
           />
         </div>
 
-        <div className="flex items-center py-1">
+        <div className="inputwrapper">
             <label className="mr-2">
           Loss_Of_Use:
           </label>
@@ -169,7 +176,7 @@ function Companies() {
           />
         </div>
 
-        <div className="flex items-center py-1">
+        <div className="inputwrapper">
             <label className="mr-2">
           P.C.F(%):
           </label>
@@ -184,7 +191,7 @@ function Companies() {
         </div>
 
 
-        <div className="flex items-center py-1">
+        <div className="inputwrapper">
             <label className="mr-2">
           I.T.L(%):
           </label>
@@ -201,7 +208,7 @@ function Companies() {
 
 
 
-        <div className="flex items-center py-1">
+        <div className="inputwrapper">
             <label className="mr-2">
           Stamp Duty:
           </label>
@@ -218,7 +225,7 @@ function Companies() {
 
 
         <button type="submit" 
-        className="bg-green-600 hover:bg-green-500 text-white font-bold py-1 px-3 rounded"
+        className="bg-green-600 hover:bg-green-500 text-white font-bold mt-3 py-1 px-3 rounded"
         >Add Insurance company</button>
       </form>
 

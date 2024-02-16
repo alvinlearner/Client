@@ -128,8 +128,7 @@ export default function EditClient() {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const url = `https://insurance-xgcq.onrender.com/clients/${id}`;
-          const response = await fetch(url, {
+          const response = await fetch(`https://insurance-xgcq.onrender.com/clients/${id}`, {
             method: "DELETE",
             headers: { "content-type": "application/json" },
           });

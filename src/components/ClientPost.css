@@ -54,3 +54,13 @@
   }
   
 
+
+
+  .inputWrapper label{
+    display:block;
+    
+  }
+
+label{
+  text-align: left;
+}
