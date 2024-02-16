@@ -178,26 +178,16 @@ function AddTransaction() {
 
     <div className="inputwrapper">
           <label style={{textAlign:"left"}}>
-            Classification:
+            Select Type:
             </label><span/>
             <select value={classification} onChange={(e) => setClassification(e.target.value)} required>
-            <option value="" disabled>Select Classification</option>
-            <optgroup label="Comprehensive">
-              <option value="Comprehensive Private">Comprehensive Private</option>
-              <option value="Comprehensive Commercial">Comprehensive Commercial</option>
-              <option value="Comprehensive PSV">Comprehensive P.S.V</option>
-              <option value="Comprehensive TSV">Comprehensive T.S.V</option>
-              <option value="Comprehensive Special MV">Comprehensive Special M.V</option>
-              <option value="Comprehensive Trailer">Comprehensive Trailer</option>
-              </optgroup>
-
-              <optgroup label="T.P.O">
-              <option value="T.P.O Private">T.P.O Private</option>
-              <option value="T.P.O Commercial">T.P.O Commercial</option>
-              <option value="T.P.O PSV">T.P.O P.S.V</option>
-              <option value="T.P.O TSV">T.P.O T.S.V</option>
-              <option value="T.P.O Special MV">T.P.O Special M.V</option>
-              <option value="T.P.O Trailer">T.P.O Trailer</option>\
+            <option value="" disabled>Select type of classification</option>
+            <optgroup label="Type">
+              <option value="CNC">CNC</option>
+              <option value="EXT">EXT</option>
+              <option value="POL">POL</option>
+              <option value="REN">REN</option>
+              <option value="STK">STK</option>
               </optgroup>
 
             </select>
