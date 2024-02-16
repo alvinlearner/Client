@@ -155,9 +155,9 @@ th {
             <th className="px-4 py-2" onClick={() => handleSort("classification")}>
               Classification Type
             </th>
-            <th className="px-4 py-2" onClick={() => handleSort("reg")}>
+            {/* <th className="px-4 py-2" onClick={() => handleSort("reg")}>
               Registration Number
-            </th>
+            </th> */}
             <th className="px-4 py-2" onClick={() => handleSort("policyno")}>
               Policy Number
             </th>
@@ -184,8 +184,12 @@ th {
                           <tr key={transaction.id} className="bg-gray-100">
                           <td className="px-4 py-2 font-bold" onClick={() => navigate(`/client/${transaction.client.id}`)} style={{ cursor: "pointer" }}>{transaction.client ? transaction.client.name : "Unknown Client"}</td>
                           <td className="px-4 py-2 font-bold">{transaction.company ? transaction.company.organization : "Unknown Insurance"}</td>
-                            <td className="px-4 py-2 font-bold">{transaction.classification}</td>
-                            <td className="px-4 py-2 font-bold">{transaction.reg}</td>
+                            {/* <td className="px-4 py-2 font-bold">{transaction.classification}</td> */}
+                            <td className={`px-4 py-2 font-bold ${transaction.classification === 'CNC' ? 'text-red-500' : ''}`}>
+                                    {transaction.classification}
+                            </td>
+
+                            {/* <td className="px-4 py-2 font-bold">{transaction.reg}</td> */}
                             <td className="px-4 py-2 font-bold">{transaction.policyno}</td>
                             <td className="px-4 py-2 font-bold">{transaction.start}</td>
                             <td className="px-4 py-2 font-bold">{transaction.expire}</td>

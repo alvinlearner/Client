@@ -306,8 +306,12 @@ useEffect(() => {
         {transaction.company && transaction.company.organization}
       </li>
     <li className="text-xl">
-      <strong>Classification:</strong> {transaction.classification}
+      <strong>Classification:</strong> <em className={`px-4 py-2 font-bold ${transaction.classification === 'CNC' ? 'text-red-500' : ''}`}>
+  {transaction.classification}
+  </em>
     </li>
+
+    
     <li className="text-xl">
       <strong>Proposed value:</strong> {transaction.proposed}
     </li>
@@ -320,12 +324,13 @@ useEffect(() => {
     <li className="text-xl">
       <strong>Days left:</strong>{" "}
       <em
+      className="font-bold"
         style={{
           color:
-            calculateDaysLeft(transaction.start, transaction.expire) > 0
+            calculateDaysLeft(transaction.start, transaction.expire) > 5
               ? "black"
               : "red",
-        }}
+        }} 
       >
         {calculateDaysLeft(transaction.start, transaction.expire)} days left
       </em>
@@ -368,7 +373,8 @@ useEffect(() => {
             {stampDuty}
           </li>
           <li className="mt-3 mr-2">
-            <strong className="text-3xl">Premium:</strong> {premiumFloat}
+            {/* <strong className="text-3xl">Premium:</strong> {premiumFloat} */}
+            <strong className="text-2xl">Premium:</strong> <em className="text-3xl font-bold">{transaction.proposed}</em>
           </li>
 
         </ul>
@@ -446,27 +452,18 @@ useEffect(() => {
               }
               required
             >
-              <option value="" disabled>
-                Select Classification
-              </option>
-              <optgroup label="Comprehensive">
-              <option value="Comprehensive Private">Comprehensive Private</option>
-			        <option value="Comprehensive Commercial">Comprehensive Commercial</option>
-              <option value="Comprehensive PSV">Comprehensive P.S.V</option>
-              <option value="Comprehensive TSV">Comprehensive T.S.V</option>
-              <option value="Comprehensive Special MV">Comprehensive Special M.V</option>
-              <option value="Comprehensive Trailer">Comprehensive Trailer</option>
+              <option value="" disabled>Select type of classification</option>
+            <optgroup label="Type">
+              <option value="CNC">CNC</option>
+              <option value="EXT">EXT</option>
+              <option value="POL">POL</option>
+              <option value="REN">REN</option>
+              <option value="STK">STK</option>
               </optgroup>
-              <optgroup label="T.P.O">
-              <option value="T.P.O Private">T.P.O Private</option>
-              <option value="T.P.O Commercial">T.P.O Commercial</option>
-              <option value="T.P.O PSV">T.P.O P.S.V</option>
-              <option value="T.P.O TSV">T.P.O T.S.V</option>
-              <option value="T.P.O Special MV">T.P.O Special M.V</option>
-              <option value="T.P.O Trailer">T.P.O Trailer</option>
-              </optgroup>  
             </select>            
         </div>
+
+
 
         <div className="flex items-center mb-1">
             <label className="mr-2 text-xl">
