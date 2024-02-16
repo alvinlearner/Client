@@ -120,7 +120,7 @@ table {
             <th className="px-4 py-2" onClick={() => handleSort("name")}>
               NAME
             </th>
-            <th className="px-4 py-2" onClick={() => handleSort("phone")}>
+            {/* <th className="px-4 py-2" onClick={() => handleSort("phone")}>
               PHONE NUMBER
             </th>
             <th className="px-4 py-2">
@@ -131,7 +131,7 @@ table {
             </th>
             <th className="px-4 py-2" onClick={() => handleSort("idno")}>
               ID NUMBER
-            </th>
+            </th> */}
             <th className="px-4 py-2">
               Action
             </th>
@@ -141,10 +141,10 @@ table {
           {currentRows.map((clients) => (
             <tr key={clients.id} className="bg-gray-100 font-bold">
               <td className="px-4 py-2">{clients.name}</td>
-              <td className="px-4 py-2">{clients.phone}</td>
+              {/* <td className="px-4 py-2">{clients.phone}</td>
               <td className="px-4 py-2">{clients.email}</td>
               <td className="px-4 py-2">{clients.krapin}</td>
-              <td className="px-4 py-2">{clients.idno}</td>
+              <td className="px-4 py-2">{clients.idno}</td> */}
 
               <td className="px-4 py-2">
 
