@@ -86,7 +86,7 @@ const Upperkrapin = krapin.toUpperCase()
           Email:
           </label><span/>
           <input
-            type="email"
+            type="text"
             value={email}
             placeholder="Enter email"
             onChange={(e) => setEmail(e.target.value)}
