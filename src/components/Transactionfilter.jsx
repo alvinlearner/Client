@@ -6,9 +6,9 @@ export default function TransactionFilter({ transactions, onFilter }) {
   const handleSearch = () => {
     onFilter(
       transactions.filter((transaction) =>
-        transaction.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
         transaction.reg.toUpperCase().includes(searchTerm.toUpperCase()) ||
-        transaction.policyno.toLowerCase().includes(searchTerm.toLowerCase())
+        transaction.policyno.toLowerCase().includes(searchTerm.toLowerCase())||
+        transaction.client.name.toLowerCase().includes(searchTerm.toLowerCase())
 
       )
     );

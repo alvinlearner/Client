@@ -142,7 +142,7 @@ function AddTransaction() {
 
       <div className="inputwrapper">
         <label>
-            Select Client:
+            Select  Policy Holder:
       
             <Select
             className="w-60"

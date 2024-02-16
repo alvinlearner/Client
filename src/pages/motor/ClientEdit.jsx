@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams, Navigate, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import "./editclient.css";
+import Motornav from "../../components/Motornav";
+
 
 export default function EditClient() {
 
@@ -158,6 +160,9 @@ export default function EditClient() {
 
   return (
     <>
+
+    <Motornav/>
+
     <h1 className="font-bold text-4xl">Edit client information</h1>
     
     <div className="flex-container">

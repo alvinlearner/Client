@@ -145,7 +145,7 @@ th {
           <tr>
 
           <th className="px-4 py-2" >
-              Client ID
+              POLICY HOLDER
             </th>
 
             <th className="px-4 py-2" >
